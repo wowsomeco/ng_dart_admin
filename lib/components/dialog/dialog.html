@@ -1,0 +1,17 @@
+<div class="dialog" [class.active]="show" (click)="setShow(false)">
+  <div class="modal-dialog modal-dialog-centered" role="document" (click)="$event.stopPropagation()">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          <ng-content select="header"></ng-content>
+        </h5>
+        <button type="button" class="close" aria-label="Close" (click)="setShow(false)">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

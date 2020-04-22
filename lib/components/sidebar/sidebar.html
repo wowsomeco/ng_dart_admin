@@ -1,0 +1,38 @@
+<div class="nav-left-sidebar sidebar-dark">
+  <div style="position: relative; overflow: hidden; width: auto; height: 100%;">
+    <div class="menu-list" style="overflow: hidden; width: auto; height: 100%;">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <!-- <a class="d-xl-none d-lg-none text-white" href="#">Dashboard</a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button> -->
+        <div class="navbar-collapse collapse" id="navbarNav">
+          <ul class="navbar-nav flex-column">
+            <li class="nav-item" *ngFor="let item of items" [routerLinkActive]="'active'">
+              <a class="nav-link" aria-expanded="false">
+                <i *ngIf="item.icon != null" [ngClass]="item.icon"></i>{{item.title}}
+              </a>
+              <div id="submenu-1" class="submenu collapse">
+                <ul class="nav flex-column">
+                  <li *ngFor="let sub of item.contents" class="nav-item">
+                    <a class="nav-link collapsed" aria-expanded="false">
+                      <i *ngIf="item.icon != null" [ngClass]="item.icon"></i>{{sub.title}}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <!-- <li class="nav-divider">Menu</li> -->
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="slimScrollBar"
+      style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 672.885px;">
+    </div>
+    <div class="slimScrollRail"
+      style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;">
+    </div>
+  </div>
+</div>

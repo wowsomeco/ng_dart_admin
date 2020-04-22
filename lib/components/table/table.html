@@ -1,0 +1,39 @@
+<div class="card shadow-sm">
+  <div class="card-header">
+    <div class="row align-items-center">
+      <h5 class="col">{{title}}</h5>
+      <div class="col d-flex justify-content-end">
+        <button type="button" class="btn btn-info" (click)="addItem()"><i class="fa fa-plus"></i> Add New</button>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div *ngIf="!loading" class="table-responsive">
+      <div>
+        <div class="row">
+          <div class="col-sm-12">
+            <table class="table table-striped table-bordered first dataTable table-hover" id="DataTables_Table_0"
+              role="grid" aria-describedby="DataTables_Table_0_info">
+              <thead>
+                <tr role="row">
+                  <th *ngFor="let h of headerItem">{{h}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="cursor-pointer" *ngFor="let item of items; let i=index; let odd=odd"
+                  [ngClass]="i % 2 == 0 ? 'odd' : 'even'">
+                  <td *ngFor="let d of item.values">{{d}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <w-pagination class="d-flex justify-content-center" [collectionSize]="totalSize" [pageSize]="pageSize"
+          [page]="page" (pageChange)="onPageChange($event)">
+        </w-pagination>
+      </div>
+    </div>
+  </div>
+  <w-loader *ngIf="loading">
+  </w-loader>
+</div>
