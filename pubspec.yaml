@@ -1,5 +1,5 @@
 name: ng_admin
-description: Admin Template with Bootstrap and Angular Dart
+description: Admin Template for Angular Dart
 version: 0.0.1
 
 environment:
@@ -17,4 +17,4 @@ dev_dependencies:
   build_test: ^0.10.8
   build_web_compilers: ^2.3.0
   pedantic: ^1.8.0
-  test: ^1.6.0  
+  test: ^1.6.0    

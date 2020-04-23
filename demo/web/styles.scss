@@ -2,9 +2,10 @@
   font-family: "Muli", sans-serif;
 }
 
-.fullscreen {
-  width: 100vw;
-  height: 100vh;
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .cursor-pointer {

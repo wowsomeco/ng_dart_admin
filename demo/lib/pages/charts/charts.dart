@@ -45,4 +45,6 @@ class ChartsComponent {
   ChartistPieData pieData = ChartistPieData(series: [5, 3, 4]);
 
   ChartistPieOptions pieOptions = ChartistPieOptions(donut: true);
+
+  String get cardClass => 'ba br1 b--lightest-blue pa2 ma2';
 }

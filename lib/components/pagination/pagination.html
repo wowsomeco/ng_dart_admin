@@ -1,15 +1,16 @@
-<ul class="pagination">
-  <li class="paginate_button page-item previous" [class.disabled]="previousDisabled" (click)="prevPage()">
-    <a class="page-link" aria-label="Previous">
+<div class="flex pointer">
+  <div [class]="className" [class.near-white]="previousDisabled" (click)="prevPage()">
+    <a aria-label="Previous">
       <span aria-hidden="true">&laquo;</span>
     </a>
-  </li>
-  <li *ngFor="let p of pages" class="paginate_button page-item" [class.active]="p == page" (click)="changePage(p)">
-    <a class="page-link">{{p}}</a>
-  </li>
-  <li class="paginate_button page-item next" [class.disabled]="nextDisabled" (click)="nextPage()">
-    <a class="page-link" aria-label="Next">
+  </div>
+  <div *ngFor="let p of pages" [class]="className" [class.bg-blue]="p == page"
+    [ngClass]="p == page ? 'near-white' : 'blue'" (click)="changePage(p)">
+    <a>{{p}}</a>
+  </div>
+  <div [class]="className" [class.near-white]="nextDisabled" (click)="nextPage()">
+    <a aria-label="Next">
       <span aria-hidden="true">&raquo;</span>
     </a>
-  </li>
-</ul>
+  </div>
+</div>

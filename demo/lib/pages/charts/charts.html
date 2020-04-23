@@ -1,26 +1,17 @@
-<div class="p-3">
-  <div>Charts</div>
-  <div class="row">
-    <div class="col-12 col-sm-6">
-      <div class="card">
-        <div class="card-body">
-          <div chartist-line [clData]="lineData" [clOptions]="lineOptions" class="ct-chart ct-golden-section"></div>
-        </div>
-      </div>
+<div class="pa3 flex flex-wrap">
+  <div class="w-100 w-50-ns">
+    <div [class]="cardClass">
+      <div chartist-line [clData]="lineData" [clOptions]="lineOptions" class="ct-chart ct-golden-section"></div>
     </div>
-    <div class="col-12 col-sm-6">
-      <div class="card">
-        <div class="card-body">
-          <div chartist-pie [clData]="pieData" [clOptions]="pieOptions" class="ct-chart ct-golden-section"></div>
-        </div>
-      </div>
+  </div>
+  <div class="w-100 w-50-ns">
+    <div [class]="cardClass">
+      <div chartist-pie [clData]="pieData" [clOptions]="pieOptions" class="ct-chart ct-golden-section"></div>
     </div>
-    <div class="col-12 mt-2">
-      <div class="card">
-        <div class="card-body">
-          <div chartist-bar [clData]="barData" [clOptions]="barOptions" class="ct-chart ct-golden-section"></div>
-        </div>
-      </div>
+  </div>
+  <div class="w-100">
+    <div [class]="cardClass">
+      <div chartist-bar [clData]="barData" [clOptions]="barOptions" class="ct-chart ct-golden-section"></div>
     </div>
   </div>
 </div>

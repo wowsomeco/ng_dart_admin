@@ -5,7 +5,6 @@ import 'package:angular/angular.dart';
 
 @Component(
   selector: 'w-dialog',
-  styleUrls: ['dialog.css'],
   templateUrl: 'dialog.html',
   directives: [coreDirectives],
 )

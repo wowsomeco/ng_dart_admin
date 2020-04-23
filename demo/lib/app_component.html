@@ -1,3 +1,27 @@
-<w-header title="ng_admin demo" [items]="headerItems"></w-header>
-<div style="margin-top: 60px;"></div>
-<router-outlet [routes]="Routes.all"></router-outlet>
+<w-layout>
+  <w-header>
+    <div class="flex justify-between items-center">
+      <p class="f4 b navy">ng_admin</p>
+      <div class="blue flex items-center">
+        <i class="grow pointer ph3 material-icons hover-navy">apps</i>
+        <div class="ph3 tc grow pointer">
+          <img src="https://images.dog.ceo/breeds/pug/n02110958_16434.jpg" class="br-100 h2 w2 dib" alt="avatar">
+        </div>
+      </div>
+    </div>
+  </w-header>
+  <w-sidebar>
+    <div class="w-100 h-100">
+      <div class="flex flex-column">
+        <a class="grow bb b--light-gray pa2 flex flex-column items-center flex-row-ns no-underline blue"
+          *ngFor="let item of sidebarItems" [routerLink]="item.to" [routerLinkActive]="activeClass">
+          <i class="ph3 material-icons">{{item.icon}}</i>
+          <p class="f7 f5-ns">{{item.title}}</p>
+        </a>
+      </div>
+    </div>
+  </w-sidebar>
+  <w-main>
+    <router-outlet class="col-9" [routes]="Routes.all"></router-outlet>
+  </w-main>
+</w-layout>

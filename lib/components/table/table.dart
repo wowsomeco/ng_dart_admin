@@ -1,8 +1,7 @@
 import 'dart:async';
 
 import 'package:angular/angular.dart';
-import '../loader/loader.dart';
-import '../pagination/pagination.dart';
+import 'package:ng_admin/components/index.dart';
 
 class TableItem {
   final Map<String, dynamic> kv;
@@ -22,11 +21,17 @@ abstract class TableDataProvider {
 @Component(
   selector: 'w-table',
   templateUrl: 'table.html',
-  directives: [coreDirectives, LoaderComponent, PaginationComponent],
+  directives: [
+    coreDirectives,
+    PaginationComponent,
+    LoaderComponent,
+    DialogComponent
+  ],
 )
 class TableComponent implements OnInit {
   int page = 1;
-  bool loading;
+  bool loading = false;
+  bool dialog = false;
   List<TableItem> items = [];
 
   @Input('title')
@@ -38,7 +43,10 @@ class TableComponent implements OnInit {
   final _addItem = StreamController<Null>();
   @Output()
   Stream<Null> get onAddItem => _addItem.stream;
-  void addItem() => _addItem.add(null);
+  void addItem() {
+    dialog = true;
+    _addItem.add(null);
+  }
 
   Iterable<String> get headerItem => items.first.kv.keys;
 

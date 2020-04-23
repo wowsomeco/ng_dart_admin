@@ -36,7 +36,5 @@ class StaticTableProvider extends TableDataProvider {
     directives: [coreDirectives, TableComponent, DialogComponent],
     providers: [])
 class DashboardComponent {
-  bool showModal = false;
-
   StaticTableProvider staticTableProvider = StaticTableProvider();
 }
