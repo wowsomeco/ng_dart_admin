@@ -1,6 +1,6 @@
 import 'package:angular/angular.dart';
 import 'package:angular_router/angular_router.dart';
-import 'package:ng_admin/components/index.dart';
+import 'package:ng_admin/ng_admin.dart';
 import 'package:ng_admin_demo/routes/index.dart';
 
 class _SidebarItem {
@@ -21,11 +21,10 @@ class _SidebarItem {
 class AppComponent implements OnInit {
   final Router _router;
 
-  final List<_SidebarItem> sidebarItems = [
-    _SidebarItem('Dashboard', '/dashboard', 'dashboard'),
-    _SidebarItem('Charts', '/charts', 'bar_chart'),
-    _SidebarItem('Maps', '/maps', 'layers'),
-  ];
+  List<_SidebarItem> get sidebarItems => Routes.all
+      .map((x) => _SidebarItem(
+          x.path.toUpperCase(), '/${x.path}', x.additionalData['icon']))
+      .toList();
 
   AppComponent(this._router);
 

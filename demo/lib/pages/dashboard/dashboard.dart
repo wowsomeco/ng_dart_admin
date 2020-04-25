@@ -1,5 +1,6 @@
 import 'package:angular/angular.dart';
 import 'package:ng_admin/ng_admin.dart';
+import 'package:ng_admin_demo/directives/mouse_event_directives.dart';
 
 class StaticTableProvider extends TableDataProvider {
   final List<TableItem> _items = [
@@ -30,11 +31,13 @@ class StaticTableProvider extends TableDataProvider {
   int get collectionSize => _items.length;
 }
 
-@Component(
-    selector: 'dashboard',
-    templateUrl: 'dashboard.html',
-    directives: [coreDirectives, TableComponent, DialogComponent],
-    providers: [])
+@Component(selector: 'dashboard', templateUrl: 'dashboard.html', directives: [
+  coreDirectives,
+  StopPropagationDirective,
+  ngAdminDirectives,
+  TableComponent,
+  DialogComponent,
+], providers: [])
 class DashboardComponent {
   StaticTableProvider staticTableProvider = StaticTableProvider();
 }

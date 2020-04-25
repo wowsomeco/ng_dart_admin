@@ -5,10 +5,10 @@
     </a>
   </div>
   <div *ngFor="let p of pages" [class]="className" [class.bg-blue]="p == page"
-    [ngClass]="p == page ? 'near-white' : 'blue'" (click)="changePage(p)">
+    [ngClass]="p == page ? 'light-gray' : 'blue'" (click)="changePage(p)">
     <a>{{p}}</a>
   </div>
-  <div [class]="className" [class.near-white]="nextDisabled" (click)="nextPage()">
+  <div [class]="className" [class.light-gray]="nextDisabled" (click)="nextPage()">
     <a aria-label="Next">
       <span aria-hidden="true">&raquo;</span>
     </a>

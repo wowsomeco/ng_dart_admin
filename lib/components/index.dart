@@ -1,4 +1,5 @@
 export 'layout/layout.dart';
+export 'inputs/index.dart';
 export 'table/table.dart';
 export 'pagination/pagination.dart';
 export 'dialog/dialog.dart';

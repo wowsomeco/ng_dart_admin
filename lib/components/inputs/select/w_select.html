@@ -1,0 +1,10 @@
+<w-input-decor poppable>
+  <div poppableToggle>{{selected.label}}</div>
+  <suffix><i class="material-icons">keyboard_arrow_down</i></suffix>
+  <div popup [(popupShow)]="showOption" class="ba b--light-gray w-100 bg-white" wSelectable
+    [selectedItem]="selectedItemIdx" (selectedItemChange)="onSelectItem($event)">
+    <div class="pa2" *ngFor="let o of options" wSelectableItem wSelectableHighlighted="bg-light-gray"
+      wSelectableSelected="blue">
+      {{o.label}}</div>
+  </div>
+</w-input-decor>

@@ -11,3 +11,12 @@ body {
 .cursor-pointer {
   cursor: pointer;
 }
+
+input {
+  border-width: 0px;
+  border: none;
+}
+
+input:focus {
+  outline: none;
+}
