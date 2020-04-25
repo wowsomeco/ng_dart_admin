@@ -7,6 +7,13 @@ class SelectableDirective implements AfterContentInit {
   @Input('selectedItem')
   int selectedItem;
 
+  @Input('showSelection')
+  set showSelection(bool flag) => _el.style.display = flag ? 'block' : 'none';
+
+  final _showChanged = StreamController<bool>();
+  @Output()
+  Stream<bool> get showSelectionChange => _showChanged.stream;
+
   final Element _el;
   int _highlightedIdx;
 
@@ -24,8 +31,15 @@ class SelectableDirective implements AfterContentInit {
     _reset();
     // add click listener for the items
     for (int i = 0; i < items.length; i++) {
-      items[i].elem.addEventListener('click', (ev) => _selectItem(i));
+      items[i].elem.addEventListener('click', (ev) {
+        _selectItem(i);
+        ev.stopPropagation();
+      });
     }
+    // handle esc
+    document.onKeyDown
+        .where((ev) => ev.keyCode == KeyCode.ESC)
+        .listen((ev) => showSelection = false);
     // enter key ev
     document.onKeyDown
         .where((ev) =>
@@ -54,6 +68,7 @@ class SelectableDirective implements AfterContentInit {
     _itemSelected.add(idx);
     items[idx].select();
     _changeHighlight(idx);
+    _showChanged.add(false);
   }
 
   void _changeHighlight(int idx) {

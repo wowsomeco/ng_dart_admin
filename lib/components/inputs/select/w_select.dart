@@ -13,6 +13,7 @@ class SelectOption<T> {
 @Component(
   selector: 'w-select',
   templateUrl: 'w_select.html',
+  providers: [ClassProvider(WInputDecorService)],
   directives: [
     coreDirectives,
     formDirectives,
@@ -33,12 +34,19 @@ class WSelectComponent {
 
   bool showOption = false;
 
-  int get selectedItemIdx {
-    return options.indexWhere((x) => x.label == selected.label);
+  final WInputDecorService _service;
+
+  WSelectComponent(this._service) {
+    _service.focus.listen((ev) => showOption = ev);
+    _service.onClear.listen((ev) => _selected.add(null));
   }
+
+  int get selectedItemIdx =>
+      options.indexWhere((x) => x.label == selected.label);
 
   void onSelectItem(int idx) {
     _selected.add(options[idx]);
     showOption = false;
+    _service.setFocus(showOption);
   }
 }

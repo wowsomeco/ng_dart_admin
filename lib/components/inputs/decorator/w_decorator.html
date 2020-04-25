@@ -1,4 +1,4 @@
-<div tabindex="-1" class="blue ba b--light-gray pointer db flex justify-between items-center">
+<div #outer class="gray ba b--light-gray pointer db flex justify-between items-center">
   <div class="pa2">
     <ng-content select="prefix"></ng-content>
   </div>
@@ -6,8 +6,7 @@
     <ng-content></ng-content>
   </div>
   <div class="pa2">
-    <i class="material-icons">cancel</i>
+    <i class="material-icons light-red" (click)="clear()">cancel</i>
     <ng-content select="suffix"></ng-content>
   </div>
-  <ng-content select="container"></ng-content>
 </div>

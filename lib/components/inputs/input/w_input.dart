@@ -6,6 +6,7 @@ import 'package:ng_admin/ng_admin.dart';
 @Component(
   selector: 'w-input',
   templateUrl: 'w_input.html',
+  providers: [ClassProvider(WInputDecorService)],
   directives: [
     coreDirectives,
     formDirectives,
@@ -17,5 +18,9 @@ class WInputComponent {
   @ViewChild('input')
   HtmlElement input;
 
-  void onFocus(bool flag) => flag ? input.focus() : input.blur();
+  final WInputDecorService _service;
+
+  WInputComponent(this._service) {
+    _service.focus.listen((ev) => ev ? input.focus() : input.blur());
+  }
 }

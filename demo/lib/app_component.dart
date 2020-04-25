@@ -28,6 +28,8 @@ class AppComponent implements OnInit {
 
   AppComponent(this._router);
 
+  // String capitalize() => '${this[0].toUpperCase()}${this.substring(1)}';
+
   @override
   void ngOnInit() async {
     /// might want to showcase navigate to login page if not logged in yet later
