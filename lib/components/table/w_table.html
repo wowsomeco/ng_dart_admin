@@ -2,8 +2,7 @@
   <div class="bb b--black-10">
     <div class="flex flex-row justify-between items-center pa1">
       <p class="f5 lh-copy b">{{title}}</p>
-      <a class="f6 link grow ba ph3 pv2 dark-blue pointer hover-near-white hover-bg-blue bg-animate"
-        (click)="addItem()">Add
+      <a class="f6 link ba ph3 pv2 dark-blue pointer hover-near-white hover-bg-blue bg-animate" (click)="addItem()">Add
         New</a>
     </div>
   </div>
@@ -20,8 +19,8 @@
         </tr>
       </tbody>
     </table>
-    <div *ngIf="loading" class="pa3">
-      <w-loader></w-loader>
+    <div *ngIf="loading" class="w-100 h-100 flex items-center justify-center pa4">
+      <w-spinner class="h2 w2"></w-spinner>
     </div>
   </div>
   <w-pagination class="flex justify-center mt3" [collectionSize]="totalSize" [pageSize]="pageSize" [page]="page"

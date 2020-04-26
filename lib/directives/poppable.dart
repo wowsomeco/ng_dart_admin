@@ -2,45 +2,55 @@ import 'dart:async';
 import 'dart:html';
 import 'package:angular/core.dart';
 
-@Directive(selector: '[poppable]')
-class PoppableDirective implements AfterContentInit {
-  bool _showing;
+@Injectable()
+class PoppableService {
+  bool _show = false;
+  final _onShowChange = StreamController<bool>.broadcast();
+  Stream<bool> get show => _onShowChange.stream;
 
-  @ViewChild('popup')
-  Element popup;
-
-  @Input('popShow')
-  set showing(bool flag) {
-    print(flag);
-    _showing = flag;
-    if (popup != null) {
-      popup.style.display = flag ? 'block' : 'none';
-    }
-    _showChanged.add(flag);
+  void setShow(bool flag) {
+    _show = flag;
+    _onShowChange.add(_show);
   }
 
-  final _showChanged = StreamController<bool>();
-  @Output()
-  Stream<bool> get popShowChange => _showChanged.stream;
+  void toggleShow() => setShow(!_show);
+}
+
+@Directive(selector: '[poppable]', providers: [ClassProvider(PoppableService)])
+class PoppableDirective implements AfterContentInit {
+  @Input('offsetX')
+  int offsetX;
+
+  @Input('offsetY')
+  int offsetY;
+
+  @ContentChild('popup')
+  Element popup;
 
   final Element _el;
+  final PoppableService _service;
 
-  PoppableDirective(this._el) {
+  void show(bool flag) => popup.style.display = flag ? 'block' : 'none';
+
+  PoppableDirective(this._service, this._el) {
     _el.style.position = 'relative';
+    _el.onClick.listen((ev) => _service.toggleShow());
+    _service.show.listen((ev) => show(ev));
   }
 
   @override
   void ngAfterContentInit() {
-    // print(popup);
-    if (popup != null) {
-      popup.style.position = 'absolute';
-    }
-
+    popup.style.position = 'absolute';
+    Rectangle<num> elRect = _el.getBoundingClientRect();
+    Rectangle<num> popupRect = popup.getBoundingClientRect();
+    // num offX = popupRect.left - elRect.left - (popupRect.width / 2);
+    num offX = popupRect.width - elRect.width / 2;
+    // num offY = popupRect.top - elRect.top;
+    popup.style.transform = 'translate(-${offX}px,10px)';
+    _service.setShow(false);
     // handle esc
     document.onKeyDown
         .where((ev) => ev.keyCode == KeyCode.ESC)
-        .listen((ev) => showing = false);
+        .listen((ev) => _service.setShow(false));
   }
-
-  void toggleShow() => showing = !_showing;
 }

@@ -1,11 +1,14 @@
-export 'poppable.dart';
 export 'selectable.dart';
+export 'poppable.dart';
+export 'native_events.dart';
 
-import 'poppable.dart';
 import 'selectable.dart';
+import 'poppable.dart';
+import 'native_events.dart';
 
 const ngAdminDirectives = [
-  PoppableDirective,
   SelectableDirective,
-  SelectableItemDirective
+  SelectableItemDirective,
+  PoppableDirective,
+  EventBindingDirective
 ];

@@ -20,15 +20,15 @@ abstract class TableDataProvider {
 
 @Component(
   selector: 'w-table',
-  templateUrl: 'table.html',
+  templateUrl: 'w_table.html',
   directives: [
     coreDirectives,
-    PaginationComponent,
-    LoaderComponent,
-    DialogComponent
+    WPaginationComponent,
+    WSpinnerComponent,
+    WDialogComponent
   ],
 )
-class TableComponent implements OnInit {
+class WTableComponent implements OnInit {
   int page = 1;
   bool loading = false;
   bool dialog = false;

@@ -3,7 +3,32 @@
     <div class="flex justify-between items-center">
       <p class="f4 b navy">ng_admin</p>
       <div class="blue flex items-center">
-        <i class="grow pointer ph3 material-icons hover-navy">apps</i>
+        <div class="ph3">
+          <i poppable class="grow pointer material-icons hover-navy">apps
+            <div #popup class="pa2 ba bg-washed-blue gray" style="width: 200px;">
+              <div class="flex flex-wrap  w-100">
+                <div class="pa1 w-25">
+                  <i class="material-icons">apps</i>
+                </div>
+                <div class="pa1 w-25">
+                  <i class="material-icons">apps</i>
+                </div>
+                <div class="pa1 w-25">
+                  <i class="material-icons">apps</i>
+                </div>
+                <div class="pa1 w-25">
+                  <i class="material-icons">apps</i>
+                </div>
+                <div class="pa1 w-25">
+                  <i class="material-icons">apps</i>
+                </div>
+                <div class="pa1 w-25">
+                  <i class="material-icons">apps</i>
+                </div>
+              </div>
+            </div>
+          </i>
+        </div>
         <div class="ph3 tc grow pointer">
           <img src="https://images.dog.ceo/breeds/pug/n02110958_16434.jpg" class="br-100 h2 w2 dib" alt="avatar">
         </div>
@@ -11,9 +36,9 @@
     </div>
   </w-header>
   <w-sidebar>
-    <div class="w-100 h-100">
+    <div class="w-100 h-100 bg-washed-blue">
       <div class="flex flex-column">
-        <a class="grow bb b--light-gray pa2 flex flex-column items-center flex-row-ns no-underline blue"
+        <a class="blue grow bb b--light-gray pa2 flex flex-column items-center flex-row-ns no-underline"
           *ngFor="let item of sidebarItems" [routerLink]="item.to" [routerLinkActive]="activeClass">
           <i class="ph3 material-icons">{{item.icon}}</i>
           <p class="f7 f5-ns">{{item.title}}</p>

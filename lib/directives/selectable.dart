@@ -8,7 +8,9 @@ class SelectableDirective implements AfterContentInit {
   int selectedItem;
 
   @Input('showSelection')
-  set showSelection(bool flag) => _el.style.display = flag ? 'block' : 'none';
+  set showSelection(bool flag) {
+    _el.style.display = flag ? 'block' : 'none';
+  }
 
   final _showChanged = StreamController<bool>();
   @Output()
@@ -47,24 +49,23 @@ class SelectableDirective implements AfterContentInit {
         .listen((ev) => _selectItem(_highlightedIdx));
     // listen to arrow up and down events
     document.onKeyDown
-        .where((KeyboardEvent ev) =>
-            ev.keyCode == KeyCode.UP || ev.keyCode == KeyCode.DOWN)
+        .where((ev) => ev.keyCode == KeyCode.UP || ev.keyCode == KeyCode.DOWN)
         .listen((KeyboardEvent ev) {
       if (_el.style.display != 'none') {
-        _changeHighlight(
-            (_highlightedIdx + _delta(ev)).clamp(0, items.length - 1));
+        int curHighlighted = _highlightedIdx ?? -1;
+        int next = _clamp(curHighlighted + _delta(ev), 0, items.length - 1);
+        _changeHighlight(next);
       }
     });
   }
 
   void _reset() {
     _highlightedIdx = selectedItem;
-    items[_highlightedIdx].highlight(true);
-    items[_highlightedIdx].select();
+    if (_highlightedIdx != null) _selectItem(_highlightedIdx);
   }
 
   void _selectItem(int idx) {
-    items[selectedItem].select();
+    _clear();
     _itemSelected.add(idx);
     items[idx].select();
     _changeHighlight(idx);
@@ -72,12 +73,17 @@ class SelectableDirective implements AfterContentInit {
   }
 
   void _changeHighlight(int idx) {
-    items[_highlightedIdx].highlight(false);
+    _clear();
     _highlightedIdx = idx;
     items[_highlightedIdx].highlight(true);
   }
 
+  void _clear() => items.forEach((i) => i.clear());
+
   int _delta(KeyboardEvent k) => k.keyCode == KeyCode.UP ? -1 : 1;
+
+  int _clamp(int idx, int min, int max) =>
+      idx < min ? max : idx > max ? min : idx;
 }
 
 @Directive(selector: '[wSelectableItem]')
@@ -94,7 +100,12 @@ class SelectableItemDirective {
 
   SelectableItemDirective(this._el);
 
-  void highlight(bool flag) => _el.classes.toggle(highlightClass);
+  void highlight(bool flag) {
+    _el.classes.toggle(highlightClass);
+    if (flag) _el.scrollIntoView();
+  }
 
-  void select() => _el.classes.toggle(selectedClass);
+  void select() => _el.classes.add(selectedClass);
+
+  void clear() => _el.classes.removeAll([selectedClass, highlightClass]);
 }

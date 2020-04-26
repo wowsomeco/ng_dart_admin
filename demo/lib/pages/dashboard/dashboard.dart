@@ -1,6 +1,5 @@
 import 'package:angular/angular.dart';
 import 'package:ng_admin/ng_admin.dart';
-import 'package:ng_admin_demo/directives/mouse_event_directives.dart';
 
 class StaticTableProvider extends TableDataProvider {
   final List<TableItem> _items = [
@@ -8,12 +7,9 @@ class StaticTableProvider extends TableDataProvider {
     TableItem(
         {'Name': 'Pablo Aimar', 'Position': 'Software Engineer', 'Age': 71}),
     TableItem({'Name': 'Coutinho', 'Position': 'Midfielder', 'Age': 21}),
-    TableItem({'Name': 'Pug', 'Position': 'Anjing', 'Age': 21}),
-    TableItem({'Name': 'Pitbull', 'Position': 'Anjing', 'Age': 21}),
-    TableItem({'Name': 'Anjing kukuk', 'Position': 'Anjing', 'Age': 21}),
-    TableItem({'Name': 'Mantis', 'Position': 'Anjing', 'Age': 21}),
-    TableItem({'Name': 'Herder', 'Position': 'Anjing', 'Age': 21}),
-    TableItem({'Name': 'Doberman', 'Position': 'Anjing', 'Age': 21}),
+    TableItem({'Name': 'Juninho', 'Position': 'Midfielder', 'Age': 21}),
+    TableItem({'Name': 'Firmino', 'Position': 'Forward', 'Age': 21}),
+    TableItem({'Name': 'Jurgen Klopp', 'Position': 'Coach', 'Age': 21}),
   ];
 
   @override
@@ -33,10 +29,9 @@ class StaticTableProvider extends TableDataProvider {
 
 @Component(selector: 'dashboard', templateUrl: 'dashboard.html', directives: [
   coreDirectives,
-  StopPropagationDirective,
   ngAdminDirectives,
-  TableComponent,
-  DialogComponent,
+  WTableComponent,
+  WDialogComponent,
 ], providers: [])
 class DashboardComponent {
   StaticTableProvider staticTableProvider = StaticTableProvider();

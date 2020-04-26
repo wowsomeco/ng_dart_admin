@@ -15,7 +15,12 @@ class _SidebarItem {
     selector: 'my-app',
     styleUrls: ['app_component.css'],
     templateUrl: 'app_component.html',
-    directives: [coreDirectives, routerDirectives, LayoutComponent],
+    directives: [
+      coreDirectives,
+      routerDirectives,
+      ngAdminDirectives,
+      LayoutComponent
+    ],
     exports: [RoutePaths, Routes],
     providers: [])
 class AppComponent implements OnInit {
@@ -23,12 +28,12 @@ class AppComponent implements OnInit {
 
   List<_SidebarItem> get sidebarItems => Routes.all
       .map((x) => _SidebarItem(
-          x.path.toUpperCase(), '/${x.path}', x.additionalData['icon']))
+          '${x.path[0].toUpperCase()}${x.path.substring(1)}',
+          '/${x.path}',
+          x.additionalData['icon']))
       .toList();
 
   AppComponent(this._router);
-
-  // String capitalize() => '${this[0].toUpperCase()}${this.substring(1)}';
 
   @override
   void ngOnInit() async {

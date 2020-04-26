@@ -5,10 +5,10 @@ import 'package:angular/angular.dart';
 
 @Component(
   selector: 'w-dialog',
-  templateUrl: 'dialog.html',
+  templateUrl: 'w_dialog.html',
   directives: [coreDirectives],
 )
-class DialogComponent implements OnInit {
+class WDialogComponent implements OnInit {
   @Input('show')
   bool show = false;
 

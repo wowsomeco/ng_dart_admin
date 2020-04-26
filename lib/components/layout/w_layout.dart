@@ -5,7 +5,7 @@ import 'package:angular_router/angular_router.dart';
 /// It consists of 3 sections i.e w-header, w-sidebar, and w-main
 @Component(
     selector: 'w-layout',
-    templateUrl: 'layout.html',
+    templateUrl: 'w_layout.html',
     directives: [coreDirectives, routerDirectives],
     exports: [],
     providers: [])

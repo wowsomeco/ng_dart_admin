@@ -4,11 +4,11 @@ import 'package:angular/angular.dart';
 
 @Component(
   selector: 'w-pagination',
-  templateUrl: 'pagination.html',
+  templateUrl: 'w_pagination.html',
   directives: [coreDirectives],
   changeDetection: ChangeDetectionStrategy.OnPush,
 )
-class PaginationComponent {
+class WPaginationComponent {
   /// The current page
   @Input('page')
   int page = 1;

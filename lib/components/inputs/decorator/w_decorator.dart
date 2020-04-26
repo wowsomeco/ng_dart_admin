@@ -19,13 +19,31 @@ class WInputDecorService {
 
   final _onClear = StreamController<Null>.broadcast();
   Stream<Null> get onClear => _onClear.stream;
-  void clear() => _onClear.add(null);
+  void clear() {
+    _onClear.add(null);
+    setFocus(false);
+  }
+
+  bool _loading = false;
+  final _loadingStream = StreamController<bool>.broadcast();
+  Stream<bool> get loading => _loadingStream.stream;
+  void setLoading(bool flag) {
+    _loading = flag;
+    _loadingStream.add(_loading);
+  }
+
+  bool get isLoading => _loading;
 }
 
 @Component(
     selector: 'w-input-decor',
     templateUrl: 'w_decorator.html',
-    directives: [coreDirectives, formDirectives, ngAdminDirectives])
+    directives: [
+      coreDirectives,
+      formDirectives,
+      ngAdminDirectives,
+      WSpinnerComponent
+    ])
 class WInputDecoratorComponent implements AfterViewInit, OnDestroy {
   @ViewChild('outer')
   HtmlElement outer;
@@ -38,8 +56,8 @@ class WInputDecoratorComponent implements AfterViewInit, OnDestroy {
   void ngAfterViewInit() {
     document.addEventListener('click', handleClick);
     _service.focus.listen((ev) {
-      outer.classes.remove(ev ? 'b--light-gray' : 'b--blue');
-      outer.classes.add(ev ? 'b--blue' : 'b--light-gray');
+      outer.classes.remove(ev ? 'b--moon-gray' : 'b--blue');
+      outer.classes.add(ev ? 'b--blue' : 'b--moon-gray');
     });
   }
 
@@ -57,4 +75,6 @@ class WInputDecoratorComponent implements AfterViewInit, OnDestroy {
   }
 
   void clear() => _service.clear();
+
+  bool get loading => _service.isLoading;
 }

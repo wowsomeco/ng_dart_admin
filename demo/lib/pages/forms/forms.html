@@ -3,21 +3,18 @@
     <div class="pa2 bb b--light-gray">
       <p class="b">Form 1</p>
     </div>
-    <div class="pa3">
-      <div class="measure">
-        <label for="name" class="f6 b db mb2">Name <span class="normal black-60">(optional)</span></label>
-        <input id="name" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" aria-describedby="name-desc">
-        <small id="name-desc" class="f6 black-60 db mb2">Helper text for the form control.</small>
+    <div class="pa3 flex flex-wrap">
+      <div class="pa2 w-100 w-50-ns">
+        <label class="f6 b db mb2">Name</label>
+        <w-input [(value)]="name"></w-input>
       </div>
-      <div class="mt4"></div>
-      <div class="measure">
-        <label class="f6 b db mb2">Decor</label>
-        <w-input></w-input>
-      </div>
-      <div class="mt4"></div>
-      <div class="measure">
+      <div class="pa2 w-100 w-50-ns">
         <label class="f6 b db mb2">Select <span class="normal black-60">(optional)</span></label>
         <w-select [options]="options" [(selected)]="selectedOption"></w-select>
+      </div>
+      <div class="mt4">
+        <p>{{name}}</p>
+        <p>{{selectedOption?.label}}</p>
       </div>
     </div>
   </div>

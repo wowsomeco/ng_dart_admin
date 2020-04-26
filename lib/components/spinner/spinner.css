@@ -1,6 +1,6 @@
-.loader {
-    border: 1px solid #f3f3f3; /* Light grey */
-    border-top: 1px solid #3498db; /* Blue */
+.spinner {
+    border: 2px solid #f3f3f3; /* Light grey */
+    border-top: 2px solid #3498db; /* Blue */
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }

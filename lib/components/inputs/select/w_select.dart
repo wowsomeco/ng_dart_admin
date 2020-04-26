@@ -41,8 +41,11 @@ class WSelectComponent {
     _service.onClear.listen((ev) => _selected.add(null));
   }
 
-  int get selectedItemIdx =>
-      options.indexWhere((x) => x.label == selected.label);
+  int get selectedItemIdx {
+    return selected != null
+        ? options.indexWhere((x) => x.label == selected.label)
+        : null;
+  }
 
   void onSelectItem(int idx) {
     _selected.add(options[idx]);
