@@ -3,34 +3,27 @@
     <div class="flex justify-between items-center">
       <p class="f4 b navy">ng_admin</p>
       <div class="blue flex items-center">
-        <div class="ph3">
-          <i poppable class="grow pointer material-icons hover-navy">apps
-            <div #popup class="pa2 ba bg-washed-blue gray" style="width: 200px;">
-              <div class="flex flex-wrap  w-100">
-                <div class="pa1 w-25">
-                  <i class="material-icons">apps</i>
-                </div>
-                <div class="pa1 w-25">
-                  <i class="material-icons">apps</i>
-                </div>
-                <div class="pa1 w-25">
-                  <i class="material-icons">apps</i>
-                </div>
-                <div class="pa1 w-25">
-                  <i class="material-icons">apps</i>
-                </div>
-                <div class="pa1 w-25">
-                  <i class="material-icons">apps</i>
-                </div>
-                <div class="pa1 w-25">
-                  <i class="material-icons">apps</i>
-                </div>
+        <div class="ph3" poppable popPlacement="bottomRight">
+          <i class="grow pointer material-icons hover-navy">apps
+          </i>
+          <div #popup class="ba bg-washed-blue gray" style="width: 200px;">
+            <div class="flex flex-wrap w-100">
+              <div *ngFor="let m of topMenu"
+                class="pa2 pointer hover-bg-light-gray bg-animate w-25 blue flex justify-center" wEvent="click" stop
+                (wListen)="clickTopMenu(m)">
+                <i class="material-icons">{{m}}</i>
               </div>
             </div>
-          </i>
+          </div>
         </div>
-        <div class="ph3 tc grow pointer">
+        <div class="ph3 tc grow pointer" poppable popOn="hover" popPlacement="bottomRight" [popOffsetX]="-10">
           <img src="https://images.dog.ceo/breeds/pug/n02110958_16434.jpg" class="br-100 h2 w2 dib" alt="avatar">
+          <div #popup class="pa2 ba b--light-gray bg-near-white gray">
+            <div class="flex flex-column">
+              <div class="pa1 bb b--light-gray hover-blue">Profile</div>
+              <div class="pa1 hover-blue" wEvent="click" stop (wListen)="logout()">Logout</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -40,7 +33,7 @@
       <div class="flex flex-column">
         <a class="blue grow bb b--light-gray pa2 flex flex-column items-center flex-row-ns no-underline"
           *ngFor="let item of sidebarItems" [routerLink]="item.to" [routerLinkActive]="activeClass">
-          <i class="ph3 material-icons">{{item.icon}}</i>
+          <i class="ph3 material-icons">{{item.icon}} </i>
           <p class="f7 f5-ns">{{item.title}}</p>
         </a>
       </div>

@@ -33,6 +33,8 @@ class AppComponent implements OnInit {
           x.additionalData['icon']))
       .toList();
 
+  List<String> get topMenu => ['alarm', 'assignment', 'book', 'card_travel'];
+
   AppComponent(this._router);
 
   @override
@@ -43,4 +45,8 @@ class AppComponent implements OnInit {
   }
 
   List<String> get activeClass => ['bg-light-gray', 'b'];
+
+  void logout() => print('logout');
+
+  void clickTopMenu(String ev) => print(ev);
 }
