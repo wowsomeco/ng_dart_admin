@@ -19,7 +19,7 @@ class _SidebarItem {
       coreDirectives,
       routerDirectives,
       ngAdminDirectives,
-      LayoutComponent
+      WLayoutComponent
     ],
     exports: [RoutePaths, Routes],
     providers: [])

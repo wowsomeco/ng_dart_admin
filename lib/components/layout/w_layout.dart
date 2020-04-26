@@ -9,6 +9,6 @@ import 'package:angular_router/angular_router.dart';
     directives: [coreDirectives, routerDirectives],
     exports: [],
     providers: [])
-class LayoutComponent {
+class WLayoutComponent {
   bool collapsed = false;
 }
