@@ -1,7 +1,7 @@
 name: ng_admin
 description: Admin Template based on Angular Dart
 version: 0.0.1
-homepage: https://github.com/wowsomeco/
+homepage: https://github.com/wowsomeco/ng_dart_admin
 
 environment:
   sdk: '>=2.7.0 <3.0.0'
