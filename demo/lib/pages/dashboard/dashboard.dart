@@ -78,8 +78,9 @@ class _ListItem {
   final String title;
   final String icon;
   final int level;
+  final List<_ListItem> children;
 
-  _ListItem(this.title, this.icon, this.level);
+  _ListItem(this.title, this.icon, this.level, {this.children = const []});
 }
 
 @Component(selector: 'dashboard', templateUrl: 'dashboard.html', directives: [
@@ -89,16 +90,27 @@ class _ListItem {
   WTableComponent,
   WDialogComponent,
   WInputComponent,
-  WSpinnerComponent
+  WSpinnerComponent,
+  WListComponent
 ], providers: [])
 class DashboardComponent implements OnInit {
   List<_ListItem> listItems = [
-    _ListItem('Dashboard', 'dashboard', 0),
-    _ListItem('Dashboard', 'dashboard', 1),
-    _ListItem('Dashboard', 'dashboard', 2),
-    _ListItem('Dashboard', 'dashboard', 0),
-    _ListItem('Dashboard', 'dashboard', 1),
-    _ListItem('Dashboard', 'dashboard', 1),
+    _ListItem('Item 1', 'dashboard', 0, children: [
+      _ListItem('Child 1', 'emoji_people', 1,
+          children: [_ListItem('Grand Child 1', 'public', 2)]),
+      _ListItem('Child 2', 'people', 1)
+    ]),
+    _ListItem('Item 2', 'person', 0,
+        children: [_ListItem('Child 1', 'mood_bad', 1)]),
+  ];
+
+  List<WListItem> listItem2 = [
+    WListItem('Item 1', children: [
+      WListItem('Child 1', children: [WListItem('Grand Child 1')]),
+      WListItem('Child 2'),
+      WListItem('Child 3'),
+    ]),
+    WListItem('Item 2', children: [WListItem('Child 1')]),
   ];
 
   OfflineTable tblAdapter1 = OfflineTable();

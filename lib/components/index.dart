@@ -4,5 +4,6 @@ export 'table/w_table.dart';
 export 'pagination/w_pagination.dart';
 export 'dialog/w_dialog.dart';
 export 'spinner/w_spinner.dart';
+export 'lists/w_list.dart';
 export 'charts/index.dart';
 export 'maps/index.dart';

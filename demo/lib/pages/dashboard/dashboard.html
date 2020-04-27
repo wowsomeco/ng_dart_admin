@@ -1,11 +1,33 @@
 <div class="pa2">
   <div class="flex flex-column items-center">
     <div class="w-100 pa2 mv2 ba">
-      <div class="flex justify-between items-center blue bb pointer dim" [ngClass]="'ml' + item.level.toString()"
-        *ngFor="let item of listItems">
-        <div>{{item.title}}</div>
-        <i class="material-icons">{{item.icon}}</i>
-      </div>
+      <w-list [list]="listItem2"></w-list>
+
+      <!-- <div class="flex flex-column blue" [ngClass]="'ml' + item.level.toString()" *ngFor="let item of listItems"
+        wCollapsible>
+        <div class="flex justify-between items-center pointer dim">
+          <div>{{item.title}}</div>
+          <i class="material-icons">{{item.icon}}</i>
+        </div>
+        <div class="bl pv1 b--light-gray blue flex flex-column" #collapsibleItem>
+          <div class="flex flex-column blue" [ngClass]="'ml' + sub.level.toString()" *ngFor="let sub of item.children"
+            wCollapsible>
+            <div class="flex justify-between items-center pointer dim">
+              <div>{{sub.title}}</div>
+              <i class="material-icons">{{sub.icon}}</i>
+            </div>
+            <div *ngIf="sub.children.length > 0" class="bl pv1 b--light-gray blue flex flex-column" #collapsibleItem>
+              <div class="flex flex-column blue" [ngClass]="'ml' + sub.level.toString()"
+                *ngFor="let sub of sub.children">
+                <div class="flex justify-between items-center pointer dim">
+                  <div>{{sub.title}}</div>
+                  <i class="material-icons">{{sub.icon}}</i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
     </div>
     <div class="w-100 pa2 mv2">
       <w-table [adapter]="tblAdapter1" title="Test Table 1">
