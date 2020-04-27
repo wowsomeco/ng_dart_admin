@@ -78,9 +78,8 @@ class _ListData {
   final String title;
   final String icon;
   final int level;
-  final List<_ListData> sub;
 
-  _ListData(this.title, this.icon, this.level, {this.sub = const []});
+  _ListData(this.title, this.icon, this.level);
 }
 
 @Component(selector: 'dashboard', templateUrl: 'dashboard.html', directives: [
@@ -94,22 +93,15 @@ class _ListData {
   WListComponent
 ], providers: [])
 class DashboardComponent implements OnInit {
-  List<WListItem<_ListData>> listItem2 = [
-    WListItem<_ListData>(
-        _ListData(
-          'Item 1',
-          'dashboard',
-          0,
-          sub: [_ListData('Child 1', 'person', 1)],
-        ),
-        children: [
-          WListItem<_ListData>(_ListData(
-            'Another',
-            'emoji_people',
-            0,
-            sub: [_ListData('Another 1', 'party_mode', 1)],
-          ))
-        ]),
+  List<WListItem<_ListData>> sampleList = [
+    WListItem<_ListData>(_ListData('Item 1', 'dashboard', 0), children: [
+      WListItem<_ListData>(_ListData('Child 1', 'emoji_people', 0), children: [
+        WListItem<_ListData>(_ListData('Grand Child 1', 'person', 2)),
+        WListItem<_ListData>(_ListData('Grand Child 2', 'adb', 2)),
+      ]),
+      WListItem<_ListData>(_ListData('Child 2', 'wc', 1)),
+      WListItem<_ListData>(_ListData('Child 3', 'party_mode', 1))
+    ]),
     WListItem<_ListData>(_ListData('Item 2', 'mood_bad', 0))
   ];
 
@@ -120,6 +112,8 @@ class DashboardComponent implements OnInit {
   TableItem get formModel => tblAdapter1.editedItem;
 
   void submitModel() => tblAdapter1.onSubmitItem();
+
+  Map<String, String> listMargin(int lvl) => {'margin-left': '${lvl * 10}px'};
 
   @override
   void ngOnInit() {

@@ -1,7 +1,8 @@
 <template #recursiveList let-list>
-  <div *ngFor="let item of list">
-    <template [ngTemplateOutlet]="listItem" [ngTemplateOutletContext]="{'\$implicit': item.data}"></template>
-    <div *ngIf="item.children.length > 0" class="ml2">
+  <div *ngFor="let item of list" wCollapsible>
+    <template [ngTemplateOutlet]="listItem"
+      [ngTemplateOutletContext]="{'\$implicit': item.data, hasChildren: item.children.length > 0}"></template>
+    <div *ngIf="item.children.length != null" #collapsibleItem>
       <template [ngTemplateOutlet]="recursiveList" [ngTemplateOutletContext]="{'\$implicit': item.children}"></template>
     </div>
   </div>

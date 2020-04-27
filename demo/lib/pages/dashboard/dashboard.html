@@ -1,22 +1,22 @@
 <div class="pa2">
   <div class="flex flex-column items-center">
-    <div class="w-100 pa2 mv2 ba">
-      <w-list [list]="listItem2">
-        <template #listItem let-data>
-          <div class="flex flex-column blue" wCollapsible>
-            <div class="flex justify-between items-center">
-              <div class="gray">{{data.title}}</div>
-              <i class="blue material-icons">{{data.icon}}</i>
-            </div>
-            <div class="ml2" *ngIf="data.sub.length > 0" #collapsibleItem>
-              <div *ngFor="let sub of data.sub" class="flex justify-between items-center">
-                <div class="gray">{{sub.title}}</div>
-                <i class="blue material-icons">{{sub.icon}}</i>
+    <div class="w-100 pa2 mv2">
+      <div class="ba b--light-gray pa2">
+        <w-list [list]="sampleList">
+          <template #listItem let-data let-hasChildren="hasChildren">
+            <div class="flex flex-column" [ngStyle]="listMargin(data.level)">
+              <div
+                class="flex justify-between items-center light-purple pointer dim bl b--light-gray bb-washed-blue pv3 ph1 mv1">
+                <div class="flex items-center">
+                  <i class="material-icons mh2">{{data.icon}}</i>
+                  <div class="b">{{data.title}}</div>
+                </div>
+                <i *ngIf="hasChildren" class="material-icons">expand_more</i>
               </div>
             </div>
-          </div>
-        </template>
-      </w-list>
+          </template>
+        </w-list>
+      </div>
     </div>
     <div class="w-100 pa2 mv2">
       <w-table [adapter]="tblAdapter1" title="Test Table 1">
