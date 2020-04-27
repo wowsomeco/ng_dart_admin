@@ -1,11 +1,39 @@
 <div class="pa2">
   <div class="flex flex-column items-center">
+    <div class="w-100 pa2 mv2 ba">
+      <div class="flex justify-between items-center blue bb pointer dim" [ngClass]="'ml' + item.level.toString()"
+        *ngFor="let item of listItems">
+        <div>{{item.title}}</div>
+        <i class="material-icons">{{item.icon}}</i>
+      </div>
+    </div>
     <div class="w-100 pa2 mv2">
-      <w-table [dataProvider]="staticTableProvider" title="Test Table 1">
+      <w-table [adapter]="tblAdapter1" title="Test Table 1">
         <table-dialog>
-          <div class="h-100 w-100 flex items-center justify-center">
+          <div class="h-100 w-100 flex items-center justify-center" *ngIf="formModel != null">
             <div class="shadow-1 bg-near-white pa4" wEvent="click" stop>
-              <p>TODO: Create form here</p>
+              <form class="flex flex-column">
+                <div class="pa1">
+                  <label class="f6 b db mb2">Name</label>
+                  <w-input [(value)]="formModel.kv['Name']">
+                    <prefix><i class="material-icons">person</i></prefix>
+                  </w-input>
+                </div>
+                <div class="pa1">
+                  <label class="f6 b db mb2">Position</label>
+                  <w-input [(value)]="formModel.kv['Position']"> </w-input>
+                </div>
+                <div class="pa1">
+                  <label class="f6 b db mb2">Age</label>
+                  <w-input type="number" [(value)]="formModel.kv['Age']"></w-input>
+                </div>
+                <div class="pa1">
+                  <button (click)="submitModel()" type="submit"
+                    class="f6 ba ph3 pv2 white hover-bg-light-blue bg-blue bg-animate w-100">
+                    {{submitting ? 'Loading' : 'Submit'}}
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </table-dialog>

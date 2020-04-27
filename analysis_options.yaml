@@ -10,4 +10,4 @@ analyzer:
     uri_has_not_been_generated: ignore
     undefined_getter: ignore
   # plugins:
-    # - angular
+  #   - angular

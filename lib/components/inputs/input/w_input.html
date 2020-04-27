@@ -1,4 +1,6 @@
 <w-input-decor>
   <input #input tabindex="0" class="pa1 mh1 w-100" [ngModel]="value" (ngModelChange)="setValue($event)" [type]="type" />
-  <prefix><i class="material-icons">adb</i></prefix>
+  <prefix>
+    <ng-content select="prefix"></ng-content>
+  </prefix>
 </w-input-decor>

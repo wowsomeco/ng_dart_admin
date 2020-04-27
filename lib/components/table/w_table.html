@@ -11,11 +11,16 @@
       <thead>
         <tr>
           <th *ngFor="let h of headerItem" class="pa3">{{h}}</th>
+          <th class="pa3">Actions</th>
         </tr>
       </thead>
       <tbody class="black-70">
-        <tr class="pointer dim" *ngFor="let item of items; let i=index; let odd=odd">
+        <tr class="pointer dim" *ngFor="let item of items; let i=index; let odd=odd" (click)="editItem(item)">
           <td *ngFor="let d of item.values" class="bt b--black-10 pa3 tc">{{d}}</td>
+          <td class="bt b--black-10 pa3 tc">
+            <i class="material-icons light-red mh2" wEvent="click" stop
+              (wListen)="adapter.onDeleteItem(item)">cancel</i>
+          </td>
         </tr>
       </tbody>
     </table>

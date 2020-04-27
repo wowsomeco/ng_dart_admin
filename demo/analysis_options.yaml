@@ -8,6 +8,4 @@ analyzer:
   exclude: [build/**]
   errors:
     uri_has_not_been_generated: ignore
-    undefined_getter: ignore
-  plugins:
-    - angular
+    undefined_getter: ignore  
