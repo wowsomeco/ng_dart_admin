@@ -74,13 +74,13 @@ class OfflineTable extends TableAdapter {
   }
 }
 
-class _ListItem {
+class _ListData {
   final String title;
   final String icon;
   final int level;
-  final List<_ListItem> children;
+  final List<_ListData> sub;
 
-  _ListItem(this.title, this.icon, this.level, {this.children = const []});
+  _ListData(this.title, this.icon, this.level, {this.sub = const []});
 }
 
 @Component(selector: 'dashboard', templateUrl: 'dashboard.html', directives: [
@@ -94,23 +94,23 @@ class _ListItem {
   WListComponent
 ], providers: [])
 class DashboardComponent implements OnInit {
-  List<_ListItem> listItems = [
-    _ListItem('Item 1', 'dashboard', 0, children: [
-      _ListItem('Child 1', 'emoji_people', 1,
-          children: [_ListItem('Grand Child 1', 'public', 2)]),
-      _ListItem('Child 2', 'people', 1)
-    ]),
-    _ListItem('Item 2', 'person', 0,
-        children: [_ListItem('Child 1', 'mood_bad', 1)]),
-  ];
-
-  List<WListItem> listItem2 = [
-    WListItem('Item 1', children: [
-      WListItem('Child 1', children: [WListItem('Grand Child 1')]),
-      WListItem('Child 2'),
-      WListItem('Child 3'),
-    ]),
-    WListItem('Item 2', children: [WListItem('Child 1')]),
+  List<WListItem<_ListData>> listItem2 = [
+    WListItem<_ListData>(
+        _ListData(
+          'Item 1',
+          'dashboard',
+          0,
+          sub: [_ListData('Child 1', 'person', 1)],
+        ),
+        children: [
+          WListItem<_ListData>(_ListData(
+            'Another',
+            'emoji_people',
+            0,
+            sub: [_ListData('Another 1', 'party_mode', 1)],
+          ))
+        ]),
+    WListItem<_ListData>(_ListData('Item 2', 'mood_bad', 0))
   ];
 
   OfflineTable tblAdapter1 = OfflineTable();

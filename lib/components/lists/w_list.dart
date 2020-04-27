@@ -1,10 +1,10 @@
 import 'package:angular/angular.dart';
 
-class WListItem {
-  final String title;
+class WListItem<T> {
+  final T data;
   final List<WListItem> children;
 
-  WListItem(this.title, {this.children = const []});
+  WListItem(this.data, {this.children = const []});
 }
 
 @Component(
@@ -13,6 +13,9 @@ class WListItem {
   directives: [coreDirectives],
 )
 class WListComponent {
+  @ContentChild(TemplateRef)
+  TemplateRef listItem;
+
   @Input('list')
   List<WListItem> list;
 }
