@@ -1,0 +1,38 @@
+<div class="ba b--light-gray pa2" [class.o-60]="loading" [ngStyle]="{'pointer-events': loading? 'none': 'auto'}">
+  <div class="bb b--black-10">
+    <div class="flex flex-row justify-between items-center pa1">
+      <p class="f5 lh-copy b">{{title}}</p>
+      <a *ngIf="adapter.canAddItem"
+        class="f6 link ba ph3 pv2 dark-blue pointer hover-near-white hover-bg-blue bg-animate"
+        (click)="adapter.onAddItem()">Add
+        New</a>
+    </div>
+  </div>
+  <div *ngIf="items.length > 0">
+    <div class="mv2 overflow-auto">
+      <table class="w-100 h-100 ba b--light-gray" *ngIf="!loading">
+        <thead>
+          <tr>
+            <th *ngFor="let h of headerItem" class="pa3">{{h}}</th>
+            <th *ngIf="showActionHeader" class="pa3">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="black-70">
+          <tr class="pointer dim" *ngFor="let item of items; let i=index; let odd=odd"
+            (click)="adapter.onClickRow(item)">
+            <td *ngFor="let d of item.tblRow.values" class="bt b--black-10 pa3 tc">{{d}}</td>
+            <td class="bt b--black-10 pa3 tc" *ngIf="adapter.onDeleteItem != null">
+              <i class="material-icons light-red mh2" wEvent="click" stop (wListen)="onDeleteItem(item)">cancel</i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="loading" class="w-100 h-100 flex items-center justify-center pa4">
+        <w-spinner class="h2 w2"></w-spinner>
+      </div>
+    </div>
+    <w-pagination *ngIf="!loading" class="flex justify-center mt3" [collectionSize]="totalSize" [pageSize]="pageSize"
+      [page]="page" (pageChange)="onPageChange($event)">
+    </w-pagination>
+  </div>
+</div>

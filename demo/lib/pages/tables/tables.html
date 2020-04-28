@@ -1,0 +1,34 @@
+<div class="pa2">
+  <div class="flex flex-column items-center">
+    <div class="w-100 pa2 mv2">
+      <w-table [adapter]="tblAdapter1" title="Test Table 1"></w-table>
+    </div>
+    <div class="w-100 pa2 mv2">
+      <w-action-table [adapter]="tblAdapter2" [form]="formAdapter" title="Test Table 2">
+        <div class="shadow-1 bg-near-white pa4" wEvent="click" stop *ngIf="formAdapter.data != null">
+          <form class="flex flex-column" (ngSubmit)="formAdapter.submitForm()">
+            <div class="pa1">
+              <label class="f6 b db mb2">Name</label>
+              <w-input [(value)]="formAdapter.data.name" required>
+                <prefix><i class="material-icons">person</i></prefix>
+              </w-input>
+            </div>
+            <div class="pa1">
+              <label class="f6 b db mb2">Position</label>
+              <w-input [(value)]="formAdapter.data.position" required></w-input>
+            </div>
+            <div class="pa1">
+              <label class="f6 b db mb2">Age</label>
+              <w-input type="number" [(value)]="formAdapter.data.age"></w-input>
+            </div>
+            <div class="pa1">
+              <button type="submit" class="f6 ba ph3 pv2 white hover-bg-light-blue bg-blue bg-animate w-100">
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </w-action-table>
+    </div>
+  </div>
+</div>

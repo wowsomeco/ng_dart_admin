@@ -5,10 +5,11 @@ import 'package:ng_admin_demo/routes/index.dart';
 
 class _SidebarItem {
   final String title;
-  final String to;
   final String icon;
+  final int level;
+  final String to;
 
-  _SidebarItem(this.title, this.to, this.icon);
+  _SidebarItem(this.title, this.icon, this.level, this.to);
 }
 
 @Component(
@@ -19,18 +20,23 @@ class _SidebarItem {
       coreDirectives,
       routerDirectives,
       ngAdminDirectives,
-      WLayoutComponent
+      WLayoutComponent,
+      WListComponent
     ],
     exports: [RoutePaths, Routes],
     providers: [])
 class AppComponent implements OnInit {
   final Router _router;
 
-  List<_SidebarItem> get sidebarItems => Routes.all
-      .map((x) => _SidebarItem(
-          '${x.path[0].toUpperCase()}${x.path.substring(1)}',
-          '/${x.path}',
-          x.additionalData['icon']))
+  Map<String, String> listMargin(int lvl) => {'margin-left': '${lvl * 5}px'};
+
+  List<WListItem<_SidebarItem>> get sidebarItems => Routes.all
+      .map((x) => WListItem<_SidebarItem>(_SidebarItem(
+            '${x.path[0].toUpperCase()}${x.path.substring(1)}',
+            x.additionalData['icon'],
+            0,
+            '/${x.path}',
+          )))
       .toList();
 
   List<String> get topMenu => ['alarm', 'assignment', 'book', 'card_travel'];

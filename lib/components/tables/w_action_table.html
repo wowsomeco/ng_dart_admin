@@ -1,0 +1,11 @@
+<w-table [adapter]="adapter" [title]="title"></w-table>
+<w-dialog [(show)]="showDialog">
+  <div class="h-100 w-100 flex items-center justify-center">
+    <div class="w3 h3" *ngIf="loadForm">
+      <w-spinner></w-spinner>
+    </div>
+    <div *ngIf="!loadForm" [ngStyle]="formStyles">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</w-dialog>

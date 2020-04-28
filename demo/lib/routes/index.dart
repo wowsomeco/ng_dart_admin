@@ -1,6 +1,8 @@
 import 'package:angular_router/angular_router.dart';
 import 'package:ng_admin_demo/pages/dashboard/dashboard.template.dart'
     as dashboard_template;
+import 'package:ng_admin_demo/pages/tables/tables.template.dart'
+    as tables_template;
 import 'package:ng_admin_demo/pages/charts/charts.template.dart'
     as charts_template;
 import 'package:ng_admin_demo/pages/maps/maps.template.dart' as maps_template;
@@ -10,6 +12,8 @@ import 'package:ng_admin_demo/pages/forms/forms.template.dart'
 class RoutePaths {
   static final dashboard =
       RoutePath(path: 'dashboard', additionalData: {'icon': 'dashboard'});
+  static final tables =
+      RoutePath(path: 'tables', additionalData: {'icon': 'border_all'});
   static final charts =
       RoutePath(path: 'charts', additionalData: {'icon': 'bar_chart'});
   static final maps =
@@ -23,6 +27,9 @@ class Routes {
     RouteDefinition(
         routePath: RoutePaths.dashboard,
         component: dashboard_template.DashboardComponentNgFactory),
+    RouteDefinition(
+        routePath: RoutePaths.tables,
+        component: tables_template.TablesComponentNgFactory),
     RouteDefinition(
         routePath: RoutePaths.charts,
         component: charts_template.ChartsComponentNgFactory),
