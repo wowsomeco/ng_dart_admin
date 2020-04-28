@@ -6,8 +6,10 @@ import 'package:ng_admin/ng_admin.dart';
 
 class WTableFormAdapter<T> {
   T data;
-  final Future<T> Function(TableItem) onFetchForm;
-  final Future<bool> Function(T data) onSubmitForm;
+  final Future<T> Function(WTableItem) onFetchForm;
+  final Future<bool> Function(T, bool) onSubmitForm;
+
+  bool _isNewForm;
 
   WTableFormAdapter({this.onFetchForm, this.onSubmitForm});
 
@@ -22,13 +24,14 @@ class WTableFormAdapter<T> {
   Stream<bool> get submittingStream => _submitting.stream;
   void submitting(bool flag) => _submitting.add(flag);
 
-  void fetchData(TableItem item) async {
+  void fetchData(WTableItem item) async {
+    _isNewForm = item == null;
     data = await onFetchForm(item);
   }
 
   void submitForm() async {
     submitting(true);
-    await onSubmitForm(data);
+    await onSubmitForm(data, _isNewForm);
     submitted(true);
   }
 }
@@ -57,7 +60,7 @@ class WActionTableComponent extends WTableComponent implements OnInit {
   @Input('form')
   WTableFormAdapter form;
 
-  void setItem(TableItem itm) async {
+  void setItem(WTableItem itm) async {
     /// show the dialog with the spinner on
     showDialog = true;
     loadForm = true;
@@ -69,10 +72,12 @@ class WActionTableComponent extends WTableComponent implements OnInit {
 
   @override
   void ngOnInit() {
+    /// listen to table adapter
     adapter
       ..addItemStream.listen((ev) => setItem(null))
       ..clickRowStream.listen((ev) => setItem(ev));
 
+    /// form adapter streams
     form
       ..submitStream.listen((ev) {
         if (ev) {

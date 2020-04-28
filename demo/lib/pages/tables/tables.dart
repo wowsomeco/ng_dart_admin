@@ -4,7 +4,7 @@ import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
 import 'package:ng_admin/ng_admin.dart';
 
-class _TableData1 implements TableItem {
+class _TableData1 implements WTableItem {
   final int id;
   String name;
   String position;
@@ -19,7 +19,7 @@ class _TableData1 implements TableItem {
   Map<String, dynamic> get tblRow =>
       {'Name': name, 'Position': position, 'Age': age};
 
-  factory _TableData1.fromTableItem(TableItem itm) => _TableData1(
+  factory _TableData1.fromTableItem(WTableItem itm) => _TableData1(
         itm.tblId,
         name: itm.tblRow['Name'],
         position: itm.tblRow['Position'],
@@ -85,7 +85,7 @@ class TablesComponent {
   bool newForm = false;
   _TableData1 formData;
 
-  TableAdapter tblAdapter1 = TableAdapter(
+  WTableAdapter tblAdapter1 = WTableAdapter(
       pageSize: 3,
       totalSize: () async {
         await Future.delayed(Duration(milliseconds: 100));
@@ -99,7 +99,7 @@ class TablesComponent {
             .toList();
       });
 
-  TableAdapter tblAdapter2 = TableAdapter(
+  WTableAdapter tblAdapter2 = WTableAdapter(
       onDeleteItem: (itm) async {
         if (window.confirm('Are you sure to delete?')) {
           tableItems2
@@ -120,9 +120,13 @@ class TablesComponent {
       });
 
   WTableFormAdapter<_TableData1> formAdapter =
-      WTableFormAdapter<_TableData1>(onSubmitForm: (f) async {
+      WTableFormAdapter<_TableData1>(onSubmitForm: (f, isNew) async {
     await Future.delayed(Duration(milliseconds: 1000));
-    tableItems2.add(f);
+    if (isNew) {
+      tableItems2.add(f);
+    } else {
+      tableItems2[tableItems2.indexWhere((x) => x.tblId == f.tblId)] = f;
+    }
     return true;
   }, onFetchForm: (itm) async {
     if (itm != null) {

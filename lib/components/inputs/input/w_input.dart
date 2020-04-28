@@ -6,6 +6,7 @@ import 'package:ng_admin/ng_admin.dart';
 
 @Component(
   selector: 'w-input',
+  styleUrls: ['w_input.css'],
   templateUrl: 'w_input.html',
   providers: [ClassProvider(WInputDecorService)],
   directives: [

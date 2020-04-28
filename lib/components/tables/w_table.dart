@@ -4,18 +4,18 @@ import 'package:angular/angular.dart';
 import 'package:ng_admin/components/index.dart';
 import 'package:ng_admin/directives/index.dart';
 
-abstract class TableItem {
+abstract class WTableItem {
   int get tblId;
   Map<String, dynamic> get tblRow;
 }
 
-class TableAdapter {
+class WTableAdapter {
   int pageSize;
   Future<int> Function() totalSize;
-  Future<List<TableItem>> Function(int, int) fetchItems;
-  Future<bool> Function(TableItem) onDeleteItem;
+  Future<List<WTableItem>> Function(int, int) fetchItems;
+  Future<bool> Function(WTableItem) onDeleteItem;
 
-  TableAdapter(
+  WTableAdapter(
       {this.pageSize = 5, this.totalSize, this.fetchItems, this.onDeleteItem});
 
   final _reload = StreamController<Null>.broadcast();
@@ -26,9 +26,9 @@ class TableAdapter {
   Stream<Null> get addItemStream => _addItem.stream;
   void onAddItem() => _addItem.add(null);
 
-  final _clickRow = StreamController<TableItem>.broadcast();
-  Stream<TableItem> get clickRowStream => _clickRow.stream;
-  void onClickRow(TableItem itm) => _clickRow.add(itm);
+  final _clickRow = StreamController<WTableItem>.broadcast();
+  Stream<WTableItem> get clickRowStream => _clickRow.stream;
+  void onClickRow(WTableItem itm) => _clickRow.add(itm);
 
   bool get canAddItem => _addItem.hasListener;
 }
@@ -47,14 +47,14 @@ class TableAdapter {
 class WTableComponent implements OnInit {
   int page = 1;
   bool loading = true;
-  List<TableItem> items = [];
+  List<WTableItem> items = [];
   int totalSize;
 
   @Input('title')
   String title;
 
   @Input('adapter')
-  TableAdapter adapter;
+  WTableAdapter adapter;
 
   Iterable<String> get headerItem =>
       items.isNotEmpty ? items.first.tblRow.keys : null;
@@ -74,7 +74,7 @@ class WTableComponent implements OnInit {
     fetchItems();
   }
 
-  void onDeleteItem(TableItem itm) async {
+  void onDeleteItem(WTableItem itm) async {
     bool deleted = await adapter.onDeleteItem(itm);
     if (deleted) fetchItems();
   }
