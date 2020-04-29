@@ -7,7 +7,6 @@ import 'package:angular_router/angular_router.dart';
     selector: 'w-layout',
     templateUrl: 'w_layout.html',
     directives: [coreDirectives, routerDirectives],
-    exports: [],
     providers: [])
 class WLayoutComponent {
   bool collapsed = false;

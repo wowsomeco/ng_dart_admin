@@ -1,6 +1,6 @@
 <w-input-decor>
   <div class="w-100 pa2 relative">
-    {{selected?.label}}
+    {{selectedLabel}}
     <div style="max-height: 200px;" class="overflow-y-auto ba b--light-gray w-100 bg-white absolute top-2" wSelectable
       [selectedItem]="selectedItemIdx" (selectedItemChange)="onSelectItem($event)" [(showSelection)]="showOption">
       <div class="pa3 bb b--light-gray" *ngFor="let o of options" wSelectableItem wSelectableHighlighted="bg-light-gray"

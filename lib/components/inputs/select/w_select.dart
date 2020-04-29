@@ -3,11 +3,17 @@ import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
 import 'package:ng_admin/ng_admin.dart';
 
-class SelectOption<T> {
+class WSelectOption<T> {
   final String label;
   final T value;
 
-  SelectOption(this.label, this.value);
+  WSelectOption(this.label, this.value);
+}
+
+class WSelectAdapter<T> {
+  final Future<List<WSelectOption<T>>> Function() fetchOptions;
+
+  WSelectAdapter({this.fetchOptions});
 }
 
 @Component(
@@ -21,18 +27,19 @@ class SelectOption<T> {
     WInputDecoratorComponent
   ],
 )
-class WSelectComponent {
-  @Input('options')
-  List<SelectOption> options = [];
+class WSelectComponent implements OnInit {
+  @Input('adapter')
+  WSelectAdapter adapter;
 
   @Input('selected')
-  SelectOption selected;
+  dynamic selected;
 
-  final _selected = StreamController<SelectOption>();
-  @Output()
-  Stream<SelectOption> get selectedChange => _selected.stream;
-
+  List<WSelectOption> options = [];
   bool showOption = false;
+
+  final _selected = StreamController<WSelectOption>();
+  @Output()
+  Stream<WSelectOption> get selectedChange => _selected.stream;
 
   final WInputDecorService _service;
 
@@ -43,13 +50,25 @@ class WSelectComponent {
 
   int get selectedItemIdx {
     return selected != null
-        ? options.indexWhere((x) => x.label == selected.label)
+        ? options.indexWhere((x) => x.value == selected)
         : null;
   }
 
+  String get selectedLabel {
+    return selectedItemIdx >= 0 ? options[selectedItemIdx].label : null;
+  }
+
   void onSelectItem(int idx) {
+    // still wrong
     _selected.add(options[idx]);
     showOption = false;
     _service.setFocus(showOption);
+  }
+
+  @override
+  void ngOnInit() async {
+    _service.setLoading(true);
+    options = await adapter.fetchOptions();
+    _service.setLoading(false);
   }
 }

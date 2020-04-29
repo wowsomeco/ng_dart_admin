@@ -61,7 +61,9 @@ class SelectableDirective implements AfterContentInit {
 
   void _reset() {
     _highlightedIdx = selectedItem;
-    if (_highlightedIdx != null) _selectItem(_highlightedIdx);
+    if (_highlightedIdx != null && _highlightedIdx >= 0) {
+      _selectItem(_highlightedIdx);
+    }
   }
 
   void _selectItem(int idx) {
