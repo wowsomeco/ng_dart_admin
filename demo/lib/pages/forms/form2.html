@@ -1,0 +1,44 @@
+<div class="pa2 bb b--light-gray blue">
+  <p class="b">Form 2</p>
+</div>
+<div class="pa3 flex flex-wrap">
+  <div class="pa2 w-100 w-50-ns">
+    <label class="f6 b db mb2">Name</label>
+    <w-input [(value)]="data.name">
+      <prefix><i class="material-icons">person</i></prefix>
+    </w-input>
+  </div>
+  <div class="pa2 w-100 w-50-ns">
+    <label class="f6 b db mb2">Age</label>
+    <w-input [(value)]="data.age" type="number"></w-input>
+  </div>
+  <div class="pa2 w-100 w-50-ns">
+    <label class="f6 b db mb2">Select 1</label>
+    <w-select [adapter]="select1" [(value)]="data.selected1"></w-select>
+  </div>
+  <div class="pa2 w-100 w-50-ns">
+    <label class="f6 b db mb2">Select 2</label>
+    <w-select clearable [adapter]="select1" [(value)]="data.selected2"></w-select>
+  </div>
+  <div class="pa2 w-100">
+    <div class="pa2 ba b--light-blue flex flex-column">
+      <p class="b pb2 bb b--light-blue">Summary</p>
+      <div class="flex justify-between">
+        <p>Name</p>
+        <p>{{data.name}}</p>
+      </div>
+      <div class="flex justify-between">
+        <p>Age</p>
+        <p>{{data.age}}</p>
+      </div>
+      <div class="flex justify-between">
+        <p>Select 1</p>
+        <p>{{data.selected1}}</p>
+      </div>
+      <div class="flex justify-between">
+        <p>Select 2</p>
+        <p>{{data.selected2}}</p>
+      </div>
+    </div>
+  </div>
+</div>

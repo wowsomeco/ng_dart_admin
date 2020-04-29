@@ -45,6 +45,9 @@ class WInputDecorService {
       WSpinnerComponent
     ])
 class WInputDecoratorComponent implements AfterViewInit, OnDestroy {
+  @Input('clearable')
+  bool clearable = false;
+
   @ViewChild('outer')
   HtmlElement outer;
 
