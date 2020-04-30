@@ -9,5 +9,6 @@ import 'native_events.dart';
 const ngAdminDirectives = [
   PoppableDirective,
   CollapsibleDirective,
-  EventBindingDirective
+  EventBindingDirective,
+  SwipeableDirective
 ];

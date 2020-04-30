@@ -16,3 +16,5 @@ It's meant to be used internally for now (No Unit Tests, Documentations, etc. ju
 ## 0.0.1+6
   * revamped w-select, so now it has [adapter] input that can be used to fetchOptions asynchronously.
 
+## 0.0.1+7
+  * added w-slider component v1.

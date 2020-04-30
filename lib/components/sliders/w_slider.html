@@ -1,0 +1,26 @@
+<div class="w-100 pointer" wSwipeable (swiping)="handleSwiping($event)" (swipeStart)="handleSwiping($event)">
+  <div class="w-100 flex justify-between pb2 items-center" [ngClass]="textClass">
+    <div [class.o-0]="value < 10">0</div>
+    <div [class.o-0]="value > 90">100</div>
+  </div>
+  <div class="w-100 relative flex flex-column items-center justify-center" #slider>
+    <div class="br4 w-100 flex justify-around items-center" [style.height.px]="height" [ngClass]="bgCol">
+      <div class="br-100" *ngFor="let step of steps" [style.width.px]="dotSize" [style.height.px]="dotSize"
+        [ngClass]="bgCol">
+      </div>
+    </div>
+    <div class="w-100 flex justify-around items-center">
+      <div *ngFor="let data of steps; let i=index; let odd=odd">
+        <template [ngTemplateOutlet]="step"
+          [ngTemplateOutletContext]="{'\$implicit': data, 'odd':odd, 'i':i}"></template>
+      </div>
+    </div>
+    <!-- progress bar -->
+    <div class="br4 w-100 top-0 absolute" [style.height.px]="height" [ngStyle]="sliderStyle" [ngClass]="valCol"></div>
+    <!-- progress dot -->
+    <div [ngClass]="valCol" [ngStyle]="progressDotStyle" class="top-0 left-0 absolute br-100" [style.width.px]="dotSize"
+      [style.height.px]="dotSize">
+      <p [ngClass]="textClass" style="transform: translateY(-35px);">{{value}}</p>
+    </div>
+  </div>
+</div>

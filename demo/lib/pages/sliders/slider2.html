@@ -1,0 +1,7 @@
+<w-slider [steps]="steps" [(value)]="value" valueColor="light-pink" [height]="8">
+  <template #step let-data let-odd="odd">
+    <div class="flex pv2 f6 items-center">
+      {{data.number}}
+    </div>
+  </template>
+</w-slider>

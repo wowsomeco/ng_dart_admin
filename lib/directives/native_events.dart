@@ -30,3 +30,76 @@ class EventBindingDirective implements OnInit {
     });
   }
 }
+
+@Directive(selector: '[wSwipeable]')
+class SwipeableDirective implements OnInit, OnDestroy {
+  final Element _el;
+
+  bool _touching = false;
+
+  final _swipeStart = StreamController<Point<num>>();
+  @Output()
+  Stream<Point<num>> get swipeStart => _swipeStart.stream;
+
+  final _swiping = StreamController<Point<num>>();
+  @Output()
+  Stream<Point<num>> get swiping => _swiping.stream;
+
+  final _swipeEnd = StreamController<Point<num>>();
+  @Output()
+  Stream<Point<num>> get swipeEnd => _swipeEnd.stream;
+
+  SwipeableDirective(this._el);
+
+  @override
+  void ngOnInit() {
+    ['mousedown', 'touchstart'].forEach((ev) => _el.addEventListener(ev, (e) {
+          e.stopPropagation();
+          _touching = true;
+          _swipeStart.add(_evToPoint(e));
+        }));
+
+    /// listen to document so that it still can handle swipe outside of the elem
+    ['mousemove', 'touchmove']
+        .forEach((ev) => document.addEventListener(ev, (e) => _mouseMoving(e)));
+    ['mouseup', 'touchend']
+        .forEach((ev) => document.addEventListener(ev, (e) => _mouseUp(e)));
+  }
+
+  @override
+  void ngOnDestroy() {
+    /// remove listeners on document on destroy
+    ['mousemove', 'touchmove']
+        .forEach((ev) => document.removeEventListener(ev, _mouseMoving));
+    ['mouseup', 'touchend']
+        .forEach((ev) => document.removeEventListener(ev, _mouseUp));
+  }
+
+  void _mouseMoving(Event e) {
+    if (_touching) {
+      if (e is MouseEvent) e.preventDefault();
+      e.stopPropagation();
+
+      /// broadcast swiping
+      _swiping.add(_evToPoint(e));
+    }
+  }
+
+  void _mouseUp(Event e) {
+    /// only broadcast the ev if it had received a touch before
+    if (_touching) {
+      e.stopPropagation();
+
+      /// broadcast
+      _swipeEnd.add(_evToPoint(e));
+    }
+    _touching = false;
+  }
+
+  Point<num> _evToPoint(Event e) {
+    if (e is MouseEvent) return e.page;
+    TouchEvent te = e as TouchEvent;
+    if (te.changedTouches.isNotEmpty) return te.changedTouches[0].page;
+    return te.touches[0].page;
+  }
+}
