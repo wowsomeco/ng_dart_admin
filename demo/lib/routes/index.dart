@@ -10,6 +10,9 @@ import 'package:ng_admin_demo/pages/forms/forms.template.dart'
     as forms_template;
 import 'package:ng_admin_demo/pages/sliders/sliders.template.dart'
     as sliders_template;
+import 'package:ng_admin_demo/pages/tabs/tabs.template.dart' as tabs_template;
+import 'package:ng_admin_demo/pages/lists/lists.template.dart'
+    as lists_template;
 
 class RoutePaths {
   static final dashboard =
@@ -24,6 +27,9 @@ class RoutePaths {
       RoutePath(path: 'forms', additionalData: {'icon': 'event_note'});
   static final sliders =
       RoutePath(path: 'sliders', additionalData: {'icon': 'timeline'});
+  static final tabs = RoutePath(path: 'tabs', additionalData: {'icon': 'tab'});
+  static final lists =
+      RoutePath(path: 'lists', additionalData: {'icon': 'list'});
 }
 
 class Routes {
@@ -46,5 +52,11 @@ class Routes {
     RouteDefinition(
         routePath: RoutePaths.sliders,
         component: sliders_template.SlidersComponentNgFactory),
+    RouteDefinition(
+        routePath: RoutePaths.tabs,
+        component: tabs_template.TabsComponentNgFactory),
+    RouteDefinition(
+        routePath: RoutePaths.lists,
+        component: lists_template.ListsComponentNgFactory),
   ];
 }

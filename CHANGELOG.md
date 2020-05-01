@@ -18,3 +18,7 @@ It's meant to be used internally for now (No Unit Tests, Documentations, etc. ju
 
 ## 0.0.1+7
   * added w-slider component v1.
+
+## 0.0.1+8
+  * added WTabsDirective.
+  * added highlightjs interop and directive.

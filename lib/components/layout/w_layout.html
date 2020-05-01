@@ -1,8 +1,8 @@
 <div class="flex vh-100 w-100">
-  <div class="h-100 overflow-auto v-top br b--light-gray w-25" [ngClass]="collapsed ? 'dn' : 'db'">
+  <div class="h-100 overflow-auto v-top br b--light-gray w-20" [ngClass]="collapsed ? 'dn' : 'db'">
     <ng-content select="w-sidebar"></ng-content>
   </div>
-  <div class="dib h-100 v-top flex-auto flex flex-column">
+  <div class="h-100 v-top flex flex-column" [ngClass]="collapsed ? 'w-100' : 'w-80'">
     <div class="bb b--light-gray flex items-center">
       <i class="ph3 material-icons pointer hover-blue" (click)="collapsed = !collapsed">menu</i>
       <div class="flex-auto">

@@ -1,0 +1,22 @@
+<div class="pa2">
+  <div class="flex flex-column items-center">
+    <div class="w-100 pa2 mv2">
+      <div class="ba b--light-gray pa2">
+        <w-list [list]="sampleList">
+          <template #listItem let-data let-hasChildren="hasChildren">
+            <div class="flex flex-column" [ngStyle]="listMargin(data.level)">
+              <div
+                class="flex justify-between items-center light-purple pointer dim bl b--light-gray bb-washed-blue pv3 ph1 mv1">
+                <div class="flex items-center">
+                  <i class="material-icons mh2">{{data.icon}}</i>
+                  <div class="b">{{data.title}}</div>
+                </div>
+                <i *ngIf="hasChildren" class="material-icons">expand_more</i>
+              </div>
+            </div>
+          </template>
+        </w-list>
+      </div>
+    </div>
+  </div>
+</div>

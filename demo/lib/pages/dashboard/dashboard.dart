@@ -1,36 +1,20 @@
+import 'dart:html';
+
 import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
 import 'package:ng_admin/ng_admin.dart';
-
-class _ListData {
-  final String title;
-  final String icon;
-  final int level;
-
-  _ListData(this.title, this.icon, this.level);
-}
 
 @Component(selector: 'dashboard', templateUrl: 'dashboard.html', directives: [
   coreDirectives,
   formDirectives,
   ngAdminDirectives,
-  WDialogComponent,
-  WInputComponent,
-  WSpinnerComponent,
-  WListComponent
-], providers: [])
-class DashboardComponent {
-  List<WListItem<_ListData>> sampleList = [
-    WListItem<_ListData>(_ListData('Item 1', 'dashboard', 0), children: [
-      WListItem<_ListData>(_ListData('Child 1', 'emoji_people', 0), children: [
-        WListItem<_ListData>(_ListData('Grand Child 1', 'person', 2)),
-        WListItem<_ListData>(_ListData('Grand Child 2', 'adb', 2)),
-      ]),
-      WListItem<_ListData>(_ListData('Child 2', 'wc', 1)),
-      WListItem<_ListData>(_ListData('Child 3', 'party_mode', 1))
-    ]),
-    WListItem<_ListData>(_ListData('Item 2', 'mood_bad', 0))
-  ];
+])
+class DashboardComponent implements OnInit {
+  String htmlCode;
 
-  Map<String, String> listMargin(int lvl) => {'margin-left': '${lvl * 10}px'};
+  @override
+  void ngOnInit() async {
+    htmlCode = await HttpRequest.getString(
+        'https://raw.githubusercontent.com/wowsomeco/ng_dart_admin/master/demo/web/index.html');
+  }
 }

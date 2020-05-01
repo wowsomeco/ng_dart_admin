@@ -1,0 +1,53 @@
+<div class="pa2">
+  <div class="flex flex-column items-center">
+    <div class="w-100 pa2 mv2">
+      <div wTabs class="w-100 h-100">
+        <div class="flex navy pointer">
+          <div class="bl br bt pa2 b--light-gray" wTabBar tabSelectClass="blue b">Tab 1</div>
+          <div class="bl br bt pa2 b--light-gray" wTabBar tabSelectClass="green b">Tab 2</div>
+          <div class="bl br bt pa2 b--light-gray" wTabBar tabSelectClass="pink b">Tab 3</div>
+          <div class="bl br bt pa2 b--light-gray" wTabBar tabSelectClass="light-purple b">Tab 4</div>
+        </div>
+        <div class="w-100 pa2 ba b--light-gray overflow-auto" style="height: 400px;">
+          <div class="flex flex-column" wTabView>
+            <p class="b blue pb1 bb b--light-gray">Header</p>
+            <p>Tab View 1</p>
+          </div>
+          <div wTabView>
+            <p class="gray b">Tabs can be nested too!</p>
+            <div wTabs class="w-100 h-100">
+              <div class="flex navy pointer">
+                <div class="bl br bt pa2 b--light-blue flex items-center" wTabBar tabSelectClass="yellow b">
+                  <i class="material-icons">code</i> Nested 1
+                </div>
+                <div class="bl br bt pa2 b--light-blue flex items-center" wTabBar tabSelectClass="orange b">
+                  <i class="material-icons">web</i> Nested 2
+                </div>
+              </div>
+              <div class="w-100 pa2 ba b--light-blue">
+                <div wTabView>
+                  <pre><code hljs class="dart">{{dartCode}}</code></pre>
+                </div>
+                <div wTabView>
+                  <pre><code hljs class="html">{{htmlCode}}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div wTabView>
+            Html
+            <pre>
+              <code hljs class="html">{{htmlCode}}</code>
+            </pre>
+          </div>
+          <div wTabView>
+            Dart from github
+            <pre *ngIf="httpDartCode != null">
+              <code hljs class="dart">{{httpDartCode}}</code>
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

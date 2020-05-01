@@ -77,6 +77,7 @@ class PoppableDirective implements AfterContentInit {
   @override
   void ngAfterContentInit() {
     popup.style.position = 'absolute';
+    popup.style.zIndex = '999';
 
     /// hide initially
     _service.setShow(false);

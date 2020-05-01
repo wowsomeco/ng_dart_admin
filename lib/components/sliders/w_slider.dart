@@ -16,7 +16,9 @@ class WSliderComponent implements OnInit {
 
   /// 0 to 100
   @Input('value')
-  num value;
+  set value(num v) => _value = v;
+  num get value => _value ?? 0;
+  num _value;
 
   final _valueChange = StreamController<num>();
   @Output()
