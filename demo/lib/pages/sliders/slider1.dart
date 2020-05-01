@@ -21,8 +21,8 @@ class _SliderData {
 )
 class Slider1Component {
   List<_SliderData> steps = [
-    _SliderData('title 1', 'person'),
-    _SliderData('title 2', 'dashboard'),
+    _SliderData('25', 'person'),
+    _SliderData('75', 'dashboard'),
   ];
 
   num value = 75;

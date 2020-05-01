@@ -16,6 +16,7 @@ class CodeSnippetComponent implements OnInit {
   @Input('lang')
   String lang;
 
+  String clipboardIcon = 'file_copy';
   String sourceCode;
 
   final String _baseUrl =
@@ -25,4 +26,6 @@ class CodeSnippetComponent implements OnInit {
   void ngOnInit() async {
     sourceCode = await HttpRequest.getString('$_baseUrl/$path');
   }
+
+  void copying(bool state) => clipboardIcon = state ? 'done' : 'file_copy';
 }

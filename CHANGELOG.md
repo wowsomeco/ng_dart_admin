@@ -1,3 +1,7 @@
+## 0.0.1+10
+  * revamped clipboard directive.
+  * added more w-list samples.
+
 ## 0.0.1+9
   * added initial version of the [website docs](https://ngadmin.wowsome.co)
   * added copy to clipboard directive.

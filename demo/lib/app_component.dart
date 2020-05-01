@@ -50,7 +50,7 @@ class AppComponent implements OnInit {
     await _router.navigate(RoutePaths.dashboard.toUrl());
   }
 
-  List<String> get activeClass => ['bg-light-blue', 'b', 'navy'];
+  List<String> get activeClass => ['bg-light-blue', 'b', 'dark-blue'];
 
   void logout() => print('logout');
 

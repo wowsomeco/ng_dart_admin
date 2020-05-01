@@ -43,18 +43,6 @@ class WSliderComponent implements OnInit {
   @ViewChild('slider')
   HtmlElement slider;
 
-  final ChangeDetectorRef _changeDetectorRef;
-  final WLayoutService _layoutService;
-
-  WSliderComponent(this._changeDetectorRef, this._layoutService) {
-    /// hacky way to re-pos the slider indicator dot.
-    /// might want to come up with a better idea eventually.
-    _layoutService.collapsedChange.listen((ev) async {
-      await Future.delayed(Duration(milliseconds: 10));
-      _changeDetectorRef.markForCheck();
-    });
-  }
-
   num get valuePercentage => value / 100;
 
   Map<String, String> get sliderStyle =>
@@ -70,6 +58,18 @@ class WSliderComponent implements OnInit {
   Rectangle<num> get sliderRect => slider.getBoundingClientRect();
 
   num get slideDotOffsetX => valuePercentage * sliderRect.width - height;
+
+  final ChangeDetectorRef _changeDetectorRef;
+  final WLayoutService _layoutService;
+
+  WSliderComponent(this._changeDetectorRef, this._layoutService) {
+    /// hacky way to re-pos the slider indicator dot.
+    /// might want to come up with a better idea eventually.
+    _layoutService.collapsedChange.listen((ev) async {
+      await Future.delayed(Duration(milliseconds: 10));
+      _changeDetectorRef.markForCheck();
+    });
+  }
 
   void handleSwiping(Point<num> point) {
     num percentage =

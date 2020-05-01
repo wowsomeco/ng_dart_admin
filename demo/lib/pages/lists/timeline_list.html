@@ -1,0 +1,19 @@
+<div class="flex items-center justify-center pv2">
+  <div [style.width.px]="300">
+    <w-list [list]="timelines">
+      <template #listItem let-data let-first="first" let-last="last" let-odd="odd">
+        <div class="flex justify-between items-start" [ngClass]="timelineClasses(first, last, odd)">
+          <div class="flex" [style.width.px]="100">
+            <i class="material-icons mh2">{{data.icon}}</i>
+            <div class="b">{{data.title}}</div>
+          </div>
+          <div class="flex-auto flex flex-column items-center h-100">
+            <div class="br-100 bg-light-blue" [style.width.px]="5" [style.height.px]="5"></div>
+            <div *ngIf="!last" class="bg-light-blue" [style.width.px]="1" [style.height.px]="50"></div>
+          </div>
+          <div [style.width.px]="100"></div>
+        </div>
+      </template>
+    </w-list>
+  </div>
+</div>
