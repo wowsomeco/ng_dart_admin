@@ -8,6 +8,7 @@ import 'package:js/js.dart';
 @JS()
 external ChartistInterface get Chartist;
 
+@JS()
 class ChartistInterface {
   external void Line(
       Element el, ChartistData data, ChartistLineOptions options);

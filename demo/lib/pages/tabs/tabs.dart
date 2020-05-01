@@ -15,6 +15,7 @@ import 'package:ng_admin/ng_admin.dart';
 ])
 class TabsComponent implements OnInit {
   String htmlCode = '''
+  <!DOCTYPE html>
   <html>
     <body>
       <p>My First Heading<p>

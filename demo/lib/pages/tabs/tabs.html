@@ -26,23 +26,23 @@
               </div>
               <div class="w-100 pa2 ba b--light-blue">
                 <div wTabView>
-                  <pre><code hljs class="dart">{{dartCode}}</code></pre>
+                  <pre hljs><code hljs class="dart">{{dartCode}}</code></pre>
                 </div>
                 <div wTabView>
-                  <pre><code hljs class="html">{{htmlCode}}</code></pre>
+                  <pre hljs><code hljs class="html">{{htmlCode}}</code></pre>
                 </div>
               </div>
             </div>
           </div>
           <div wTabView>
             Html
-            <pre>
+            <pre hljs>
               <code hljs class="html">{{htmlCode}}</code>
             </pre>
           </div>
           <div wTabView>
             Dart from github
-            <pre *ngIf="httpDartCode != null">
+            <pre hljs *ngIf="httpDartCode != null">
               <code hljs class="dart">{{httpDartCode}}</code>
             </pre>
           </div>

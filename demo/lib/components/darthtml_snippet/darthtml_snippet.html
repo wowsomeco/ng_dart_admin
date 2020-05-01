@@ -1,0 +1,18 @@
+<div wTabs class="w-100 h-100">
+  <div class="flex navy pointer">
+    <div class="bl br bt pa2 b--light-gray flex items-center" wTabBar tabSelectClass="blue b">
+      <i class="material-icons">web</i> Template
+    </div>
+    <div class="bl br bt pa2 b--light-gray flex items-center" wTabBar tabSelectClass="green b">
+      <i class="material-icons">code</i> Code
+    </div>
+  </div>
+  <div class="w-100 pa2 ba b--light-gray overflow-auto" style="max-height: 300px;">
+    <div wTabView>
+      <code-snippet lang="html" [path]="htmlPath"></code-snippet>
+    </div>
+    <div wTabView>
+      <code-snippet lang="dart" [path]="dartPath"></code-snippet>
+    </div>
+  </div>
+</div>

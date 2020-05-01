@@ -1,5 +1,6 @@
 import 'package:angular/angular.dart';
 import 'package:ng_admin/ng_admin.dart';
+import 'package:ng_admin_demo/components/darthtml_snippet/darthtml_snippet.dart';
 import 'slider1.dart';
 import 'slider2.dart';
 
@@ -11,7 +12,8 @@ import 'slider2.dart';
     ngAdminDirectives,
     WSliderComponent,
     Slider1Component,
-    Slider2Component
+    Slider2Component,
+    DartHtmlSnippetComponent
   ],
 )
 class SlidersComponent {

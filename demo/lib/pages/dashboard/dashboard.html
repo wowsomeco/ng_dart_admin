@@ -3,9 +3,11 @@
     <div class="w-100 pa2 mv2">
       <div class="ba b--light-gray pa2" *ngIf="htmlCode != null">
         <div class="blue pa2 bb b--light-gray b">Getting Started</div>
-        <pre>
-          <code hljs class="html">{{htmlCode}}</code>
-        </pre>
+        <div class="relative">
+          <i class="absolute right-0 material-icons pointer pa2 link dim" wClipboard clipboardId="code1">file_copy
+          </i>
+          <pre hljs id="code1"><code hljs class="html">{{htmlCode}}</code></pre>
+        </div>
       </div>
     </div>
   </div>

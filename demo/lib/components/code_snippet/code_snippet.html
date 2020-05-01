@@ -1,0 +1,4 @@
+<div class="relative" *ngIf="sourceCode != null">
+  <i class="absolute right-0 material-icons pointer pa2 link dim" wClipboard [clipboardId]="path">file_copy</i>
+  <pre hljs [id]="path"><code hljs [class]="lang">{{sourceCode}}</code></pre>
+</div>

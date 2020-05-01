@@ -8,16 +8,19 @@ import 'package:js/js.dart';
 @JS()
 external LeafletInterface get L;
 
+@JS()
 class LeafletInterface {
   external LeafletMapInterface map(Element el);
   external TileLayerInterface tileLayer(String url, TileLayerOptions options);
 }
 
+@JS()
 class LeafletMapInterface {
   external LeafletMapInterface setView(LeafletLatLng center, num zoom);
   external LeafletMapInterface invalidateSize();
 }
 
+@JS()
 class TileLayerInterface {
   external void addTo(LeafletMapInterface map);
 }
