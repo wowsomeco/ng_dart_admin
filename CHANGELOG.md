@@ -1,3 +1,7 @@
+## 0.0.2+1
+  * fixed showdown bug not working on production mode.
+  * added v1 tippy js directive.
+
 ## 0.0.2
   * added Getting Started doc in readme
   * added [showdownjs](https://github.com/showdownjs/showdown) directive.

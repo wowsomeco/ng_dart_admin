@@ -8,6 +8,7 @@ import 'package:angular/angular.dart';
 @JS('showdown.Converter')
 class Converter {
   external String makeHtml(String md);
+  external factory Converter();
 }
 
 @Directive(selector: '[showdownjs]')
@@ -21,7 +22,8 @@ class ShowdownDirective implements AfterViewInit {
 
   @override
   void ngAfterViewInit() {
-    String html = Converter().makeHtml(md);
+    var converter = Converter();
+    String html = converter.makeHtml(md);
     _el.innerHtml = html;
   }
 }

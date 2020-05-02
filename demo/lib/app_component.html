@@ -34,8 +34,9 @@
         <template #listItem let-data let-hasChildren="hasChildren">
           <div class="white flex flex-column" [ngStyle]="listMargin(data.level)">
             <div class="pointer grow bb b--light-gray pa2 flex flex-column flex-row-l items-center no-underline"
-              [routerLink]="data.to" [routerLinkActive]="activeClass">
-              <i class="ph3 material-icons">{{data.icon}} </i>
+              [routerLink]="data.to" [routerLinkActive]="activeClass" wTippy [tipContent]="data.title"
+              tipPlacement="right">
+              <i class="ph3 material-icons">{{data.icon}}</i>
               <p class="f5 db-ns dn">{{data.title}}</p>
             </div>
           </div>
