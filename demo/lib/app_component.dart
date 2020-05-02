@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:angular/angular.dart';
 import 'package:angular_router/angular_router.dart';
 import 'package:ng_admin/ng_admin.dart';
@@ -52,7 +54,6 @@ class AppComponent implements OnInit {
 
   List<String> get activeClass => ['bg-light-blue', 'b', 'dark-blue'];
 
-  void logout() => print('logout');
-
-  void clickTopMenu(String ev) => print(ev);
+  void clickGithub() =>
+      window.open('https://github.com/wowsomeco/ng_dart_admin', '_blank');
 }
