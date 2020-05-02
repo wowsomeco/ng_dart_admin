@@ -67,7 +67,7 @@ class AppComponent implements OnInit {
           'bg-black-60': _router.current.path == to,
           'b': _router.current.path == to,
           'white': _router.current.path == to,
-          'blue': _router.current.path != to,
+          'dark-blue': _router.current.path != to,
         }
       : {};
 

@@ -1,4 +1,5 @@
 import 'package:angular/angular.dart';
+import 'package:ng_admin_demo/components/how_to_use/how_to_use.dart';
 import 'chartist_bar1.dart';
 import 'chartist_line1.dart';
 import 'chartist_pie1.dart';
@@ -7,7 +8,8 @@ import 'chartist_pie1.dart';
   coreDirectives,
   ChartistBar1Component,
   ChartistLine1Component,
-  ChartistPie1Component
+  ChartistPie1Component,
+  HowToUseComponent
 ])
 class ChartistsComponent {
   String get cardClass => 'ba br1 b--lightest-blue pa2 ma2';
