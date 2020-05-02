@@ -1,3 +1,7 @@
+## 0.0.2
+  * added Getting Started doc in readme
+  * added [showdownjs](https://github.com/showdownjs/showdown) directive.
+
 ## 0.0.1+10
   * revamped clipboard directive.
   * added more w-list samples.

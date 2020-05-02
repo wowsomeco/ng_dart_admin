@@ -10,11 +10,14 @@ import 'package:ng_admin/ng_admin.dart';
   ngAdminDirectives,
 ])
 class DashboardComponent implements OnInit {
-  String htmlCode;
+  String readme;
+  String changelog;
 
   @override
   void ngOnInit() async {
-    htmlCode = await HttpRequest.getString(
-        'https://raw.githubusercontent.com/wowsomeco/ng_dart_admin/master/demo/web/index.html');
+    String baseUrl =
+        'https://raw.githubusercontent.com/wowsomeco/ng_dart_admin/master';
+    readme = await HttpRequest.getString('$baseUrl/README.md');
+    changelog = await HttpRequest.getString('$baseUrl/CHANGELOG.md');
   }
 }
