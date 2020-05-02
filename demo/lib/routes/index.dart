@@ -3,8 +3,8 @@ import 'package:ng_admin_demo/pages/dashboard/dashboard.template.dart'
     as dashboard_template;
 import 'package:ng_admin_demo/pages/tables/tables.template.dart'
     as tables_template;
-import 'package:ng_admin_demo/pages/charts/charts.template.dart'
-    as charts_template;
+import 'package:ng_admin_demo/pages/charts/chartist/chartists.template.dart'
+    as chartists_template;
 import 'package:ng_admin_demo/pages/maps/maps.template.dart' as maps_template;
 import 'package:ng_admin_demo/pages/forms/forms.template.dart'
     as forms_template;
@@ -19,8 +19,8 @@ class RoutePaths {
       RoutePath(path: 'dashboard', additionalData: {'icon': 'dashboard'});
   static final tables =
       RoutePath(path: 'tables', additionalData: {'icon': 'border_all'});
-  static final charts =
-      RoutePath(path: 'charts', additionalData: {'icon': 'bar_chart'});
+  static final chartist =
+      RoutePath(path: 'chartist', additionalData: {'icon': 'bar_chart'});
   static final maps =
       RoutePath(path: 'maps', additionalData: {'icon': 'layers'});
   static final forms =
@@ -41,8 +41,8 @@ class Routes {
         routePath: RoutePaths.tables,
         component: tables_template.TablesComponentNgFactory),
     RouteDefinition(
-        routePath: RoutePaths.charts,
-        component: charts_template.ChartsComponentNgFactory),
+        routePath: RoutePaths.chartist,
+        component: chartists_template.ChartistsComponentNgFactory),
     RouteDefinition(
         routePath: RoutePaths.maps,
         component: maps_template.MapsComponentNgFactory),

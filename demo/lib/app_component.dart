@@ -11,7 +11,7 @@ class _SidebarItem {
   final int level;
   final String to;
 
-  _SidebarItem(this.title, this.icon, this.level, this.to);
+  _SidebarItem(this.title, this.icon, this.level, {this.to});
 }
 
 @Component(
@@ -32,16 +32,24 @@ class AppComponent implements OnInit {
 
   Map<String, String> listMargin(int lvl) => {'margin-left': '${lvl * 5}px'};
 
-  List<WListItem<_SidebarItem>> get sidebarItems => Routes.all
-      .map((x) => WListItem<_SidebarItem>(_SidebarItem(
-            '${x.path[0].toUpperCase()}${x.path.substring(1)}',
-            x.additionalData['icon'],
-            0,
-            '/${x.path}',
-          )))
-      .toList();
-
-  List<String> get topMenu => ['alarm', 'assignment', 'book', 'card_travel'];
+  List<WListItem<_SidebarItem>> sidebarItems = [
+    WListItem(_SidebarItem('Dashboard', 'dashboard', 0, to: '/dashboard')),
+    WListItem(_SidebarItem('Tables', 'border_all', 0, to: '/tables')),
+    WListItem(
+        _SidebarItem(
+          'Charts',
+          'bar_chart',
+          0,
+        ),
+        children: [
+          WListItem(_SidebarItem('Chartist', 'bar_chart', 1, to: '/chartist'))
+        ]),
+    WListItem(_SidebarItem('Maps', 'layers', 0, to: '/maps')),
+    WListItem(_SidebarItem('Forms', 'event_note', 0, to: '/forms')),
+    WListItem(_SidebarItem('Sliders', 'timeline', 0, to: '/sliders')),
+    WListItem(_SidebarItem('Tabs', 'tab', 0, to: '/tabs')),
+    WListItem(_SidebarItem('Lists', 'list', 0, to: '/lists')),
+  ];
 
   AppComponent(this._router);
 
@@ -53,6 +61,19 @@ class AppComponent implements OnInit {
   }
 
   List<String> get activeClass => ['bg-light-blue', 'b', 'dark-blue'];
+
+  Map<String, bool> routeClass(String to) => _router.current != null
+      ? {
+          'bg-black-60': _router.current.path == to,
+          'b': _router.current.path == to,
+          'white': _router.current.path == to,
+          'blue': _router.current.path != to,
+        }
+      : {};
+
+  void navigate(String to) {
+    if (to != null) _router.navigate(to);
+  }
 
   void clickGithub() =>
       window.open('https://github.com/wowsomeco/ng_dart_admin', '_blank');
