@@ -17,7 +17,7 @@ Admin Template based on Angular Dart. It consists of common directives, componen
 
 ## Why Dart for web
 
-  * It's been a love-hate relationship to me personally with javascript. As much as I love how flexible the language is, it hits me hard in the face when it comes to working on bigger scale projects that involves working with more than 2 developers. Sometimes developers (me included) tend to make bugs that are very hard to trace in javascript environment. We often find it very hard to understand each other's code since variables can be anything. Most of the time whenever there are complex code produces by others, it feels like a here's-the-riddle-for-you-find-the-answer thingy for the rest. That's when I thought perhaps we should consider working on another language that is statically typed to save our lives from the madness. I think Dart really shines in this area, not to mention how familiar the language is from the get-go, seems like we already know this language for years even though we just recently started. The dependencies on another package is very minimal too as the language itself comes with rich built-in libraries already. Once we convert, we (I) dont want to look back again :)
+  * It's been a love-hate relationship to me personally with javascript. As much as I love how flexible the language is, it hits me hard in the face when it comes to working on the bigger scale projects that involves working with more than 2 developers. Sometimes programmers (me included) tend to make bugs that are very hard to trace in javascript environment. We often find it very hard to understand each other's code since variables can have any type. Most of the time whenever there are complex code produced by others, it feels like a here's-the-riddle-for-you-find-the-answer thingy for the rest. That's when I thought perhaps we should consider working on another language that is statically typed to save our lives from the madness. I think Dart really shines in this area, not to mention how familiar the language is from the get-go, seems like we already know this language for years already even though we just recently started. The dependencies on another package is very minimal too as the language itself comes with rich built-in libraries already (batteries included). Once we convert, we (I) dont want to look back :)
 
   * We can interop with javascript with ease. That's one of the reasons this package exists! you'll find more js interops eventually for sure.
 
@@ -25,7 +25,7 @@ Admin Template based on Angular Dart. It consists of common directives, componen
 
 ## Why not Dart for web
 
-  Of course Dart is not a silver bullet for all edge cases. Sometimes you might want to stick with npm-js combo as they come with set of utilities that are not available in Dart environment just yet e.g. purge css, static site generator, etc. Rule of thumb for me is use npm for building company profile websites that need to be SEOed, and Dart for the rest.
+  Of course Dart is not a silver bullet for all edge cases. Sometimes you might want to stick with npm-js combo as they come with set of utilities that are not available in Dart environment just yet e.g. purge css, static site generator, etc. Rule of thumb for me is use npm for building company profile websites that need to be SEOed and loaded faster, and Dart for the rest.
 
 ## Why Tachyon CSS
 
@@ -33,5 +33,5 @@ Admin Template based on Angular Dart. It consists of common directives, componen
 
 ## Limitations
 
-Use at your own risk! Please expect some bugs (and breaking changes too) here and there as it's meant to be used internally and still very much WIP for now. There are no unit tests coverage, very limited docs, etc. Currently I'm still busy working on some client projects that depends on this package. I will for sure provide those once done with the projects :)
+Use at your own risk! Please expect some bugs (and breaking changes too) here and there as it's meant to be used internally and still very much WIP for now. There are no unit tests coverage, very limited docs, etc. Currently I'm still busy working on some client projects that depends on this package. I will for sure provide those eventually :) Feel free to report bugs, submit feature requests, etc. on our github repo.
 
