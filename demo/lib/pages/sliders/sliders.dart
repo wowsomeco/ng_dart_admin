@@ -1,6 +1,6 @@
 import 'package:angular/angular.dart';
 import 'package:ng_admin/ng_admin.dart';
-import 'package:ng_admin_demo/components/darthtml_snippet/darthtml_snippet.dart';
+import 'package:ng_admin_demo/components/how_to_use/how_to_use.dart';
 import 'slider1.dart';
 import 'slider2.dart';
 
@@ -13,7 +13,7 @@ import 'slider2.dart';
     WSliderComponent,
     Slider1Component,
     Slider2Component,
-    DartHtmlSnippetComponent
+    HowToUseComponent
   ],
 )
 class SlidersComponent {

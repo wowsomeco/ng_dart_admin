@@ -27,4 +27,7 @@ class NestedListComponent {
   ];
 
   Map<String, String> listMargin(int lvl) => {'margin-left': '${lvl * 10}px'};
+
+  Map<String, bool> listColor(int lvl) =>
+      {'light-purple': lvl == 0, 'blue': lvl == 1, 'green': lvl > 1};
 }

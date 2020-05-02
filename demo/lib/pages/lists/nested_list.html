@@ -1,8 +1,8 @@
 <w-list [list]="sampleList">
   <template #listItem let-data let-hasChildren="hasChildren">
     <div class="flex flex-column" [ngStyle]="listMargin(data.level)">
-      <div
-        class="flex justify-between items-center light-purple pointer dim bl b--light-gray bb-washed-blue pv3 ph1 mv1">
+      <div [ngClass]="listColor(data.level)"
+        class="flex justify-between items-center pointer dim bl b--light-gray bb-washed-blue pv3 ph1 mv1">
         <div class="flex items-center">
           <i class="material-icons mh2">{{data.icon}}</i>
           <div class="b">{{data.title}}</div>
