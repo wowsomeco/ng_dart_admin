@@ -30,7 +30,7 @@ class _SidebarItem {
 class AppComponent implements OnInit {
   final Router _router;
 
-  Map<String, String> listMargin(int lvl) => {'margin-left': '${lvl * 5}px'};
+  Map<String, String> listMargin(int lvl) => {'margin-left': '${lvl * 10}px'};
 
   List<WListItem<_SidebarItem>> sidebarItems = [
     WListItem(_SidebarItem('Dashboard', 'dashboard', 0, to: '/dashboard')),
@@ -67,7 +67,8 @@ class AppComponent implements OnInit {
           'bg-black-60': _router.current.path == to,
           'b': _router.current.path == to,
           'white': _router.current.path == to,
-          'dark-blue': _router.current.path != to,
+          'navy': to == null,
+          'blue': to != null && _router.current.path != to,
         }
       : {};
 

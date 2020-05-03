@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:html';
 
 import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
@@ -29,7 +30,8 @@ class WTableFormAdapter<T> {
     data = await onFetchForm(item);
   }
 
-  void submitForm() async {
+  void submitForm(Event ev) async {
+    ev.preventDefault();
     submitting(true);
     await onSubmitForm(data, _isNewForm);
     submitted(true);

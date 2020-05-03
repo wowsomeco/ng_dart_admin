@@ -19,4 +19,7 @@ class WListComponent {
 
   @Input('list')
   List<WListItem> list;
+
+  @Input('expandable')
+  bool expandable = true;
 }
