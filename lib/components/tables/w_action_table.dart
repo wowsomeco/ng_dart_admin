@@ -30,7 +30,8 @@ class WTableFormAdapter<T> {
     data = await onFetchForm(item);
   }
 
-  void submitForm() async {
+  void submitForm(Event ev) async {
+    ev.preventDefault();
     submitting(true);
     await onSubmitForm(data, _isNewForm);
     submitted(true);

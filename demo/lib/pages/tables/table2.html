@@ -1,6 +1,6 @@
 <w-action-table [adapter]="tblAdapter2" [form]="formAdapter" title="Table with Actionable Form">
   <div class="shadow-1 bg-near-white pa4" wEvent="click" stop *ngIf="formAdapter.data != null">
-    <form class="flex flex-column" (submit)="formAdapter.submitForm()">
+    <form class="flex flex-column" (submit)="formAdapter.submitForm($event)">
       <div class="pa1">
         <label class="f6 b db mb2">Name</label>
         <w-input [(value)]="formAdapter.data.name" required>
