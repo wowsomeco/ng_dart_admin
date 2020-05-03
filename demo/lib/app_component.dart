@@ -37,6 +37,7 @@ class AppComponent implements OnInit {
         _SidebarItem('Dashboard', 0, to: '/dashboard', icon: 'dashboard')),
     WListItem(_SidebarItem('Tables', 0, to: '/tables', icon: 'border_all')),
     WListItem(_SidebarItem('Chartist', 0, to: '/chartist', icon: 'bar_chart')),
+    WListItem(_SidebarItem('Frappe', 0, to: '/frappe', icon: 'bar_chart')),
     WListItem(_SidebarItem('Maps', 0, to: '/maps', icon: 'layers')),
     WListItem(_SidebarItem('Forms', 0, to: '/forms', icon: 'event_note')),
     WListItem(_SidebarItem('Sliders', 0, to: '/sliders', icon: 'timeline')),

@@ -5,6 +5,8 @@ import 'package:ng_admin_demo/pages/tables/tables.template.dart'
     as tables_template;
 import 'package:ng_admin_demo/pages/charts/chartist/chartists.template.dart'
     as chartists_template;
+import 'package:ng_admin_demo/pages/charts/frappe/frappes.template.dart'
+    as frappes_template;
 import 'package:ng_admin_demo/pages/maps/maps.template.dart' as maps_template;
 import 'package:ng_admin_demo/pages/forms/forms.template.dart'
     as forms_template;
@@ -21,6 +23,8 @@ class RoutePaths {
       RoutePath(path: 'tables', additionalData: {'icon': 'border_all'});
   static final chartist =
       RoutePath(path: 'chartist', additionalData: {'icon': 'bar_chart'});
+  static final frappe =
+      RoutePath(path: 'frappe', additionalData: {'icon': 'bar_chart'});
   static final maps =
       RoutePath(path: 'maps', additionalData: {'icon': 'layers'});
   static final forms =
@@ -43,6 +47,9 @@ class Routes {
     RouteDefinition(
         routePath: RoutePaths.chartist,
         component: chartists_template.ChartistsComponentNgFactory),
+    RouteDefinition(
+        routePath: RoutePaths.frappe,
+        component: frappes_template.FrappesComponentNgFactory),
     RouteDefinition(
         routePath: RoutePaths.maps,
         component: maps_template.MapsComponentNgFactory),
