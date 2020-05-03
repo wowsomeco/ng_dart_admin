@@ -1,3 +1,6 @@
+## 0.0.2+6
+  * allow another domain http(s) links for showdown js directive
+
 ## 0.0.2+5
   * w-layout is now customizable
 
