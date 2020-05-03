@@ -1,3 +1,6 @@
+## 0.0.2+4
+  * set fixed header height to 60 px since it looks broken on ios.
+
 ## 0.0.2+3
   * set longer description as suggested in pub.dev
   * renamed folder /demo to /example

@@ -3,7 +3,7 @@
     <ng-content select="w-sidebar"></ng-content>
   </div>
   <div class="h-100 v-top flex flex-column" [ngClass]="collapsed ? 'w-100' : 'w-80'">
-    <div class="bb b--light-gray flex items-center">
+    <div class="bb b--light-gray flex items-center" [style.height.px]="60">
       <i class="ph3 material-icons pointer hover-blue" (click)="collapsed = !collapsed">menu</i>
       <div class="flex-auto">
         <ng-content select="w-header"></ng-content>
