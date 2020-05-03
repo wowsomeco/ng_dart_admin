@@ -20,7 +20,7 @@ class CodeSnippetComponent implements OnInit {
   String sourceCode;
 
   final String _baseUrl =
-      'https://raw.githubusercontent.com/wowsomeco/ng_dart_admin/master/demo';
+      'https://raw.githubusercontent.com/wowsomeco/ng_dart_admin/master/example';
 
   @override
   void ngOnInit() async {
