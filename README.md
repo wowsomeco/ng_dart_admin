@@ -5,7 +5,7 @@ Admin Template based on Angular Dart. It consists of common directives, componen
 ## Getting Started
 
   * Create a new Angular Dart project. Refer to this [docs](https://angulardart.dev/guide/setup) for more details.
-  * Grab [Tachyon css](https://unpkg.com/tachyons@4/css/tachyons.min.css) and [Material icons](https://fonts.googleapis.com/icon?family=Material+Icons) from any of CDN providers out there, place them in the <head> of web/index.html as well as another necessary dependencies. You might want to copy over our [demo index.html](https://github.com/wowsomeco/ng_dart_admin/blob/master/demo/web/index.html) for starters.   
+  * Grab [Tachyon css](https://unpkg.com/tachyons@4/css/tachyons.min.css) and [Material icons](https://fonts.googleapis.com/icon?family=Material+Icons) from any of CDN providers out there, place them in the <head> of web/index.html as well as another necessary dependencies. You might want to copy over our [demo index.html](https://github.com/wowsomeco/ng_dart_admin/blob/master/example/web/index.html) for starters.   
   * Add this to your package's pubspec.yaml file :
 
   ``` yaml
