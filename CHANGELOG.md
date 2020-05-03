@@ -1,3 +1,7 @@
+## 0.0.2+3
+  * set longer description as suggested in pub.dev
+  * renamed folder /demo to /example
+
 ## 0.0.2+2  
   * added v1 frappe directive.
 
