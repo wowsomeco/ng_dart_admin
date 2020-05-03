@@ -1,6 +1,8 @@
 import 'package:angular_router/angular_router.dart';
 import 'package:ng_admin_demo/pages/dashboard/dashboard.template.dart'
     as dashboard_template;
+import 'package:ng_admin_demo/pages/layouts/layouts.template.dart'
+    as layouts_template;
 import 'package:ng_admin_demo/pages/tables/tables.template.dart'
     as tables_template;
 import 'package:ng_admin_demo/pages/charts/chartist/chartists.template.dart'
@@ -17,23 +19,16 @@ import 'package:ng_admin_demo/pages/lists/lists.template.dart'
     as lists_template;
 
 class RoutePaths {
-  static final dashboard =
-      RoutePath(path: 'dashboard', additionalData: {'icon': 'dashboard'});
-  static final tables =
-      RoutePath(path: 'tables', additionalData: {'icon': 'border_all'});
-  static final chartist =
-      RoutePath(path: 'chartist', additionalData: {'icon': 'bar_chart'});
-  static final frappe =
-      RoutePath(path: 'frappe', additionalData: {'icon': 'bar_chart'});
-  static final maps =
-      RoutePath(path: 'maps', additionalData: {'icon': 'layers'});
-  static final forms =
-      RoutePath(path: 'forms', additionalData: {'icon': 'event_note'});
-  static final sliders =
-      RoutePath(path: 'sliders', additionalData: {'icon': 'timeline'});
-  static final tabs = RoutePath(path: 'tabs', additionalData: {'icon': 'tab'});
-  static final lists =
-      RoutePath(path: 'lists', additionalData: {'icon': 'list'});
+  static final dashboard = RoutePath(path: 'dashboard');
+  static final layouts = RoutePath(path: 'layouts');
+  static final tables = RoutePath(path: 'tables');
+  static final chartist = RoutePath(path: 'chartist');
+  static final frappe = RoutePath(path: 'frappe');
+  static final maps = RoutePath(path: 'maps');
+  static final forms = RoutePath(path: 'forms');
+  static final sliders = RoutePath(path: 'sliders');
+  static final tabs = RoutePath(path: 'tabs');
+  static final lists = RoutePath(path: 'lists');
 }
 
 class Routes {
@@ -41,6 +36,9 @@ class Routes {
     RouteDefinition(
         routePath: RoutePaths.dashboard,
         component: dashboard_template.DashboardComponentNgFactory),
+    RouteDefinition(
+        routePath: RoutePaths.layouts,
+        component: layouts_template.LayoutsComponentNgFactory),
     RouteDefinition(
         routePath: RoutePaths.tables,
         component: tables_template.TablesComponentNgFactory),

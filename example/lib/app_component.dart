@@ -35,6 +35,7 @@ class AppComponent implements OnInit {
   List<WListItem<_SidebarItem>> sidebarItems = [
     WListItem(
         _SidebarItem('Dashboard', 0, to: '/dashboard', icon: 'dashboard')),
+    WListItem(_SidebarItem('Layouts', 0, to: '/layouts', icon: 'apps')),
     WListItem(_SidebarItem('Tables', 0, to: '/tables', icon: 'border_all')),
     WListItem(_SidebarItem('Chartist', 0, to: '/chartist', icon: 'bar_chart')),
     WListItem(_SidebarItem('Frappe', 0, to: '/frappe', icon: 'bar_chart')),

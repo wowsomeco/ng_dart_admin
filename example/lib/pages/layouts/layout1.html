@@ -1,0 +1,32 @@
+<w-layout>
+  <w-header>
+    <div class="flex justify-between items-center">
+      <p class="f4 b navy">Layout 1</p>
+      <div class="blue flex items-center pa2">
+        <img src="githubicon.png" class="br-100 h2 w2 dib grow pointer" alt="github" wTippy tipContent="github"
+          tipPlacement="left">
+      </div>
+    </div>
+  </w-header>
+  <w-sidebar>
+    <div class="w-100 h-100 overflow-auto"
+      style="background:linear-gradient(rgba(121, 148, 198, 0.6), rgb(86, 87, 145))">
+      <w-list [list]="sidebarItems">
+        <template #listItem let-data let-index="index">
+          <div class="flex flex-column">
+            <div (click)="active = index" [ngClass]="itemClass(index)"
+              class="white pointer grow pa1 bb b--light-blue flex items-center">
+              <i class="ph2 material-icons">{{data.icon}}</i>
+              <p class="f5 db-ns dn">{{data.title}}</p>
+            </div>
+          </div>
+        </template>
+      </w-list>
+    </div>
+  </w-sidebar>
+  <w-main>
+    <div class="w-100 h-100 flex items-center justify-center">
+      <p>Content</p>
+    </div>
+  </w-main>
+</w-layout>

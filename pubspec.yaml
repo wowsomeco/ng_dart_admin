@@ -1,6 +1,6 @@
 name: ng_admin
 description: Admin Template based on Angular Dart consists of common directives, components, as well as javascript interops that save your time drastically
-version: 0.0.2+4
+version: 0.0.2+5
 homepage: https://github.com/wowsomeco/ng_dart_admin
 
 environment:

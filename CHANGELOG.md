@@ -1,3 +1,6 @@
+## 0.0.2+5
+  * w-layout is now customizable
+
 ## 0.0.2+4
   * set fixed header height to 60 px since it looks broken on ios.
 

@@ -1,8 +1,8 @@
 <template #recursiveList let-list>
-  <div *ngFor="let item of list; let odd=odd; let even=even; let first=first;let last=last" wCollapsible
-    [disabled]="!expandable">
+  <div *ngFor="let item of list; let odd=odd; let even=even; let first=first;let last=last; let index=index"
+    wCollapsible [disabled]="!expandable">
     <template [ngTemplateOutlet]="listItem"
-      [ngTemplateOutletContext]="{'\$implicit':item.data,hasChildren:item.children.length > 0,odd:odd,even:even,first:first,last:last}"></template>
+      [ngTemplateOutletContext]="{'\$implicit':item.data,hasChildren:item.children.length > 0,odd:odd,even:even,first:first,last:last,index:index}"></template>
     <div *ngIf="item.children.length != null" #collapsibleItem>
       <template [ngTemplateOutlet]="recursiveList" [ngTemplateOutletContext]="{'\$implicit': item.children}"></template>
     </div>
