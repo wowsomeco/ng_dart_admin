@@ -1,4 +1,4 @@
-<w-layout>
+<w-layout [sidebarWidth]="15">
   <w-header>
     <div class="flex justify-between items-center">
       <p class="f4 b navy">Layout 1</p>
@@ -15,8 +15,8 @@
         <template #listItem let-data let-index="index">
           <div class="flex flex-column">
             <div (click)="active = index" [ngClass]="itemClass(index)"
-              class="white pointer grow pa1 bb b--light-blue flex items-center">
-              <i class="ph2 material-icons">{{data.icon}}</i>
+              class="white pointer grow pv2 ph1 bb b--light-blue flex flex-column items-center">
+              <i class="material-icons" [style.font-size.px]="36">{{data.icon}}</i>
               <p class="f5 db-ns dn">{{data.title}}</p>
             </div>
           </div>

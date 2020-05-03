@@ -1,6 +1,6 @@
 <div class="ba b--light-gray pa2 flex flex-column w-100 mv1">
   <div class="bb b--light-gray blue pv2 mv1 navy b ttu f5">{{title}}</div>
-  <div class="mv2 pa4">
+  <div class="mv2" [ngClass]="contentPadding">
     <ng-content></ng-content>
   </div>
   <div class="pa1">

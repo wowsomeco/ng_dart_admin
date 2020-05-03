@@ -13,6 +13,6 @@ class NestedTabComponent implements OnInit {
   @override
   void ngOnInit() async {
     sampleCode = await HttpRequest.getString(
-        'https://raw.githubusercontent.com/wowsomeco/ng_dart_admin/master/demo/lib/pages/sliders/slider1.dart');
+        'https://raw.githubusercontent.com/wowsomeco/ng_dart_admin/master/example/lib/pages/sliders/slider1.dart');
   }
 }
