@@ -1,3 +1,6 @@
+## 0.0.2+2  
+  * added v1 frappe directive.
+
 ## 0.0.2+1
   * fixed showdown bug not working on production mode.
   * added v1 tippy js directive.
