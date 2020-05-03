@@ -14,9 +14,9 @@
         <template #listItem let-data let-hasChildren="hasChildren">
           <div class="flex flex-column" [ngStyle]="listMargin(data.level)">
             <div (click)="navigate(data.to)" [ngClass]="routeClass(data.to)"
-              class="pointer grow pa2 flex justify-between flex-column flex-row-l items-center no-underline">
-              <i class="ph3 material-icons">{{data.icon}}</i>
-              <p class="f5 db-ns dn">{{data.title}}</p>
+              class="pointer grow pa2 bb b--light-blue flex justify-between flex-column flex-row-l items-center no-underline">
+              <i *ngIf="data.icon != null" class="ph2 material-icons">{{data.icon}}</i>
+              <p class="f5 db-ns dn pl2">{{data.title}}</p>
               <div class="flex-auto flex justify-end">
                 <i *ngIf="hasChildren" class="material-icons">expand_more</i>
               </div>

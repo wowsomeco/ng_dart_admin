@@ -7,11 +7,11 @@ import 'package:ng_admin_demo/routes/index.dart';
 
 class _SidebarItem {
   final String title;
-  final String icon;
   final int level;
   final String to;
+  final String icon;
 
-  _SidebarItem(this.title, this.icon, this.level, {this.to});
+  _SidebarItem(this.title, this.level, {this.to, this.icon});
 }
 
 @Component(
@@ -33,22 +33,15 @@ class AppComponent implements OnInit {
   Map<String, String> listMargin(int lvl) => {'margin-left': '${lvl * 10}px'};
 
   List<WListItem<_SidebarItem>> sidebarItems = [
-    WListItem(_SidebarItem('Dashboard', 'dashboard', 0, to: '/dashboard')),
-    WListItem(_SidebarItem('Tables', 'border_all', 0, to: '/tables')),
     WListItem(
-        _SidebarItem(
-          'Charts',
-          'bar_chart',
-          0,
-        ),
-        children: [
-          WListItem(_SidebarItem('Chartist', 'bar_chart', 1, to: '/chartist'))
-        ]),
-    WListItem(_SidebarItem('Maps', 'layers', 0, to: '/maps')),
-    WListItem(_SidebarItem('Forms', 'event_note', 0, to: '/forms')),
-    WListItem(_SidebarItem('Sliders', 'timeline', 0, to: '/sliders')),
-    WListItem(_SidebarItem('Tabs', 'tab', 0, to: '/tabs')),
-    WListItem(_SidebarItem('Lists', 'list', 0, to: '/lists')),
+        _SidebarItem('Dashboard', 0, to: '/dashboard', icon: 'dashboard')),
+    WListItem(_SidebarItem('Tables', 0, to: '/tables', icon: 'border_all')),
+    WListItem(_SidebarItem('Chartist', 0, to: '/chartist', icon: 'bar_chart')),
+    WListItem(_SidebarItem('Maps', 0, to: '/maps', icon: 'layers')),
+    WListItem(_SidebarItem('Forms', 0, to: '/forms', icon: 'event_note')),
+    WListItem(_SidebarItem('Sliders', 0, to: '/sliders', icon: 'timeline')),
+    WListItem(_SidebarItem('Tabs', 0, to: '/tabs', icon: 'tab')),
+    WListItem(_SidebarItem('Lists', 0, to: '/lists', icon: 'list')),
   ];
 
   AppComponent(this._router);
@@ -64,7 +57,7 @@ class AppComponent implements OnInit {
 
   Map<String, bool> routeClass(String to) => _router.current != null
       ? {
-          'bg-black-60': _router.current.path == to,
+          'bg-dark-blue': _router.current.path == to,
           'b': _router.current.path == to,
           'white': _router.current.path == to,
           'navy': to == null,
