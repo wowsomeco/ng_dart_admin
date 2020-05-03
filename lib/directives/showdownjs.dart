@@ -24,6 +24,18 @@ class ShowdownDirective implements AfterViewInit {
   void ngAfterViewInit() {
     var converter = Converter();
     String html = converter.makeHtml(md);
-    _el.innerHtml = html;
+    _el.setInnerHtml(html,
+        validator: NodeValidatorBuilder.common()
+          ..allowNavigation(DefaultUriPolicy()));
   }
+}
+
+class DefaultUriPolicy implements UriPolicy {
+  DefaultUriPolicy();
+
+  // Allow all external, absolute URLs.
+  RegExp regex = RegExp(r'(?:http://|https://|//)?.*');
+
+  @override
+  bool allowsUri(String uri) => regex.hasMatch(uri);
 }
