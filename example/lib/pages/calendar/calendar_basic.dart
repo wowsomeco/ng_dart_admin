@@ -7,8 +7,8 @@ import 'package:ng_admin/ng_admin.dart';
   directives: [coreDirectives, ngAdminDirectives, WCalendarComponent],
 )
 class CalendarBasicComponent {
-  DateTime fromDate = DateTime.now().subtract(Duration(days: 60));
-  DateTime toDate = DateTime.now().add(Duration(days: 60));
+  DateTime fromDate = DateTime.now().subtract(Duration(days: 30));
+  DateTime toDate = DateTime.now().add(Duration(days: 30));
 
   List<String> months = [
     'Jan',

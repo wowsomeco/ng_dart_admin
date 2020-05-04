@@ -21,26 +21,29 @@ class CalendarWithEventsComponent {
   Map<String, List<_CalEvent>> calEvents = {
     '2020-5-4': [_CalEvent('My Birthday', 'green', icon: 'person')],
     '2020-5-10': [
-      _CalEvent('Your Birthday', 'purple'),
+      _CalEvent('Your Birthday', 'purple', icon: 'card_giftcard'),
       _CalEvent('Event 2', 'navy')
     ],
-    '2020-5-15': [_CalEvent('Corona dead', 'pink')],
+    '2020-5-15': [_CalEvent('Corona dead', 'pink', icon: 'bug_report')],
   };
 
   List<String> months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
+    'January',
+    'February',
+    'March',
+    'April',
     'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec'
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
   ];
+
+  Map<String, bool> dayTextClass(bool even, bool odd) =>
+      {'light-purple': even, 'hot-pink': odd};
 
   Map<String, bool> cellClass(bool first, bool last) =>
       {'justify-end': first, 'justify-start': last};
