@@ -18,9 +18,10 @@
     <!-- progress bar -->
     <div class="br4 w-100 top-0 absolute" [style.height.px]="height" [ngStyle]="sliderStyle" [ngClass]="valCol"></div>
     <!-- progress dot -->
-    <div [ngClass]="valCol" [ngStyle]="progressDotStyle" class="top-0 left-0 absolute br-100" [style.width.px]="dotSize"
-      [style.height.px]="dotSize">
-      <p [ngClass]="textClass" style="transform: translateY(-35px);">{{value}}</p>
+    <div wTippy [tipContent]="value.toString()" tipPlacement="top" [ngClass]="valCol" [ngStyle]="progressDotStyle"
+      class="top-0 left-0 absolute br-100" [style.width.px]="dotSize" [style.height.px]="dotSize">
+      <p [ngClass]="textClass" style="transform: translateY(-35px);">
+        {{value}}</p>
     </div>
   </div>
 </div>

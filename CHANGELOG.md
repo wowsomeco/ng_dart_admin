@@ -1,3 +1,6 @@
+## 0.0.2+8
+  * added tippy tooltip on hover of the w-slider current value dot.
+
 ## 0.0.2+7
   * added w-calendar v1 with demo.
 
