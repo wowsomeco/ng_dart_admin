@@ -1,3 +1,6 @@
+## 0.0.2+7
+  * added w-calendar v1 with demo.
+
 ## 0.0.2+6
   * allow another domain http(s) links for showdown js directive
 
