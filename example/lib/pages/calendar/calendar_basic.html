@@ -1,7 +1,7 @@
 <w-calendar [firstDate]="fromDate" [endDate]="toDate">
   <template #month let-month>
     <div class="ba b--light-gray flex flex-column mv1">
-      <div class="b pa2 bb b--light-gray dark-blue f3 flex justify-between">
+      <div class="b ph2 pv4 bb b--light-gray dark-blue f3 flex justify-between">
         <div>{{monthName(month.value)}}</div>
         <div class="light-purple">{{month.year}}</div>
       </div>
