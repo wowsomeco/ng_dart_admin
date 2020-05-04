@@ -8,7 +8,7 @@
       <div class="flex flex-column w-100">
         <div class="flex" *ngFor="let week of month.weeks; let first=first; let last=last"
           [ngClass]="cellClass(first,last)">
-          <div class="ba b--light-gray pa1 blue flex-column" *ngFor="let day of week.days" [style.width.%]="15">
+          <div class="b--light-gray pa1 blue flex-column" *ngFor="let day of week.days" [style.width.px]="100">
             <div class="pb3 f6">{{day.day}}</div>
           </div>
         </div>

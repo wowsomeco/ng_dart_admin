@@ -1,0 +1,26 @@
+<w-calendar [firstDate]="fromDate" [endDate]="toDate">
+  <template #month let-month>
+    <div class="ba b--washed-blue flex flex-column mv1">
+      <div class="b ph2 pv4 bb b--light-gray dark-blue f3 flex justify-between">
+        <div>{{monthName(month.value)}}</div>
+        <div class="light-green">{{month.year}}</div>
+      </div>
+      <div class="flex flex-column w-100">
+        <div class="flex bt b--light-blue" *ngFor="let week of month.weeks; let first=first; let last=last"
+          [ngClass]="cellClass(first,last)">
+          <div class="pa1 blue flex-column" *ngFor="let day of week.days" [style.width.px]="100"
+            [style.height.px]="100">
+            <div class="f6 mv1">{{day.day}}</div>
+            <div class="flex flex-column">
+              <div class="bt b--light-blue pv1 flex justify-between items-center" *ngFor="let ev of getEvents(day)"
+                [ngClass]="ev.classes">
+                <div [style.font-size.px]="10">{{ev.name}}</div>
+                <i *ngIf="ev.icon != null" [style.font-size.px]="15" class="material-icons">{{ev.icon}}</i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+</w-calendar>

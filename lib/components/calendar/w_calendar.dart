@@ -25,6 +25,7 @@ class _CalYear {
 @Component(
   selector: 'w-calendar',
   templateUrl: 'w_calendar.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   directives: [coreDirectives],
 )
 class WCalendarComponent implements AfterChanges {
