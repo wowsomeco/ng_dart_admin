@@ -1,0 +1,18 @@
+<w-calendar [firstDate]="fromDate" [endDate]="toDate">
+  <template #month let-month>
+    <div class="ba b--light-gray flex flex-column mv1">
+      <div class="b pa2 bb b--light-gray dark-blue f3 flex justify-between">
+        <div>{{monthName(month.value)}}</div>
+        <div class="light-purple">{{month.year}}</div>
+      </div>
+      <div class="flex flex-column w-100">
+        <div class="flex" *ngFor="let week of month.weeks; let first=first; let last=last"
+          [ngClass]="cellClass(first,last)">
+          <div class="ba b--light-gray pa1 blue flex-column" *ngFor="let day of week.days" [style.width.%]="15">
+            <div class="pb3 f6">{{day.day}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+</w-calendar>

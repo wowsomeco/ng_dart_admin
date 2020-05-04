@@ -44,6 +44,8 @@ class AppComponent implements OnInit {
     WListItem(_SidebarItem('Sliders', 0, to: '/sliders', icon: 'timeline')),
     WListItem(_SidebarItem('Tabs', 0, to: '/tabs', icon: 'tab')),
     WListItem(_SidebarItem('Lists', 0, to: '/lists', icon: 'list')),
+    WListItem(
+        _SidebarItem('Calendar', 0, to: '/calendars', icon: 'calendar_today')),
   ];
 
   AppComponent(this._router);

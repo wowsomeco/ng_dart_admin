@@ -8,3 +8,4 @@ export 'sliders/w_slider.dart';
 export 'lists/w_list.dart';
 export 'charts/index.dart';
 export 'maps/index.dart';
+export 'calendar/index.dart';
