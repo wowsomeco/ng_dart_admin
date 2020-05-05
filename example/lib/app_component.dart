@@ -63,11 +63,10 @@ class AppComponent implements OnInit {
 
   Map<String, bool> routeClass(String to) => _router.current != null
       ? {
-          'bg-dark-blue': _router.current.path == to,
+          'bg-blue': _router.current.path == to,
           'b': _router.current.path == to,
           'white': _router.current.path == to,
-          'navy': to == null,
-          'blue': to != null && _router.current.path != to,
+          'light-gray': to != null && _router.current.path != to,
         }
       : {};
 
