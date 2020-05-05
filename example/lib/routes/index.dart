@@ -19,6 +19,8 @@ import 'package:ng_admin_demo/pages/lists/lists.template.dart'
     as lists_template;
 import 'package:ng_admin_demo/pages/calendar/calendars.template.dart'
     as calendars_template;
+import 'package:ng_admin_demo/pages/playground/playground.template.dart'
+    as playground_template;
 
 class RoutePaths {
   static final dashboard = RoutePath(path: 'dashboard');
@@ -32,6 +34,7 @@ class RoutePaths {
   static final tabs = RoutePath(path: 'tabs');
   static final lists = RoutePath(path: 'lists');
   static final calendars = RoutePath(path: 'calendars');
+  static final playground = RoutePath(path: 'playground');
 }
 
 class Routes {
@@ -69,5 +72,8 @@ class Routes {
     RouteDefinition(
         routePath: RoutePaths.calendars,
         component: calendars_template.CalendarsComponentNgFactory),
+    RouteDefinition(
+        routePath: RoutePaths.playground,
+        component: playground_template.PlaygroundComponentNgFactory),
   ];
 }
