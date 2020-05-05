@@ -1,2 +1,11 @@
-<div leaflet [leafletOptions]="leafletOptions" style="height:400px;">
+<div class="mv2 flex justify-between items-center">
+  <div class="mid-gray b">{{selected.label}}</div>
+  <div class="w-50">
+    <w-select [adapter]="selectAdapter" [(value)]="selected"></w-select>
+  </div>
+</div>
+<div class="mv2">
+  <div leaflet [LGeoJSON]="selected.geojson" [LMapOptions]="mapOptions" [LTileLayerOptions]="selected.options"
+    [LTileLayerUrl]="selected.url" style="height:400px;">
+  </div>
 </div>

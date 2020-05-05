@@ -1,3 +1,6 @@
+## 0.0.2+9
+  * update leaflet directive so now it can render different tile layers as well as geojson layers.
+
 ## 0.0.2+8
   * added tippy tooltip on hover of the w-slider current value dot.
 
