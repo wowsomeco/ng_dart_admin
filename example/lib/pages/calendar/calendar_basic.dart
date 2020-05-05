@@ -1,5 +1,6 @@
 import 'package:angular/angular.dart';
 import 'package:ng_admin/ng_admin.dart';
+import '_calendar_common.dart';
 
 @Component(
   selector: 'calendar-basic',
@@ -9,24 +10,8 @@ import 'package:ng_admin/ng_admin.dart';
 class CalendarBasicComponent {
   DateTime fromDate = DateTime.now().subtract(Duration(days: 30));
   DateTime toDate = DateTime.now().add(Duration(days: 30));
-
-  List<String> months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec'
-  ];
+  CalendarCommon common = CalendarCommon();
 
   Map<String, bool> cellClass(bool first, bool last) =>
       {'justify-end': first, 'justify-start': last};
-
-  String monthName(int val) => months[val + 1];
 }

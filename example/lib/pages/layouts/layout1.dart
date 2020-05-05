@@ -28,6 +28,7 @@ class Layout1Component {
   Map<String, bool> itemClass(int idx) => {
         'bg-light-blue': active == idx,
         'b': active == idx,
-        'dark-blue': active == idx
+        'dark-blue': active == idx,
+        'gray': active != idx
       };
 }

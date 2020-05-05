@@ -1,5 +1,6 @@
 import 'package:angular/angular.dart';
 import 'package:ng_admin/ng_admin.dart';
+import '_calendar_common.dart';
 
 class _CalEvent {
   final String name;
@@ -17,6 +18,7 @@ class _CalEvent {
 class CalendarWithEventsComponent {
   DateTime fromDate = DateTime.now().subtract(Duration(days: 60));
   DateTime toDate = DateTime.now().add(Duration(days: 60));
+  CalendarCommon common = CalendarCommon();
 
   Map<String, List<_CalEvent>> calEvents = {
     '2020-5-4': [_CalEvent('My Birthday', 'green', icon: 'person')],
@@ -27,28 +29,11 @@ class CalendarWithEventsComponent {
     '2020-5-15': [_CalEvent('Corona dead', 'pink', icon: 'bug_report')],
   };
 
-  List<String> months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
-  ];
-
   Map<String, bool> dayTextClass(bool even, bool odd) =>
       {'light-purple': even, 'hot-pink': odd};
 
   Map<String, bool> cellClass(bool first, bool last) =>
       {'justify-end': first, 'justify-start': last};
-
-  String monthName(int val) => months[val + 1];
 
   List<_CalEvent> getEvents(DateTime date) =>
       calEvents.containsKey('${date.year}-${date.month}-${date.day}')
