@@ -6,7 +6,7 @@ Admin Template based on Angular Dart. It consists of common directives, componen
 
   * Create a new Angular Dart project. Refer to this [docs](https://angulardart.dev/guide/setup) for more details.
   * Grab [Tachyon css](https://unpkg.com/tachyons@4/css/tachyons.min.css) and [Material icons](https://fonts.googleapis.com/icon?family=Material+Icons) from any of CDN providers out there, place them in the <head> of web/index.html as well as another necessary dependencies. You might want to copy over our [demo index.html](https://github.com/wowsomeco/ng_dart_admin/blob/master/example/web/index.html) for starters.   
-  * Add this to your package's pubspec.yaml file :
+  * Add [ngadmin](https://pub.dev/packages/ng_admin) to your package's pubspec.yaml file :
 
   ``` yaml
   dependencies:
@@ -17,9 +17,9 @@ Admin Template based on Angular Dart. It consists of common directives, componen
 
 ## Why Dart for web
 
-  * It's been a love-hate relationship to me personally with javascript. As much as I love how flexible the language is, it hits me hard in the face when it comes to working on the bigger scale projects that involves working with more than 2 developers. Sometimes programmers (me included) tend to make bugs that are very hard to trace in javascript environment. We often find it very hard to understand each other's code since variables can have any type. Most of the time whenever there are complex code produced by others, it feels like a here's-the-riddle-for-you-find-the-answer thingy for the rest. That's when I thought perhaps we should consider working on another language that is statically typed to save our lives from the madness. I think Dart really shines in this area, not to mention how familiar the language is from the get-go, seems like we already know this language for years already even though we just recently started. The dependencies on another package is very minimal too as the language itself comes with rich built-in libraries already (batteries included). Once we convert, we (I) dont want to look back :)
+  * It's been a love-hate relationship to me personally with javascript. As much as I love how flexible the language is, it hits me hard in the face when it comes to working on the bigger scale projects that involves working with more than 2 developers. Sometimes programmers (me included) tend to make bugs that are very hard to trace in the javascript environment. We often find it very hard to understand each other's code since variables can have any type. Most of the time whenever there are complex code produced by the others, it feels like a here's-the-riddle-for-you-find-the-answer thingy for the rest. That's when I thought perhaps we should consider working on another language that is statically typed to save our lives from the madness. I think Dart really shines in this area, not to mention how familiar the language is from the get-go, seems like we already know this language for years already even though we just recently started. The dependencies on another package is very minimal too as the language itself comes with rich built-in libraries already (batteries included). Once we convert, we (I) dont want to look back :)
 
-  * We can interop with javascript with ease. That's one of the reasons this package exists! you'll find more js interops eventually for sure.
+  * Interop with javascript easily. That's one of the reasons this package exists! you'll find more js interops eventually for sure.
 
   * It makes it easier for us to reuse business logic across platform (Web and Mobile). As much as I can't wait for Flutter to be available for web, IMO it's not ready yet for now. The strategy for us currently is to utilize both Angular Dart for web as well as Flutter for mobile and try to reuse as much platform agnostic logic as possible in one package that is shared for both of them.
 
