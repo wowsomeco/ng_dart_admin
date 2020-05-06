@@ -15,6 +15,25 @@ class CalendarMonthlyComponent {
 
   Duration oneMonthDuration = Duration(days: 30);
 
+  /// You can simply rename the months to whatever you like.
+  List<String> months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec'
+  ];
+
+  /// You can simply rename the days to whatever you like.
+  List<String> days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+
   void nextMonth() => fromDate = toDate = fromDate.add(oneMonthDuration);
 
   void prevMonth() => fromDate = toDate = fromDate.subtract(oneMonthDuration);

@@ -1,3 +1,6 @@
+## 0.0.2+10
+  * update w-calendar to show days.
+
 ## 0.0.2+9
   * update leaflet directive so now it can render different tile layers as well as geojson layers.
 
