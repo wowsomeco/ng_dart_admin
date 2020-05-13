@@ -1,3 +1,6 @@
+## 0.0.2+11
+  * added more options for Chartist Line Directive.  
+
 ## 0.0.2+10
   * update w-calendar to show days.
 
