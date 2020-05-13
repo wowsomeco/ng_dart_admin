@@ -5,7 +5,7 @@ import 'package:ng_admin/components/index.dart';
 import 'package:ng_admin/directives/index.dart';
 
 abstract class WTableItem {
-  int get tblId;
+  dynamic get tblId;
   Map<String, dynamic> get tblRow;
 }
 

@@ -33,8 +33,35 @@ class ChartistLineOptions {
   external bool get fullWidth;
   external num get low;
   external num get high;
+  external bool get showPoint;
+  external bool get lineSmooth;
+  external AxisOptions get axisX;
+  external AxisOptions get axisY;
 
-  external factory ChartistLineOptions({bool fullWidth, num low, num high});
+  external factory ChartistLineOptions(
+      {bool fullWidth,
+      num low,
+      num high,
+      bool showPoint,
+      bool lineSmooth,
+      AxisOptions axisX,
+      AxisOptions axisY});
+}
+
+@anonymous
+@JS()
+class AxisOptions {
+  external bool get showGrid;
+  external bool get showLabel;
+  external bool get onlyInteger;
+  external num get offset;
+
+  external factory AxisOptions({
+    bool showGrid,
+    bool showLabel,
+    bool onlyInteger,
+    num offset,
+  });
 }
 
 @anonymous

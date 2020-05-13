@@ -4,13 +4,13 @@
     <ng-content select="w-sidebar"></ng-content>
   </div>
   <div class="h-100 v-top flex flex-column" [style.width.%]="collapsed ? 100 : contentWidth">
-    <div class="bb b--light-gray flex items-center" [style.height.px]="headerHeight">
+    <div class="bb b--light-gray flex items-center w-100" [style.height.px]="headerHeight">
       <i class="ph3 material-icons pointer hover-blue" (click)="collapsed = !collapsed">menu</i>
       <div class="flex-auto">
         <ng-content select="w-header"></ng-content>
       </div>
     </div>
-    <div class="overflow-auto flex-auto">
+    <div class="overflow-y-scroll w-100">
       <ng-content select="w-main"></ng-content>
     </div>
   </div>
