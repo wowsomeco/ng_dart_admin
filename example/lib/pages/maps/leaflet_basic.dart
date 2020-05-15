@@ -100,9 +100,8 @@ class LeafletBasicComponent {
         ])
   ];
 
-  WSelectAdapter<_TileLayer> selectAdapter = WSelectAdapter<_TileLayer>(
-      fetchOptions: () async =>
-          layers.map((x) => WSelectOption<_TileLayer>(x.label, x)).toList());
+  List<WSelectOption<_TileLayer>> options =
+      layers.map((x) => WSelectOption<_TileLayer>(x.label, x)).toList();
 
   _TileLayer selected = layers[0];
 }

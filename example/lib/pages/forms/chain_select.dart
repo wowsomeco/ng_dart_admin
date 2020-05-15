@@ -20,14 +20,39 @@ class _SelectItem2 {
       ngAdminDirectives,
       WSelectComponent
     ])
-class ChainSelectComponent implements AfterChanges {
+class ChainSelectComponent {
   @Input('selected1')
   int selected1;
 
   final _select1Change = StreamController<int>();
   @Output()
   Stream<int> get selected1Change => _select1Change.stream;
-  void changeSelect1(int id) => _select1Change.add(id);
+  void changeSelect1(int id) async {
+    _select1Change.add(id);
+    options2 = [];
+
+    // fake loading
+    loadingSelect2 = true;
+    await Future.delayed(Duration(seconds: 1));
+    loadingSelect2 = false;
+
+    changeSelect2(null);
+    options2 = [
+      _SelectItem2(1, 1),
+      _SelectItem2(1, 2),
+      _SelectItem2(1, 3),
+      _SelectItem2(1, 4),
+      _SelectItem2(1, 5),
+      _SelectItem2(2, 6),
+      _SelectItem2(2, 7),
+      _SelectItem2(2, 8),
+      _SelectItem2(2, 9),
+      _SelectItem2(2, 10),
+    ]
+        .where((e) => e.idSelect1 == id)
+        .map((l) => WSelectOption<int>('Item ${l.id}', l.id))
+        .toList();
+  }
 
   @Input('selected2')
   int selected2;
@@ -37,38 +62,11 @@ class ChainSelectComponent implements AfterChanges {
   Stream<int> get selected2Change => _select2Change.stream;
   void changeSelect2(int id) => _select2Change.add(id);
 
-  WSelectAdapter<int> selectAdapter1 =
-      WSelectAdapter<int>(fetchOptions: () async {
-    await Future.delayed(Duration(seconds: 1));
-    return List.generate(2, (idx) => idx + 1)
-        .map((l) => WSelectOption<int>('Item $l', l))
-        .toList();
-  });
+  bool loadingSelect2;
 
-  WSelectAdapter<int> selectAdapter2;
+  List<WSelectOption<int>> options1 = List.generate(2, (idx) => idx + 1)
+      .map((l) => WSelectOption<int>('Item $l', l))
+      .toList();
 
-  @override
-  void ngAfterChanges() {
-    if (selected1 != null) {
-      selectAdapter2 = null;
-      selectAdapter2 = WSelectAdapter<int>(fetchOptions: () async {
-        await Future.delayed(Duration(seconds: 1));
-        return [
-          _SelectItem2(1, 1),
-          _SelectItem2(1, 2),
-          _SelectItem2(1, 3),
-          _SelectItem2(1, 4),
-          _SelectItem2(1, 5),
-          _SelectItem2(2, 6),
-          _SelectItem2(2, 7),
-          _SelectItem2(2, 8),
-          _SelectItem2(2, 9),
-          _SelectItem2(2, 10),
-        ]
-            .where((e) => e.idSelect1 == selected1)
-            .map((l) => WSelectOption<int>('Item ${l.id}', l.id))
-            .toList();
-      });
-    }
-  }
+  List<WSelectOption<int>> options2 = [];
 }

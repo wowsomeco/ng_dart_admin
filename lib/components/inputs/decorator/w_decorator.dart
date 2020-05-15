@@ -73,6 +73,8 @@ class WInputDecoratorComponent implements AfterViewInit, OnDestroy {
   }
 
   void handleClick(Event ev) {
+    if (loading) return;
+
     /// if click ev is inside the content, toggle show
     /// if click is outside, just hide the popup
     outer.contains(ev.target)

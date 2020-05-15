@@ -17,12 +17,9 @@ class _FormData {
   WInputComponent
 ])
 class Form2Component {
-  WSelectAdapter<int> select1 = WSelectAdapter<int>(fetchOptions: () async {
-    await Future.delayed(Duration(seconds: 1));
-    return List.generate(10, (idx) => idx)
-        .map((l) => WSelectOption<int>('Item $l', l))
-        .toList();
-  });
+  List<WSelectOption<int>> options = List.generate(10, (idx) => idx)
+      .map((l) => WSelectOption<int>('Item $l', l))
+      .toList();
 
   _FormData data = _FormData();
 }

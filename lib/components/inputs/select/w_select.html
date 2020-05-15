@@ -3,9 +3,9 @@
     <div class="w-100 h-100 flex items-center" [ngClass]="selectedLabel != null ? 'blue' : 'gray'">
       {{selectedLabel ?? 'Please Select'}}</div>
     <div wPopup [(show)]="showOptions">
-      <div *ngIf="options.length > 0" wSelectable class="overflow-y-auto ba b--light-gray bg-white black"
-        [style.max-height.px]="200">
-        <div class="pa3 bb b--light-gray pointer dim" *ngFor="let o of options" wSelectItem>{{o.label}}</div>
+      <div class="overflow-y-auto ba b--light-gray bg-white black" [style.max-height.px]="200" #optionsContainer>
+        <div class="pa3 bb b--light-gray pointer dim" *ngFor="let o of options; let index=index" wEvent="click" stop
+          prevent (wListen)="selectOption(index)" [ngClass]="getOptionItemClasses(index)">{{o.label}}</div>
       </div>
     </div>
   </div>

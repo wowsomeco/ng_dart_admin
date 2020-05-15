@@ -14,11 +14,11 @@
   </div>
   <div class="pa2 w-100 w-50-ns">
     <label class="f6 b db mb2">Select 1</label>
-    <w-select [adapter]="select1" [(value)]="data.selected1"></w-select>
+    <w-select [options]="options" [(value)]="data.selected1"></w-select>
   </div>
   <div class="pa2 w-100 w-50-ns">
     <label class="f6 b db mb2">Select 2</label>
-    <w-select clearable [adapter]="select1" [(value)]="data.selected2"></w-select>
+    <w-select clearable [options]="options" [(value)]="data.selected2"></w-select>
   </div>
   <div class="pa2 w-100">
     <div class="pa2 ba b--light-blue flex flex-column">

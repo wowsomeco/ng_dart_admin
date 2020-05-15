@@ -1,3 +1,6 @@
+## 0.0.2+12
+  * simplified w-select, right now we dont use adapter anymore since it adds up the complexity but rather use options input instead.
+
 ## 0.0.2+11
   * added more options for Chartist Line Directive.  
 

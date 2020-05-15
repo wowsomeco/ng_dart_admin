@@ -15,11 +15,7 @@ class Form1Component {
   int selected2;
   int selected3;
 
-  WSelectAdapter<int> selectAdapter =
-      WSelectAdapter<int>(fetchOptions: () async {
-    await Future.delayed(Duration(seconds: 1));
-    return List.generate(20, (idx) => idx + 1)
-        .map((l) => WSelectOption<int>('Item $l', l))
-        .toList();
-  });
+  List<WSelectOption<int>> options = List.generate(20, (idx) => idx + 1)
+      .map((l) => WSelectOption<int>('Item $l', l))
+      .toList();
 }
