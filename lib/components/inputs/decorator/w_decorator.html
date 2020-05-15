@@ -1,9 +1,12 @@
-<div #outer class="pa2 bg-white gray ba b--moon-gray pointer db flex justify-between items-center">
-  <ng-content select="prefix"></ng-content>
-  <div class="flex-auto h-100">
+<div #outer class="br2 overflow-hidden bg-white gray ba b--moon-gray pointer db flex justify-between items-center"
+  [style.height.px]="height">
+  <div class="pa2">
+    <ng-content select="prefix"></ng-content>
+  </div>
+  <div class="flex-auto h-100 flex items-center">
     <ng-content></ng-content>
   </div>
-  <div class="flex items-center">
+  <div class="flex items-center pa2">
     <w-spinner *ngIf="loading" class="h1 w1"></w-spinner>
     <i *ngIf="!loading && clearable" class="material-icons light-red mh2" wEvent="click" stop
       (wListen)="clear()">cancel</i>

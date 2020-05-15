@@ -11,17 +11,15 @@ import 'package:ng_admin/ng_admin.dart';
 ])
 class Form1Component {
   String name;
-  int selected;
+  int selected1 = 1;
+  int selected2;
+  int selected3;
 
-  WSelectAdapter<int> select1 = WSelectAdapter<int>(fetchOptions: () async {
-    return [
-      WSelectOption<int>('Item 1', 1),
-      WSelectOption<int>('Item 2', 2),
-      WSelectOption<int>('Item 3', 3),
-      WSelectOption<int>('Item 4', 4),
-      WSelectOption<int>('Item 5', 5),
-      WSelectOption<int>('Item 6', 6),
-      WSelectOption<int>('Item 7', 7),
-    ];
+  WSelectAdapter<int> selectAdapter =
+      WSelectAdapter<int>(fetchOptions: () async {
+    await Future.delayed(Duration(seconds: 1));
+    return List.generate(20, (idx) => idx + 1)
+        .map((l) => WSelectOption<int>('Item $l', l))
+        .toList();
   });
 }

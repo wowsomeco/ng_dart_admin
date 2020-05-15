@@ -1,10 +1,12 @@
 <w-input-decor [clearable]="clearable">
-  <div class="w-100 relative" *ngIf="options.length > 0">
-    {{selectedLabel}}
-    <div wSelectable style="max-height: 200px;"
-      class="z-999 overflow-y-auto ba b--light-gray w-100 bg-white absolute top-2">
-      <div class="pa3 bb b--light-gray" *ngFor="let o of options" wSelectItem>
-        {{o.label}}</div>
+  <div class="w-100 h-100 pa1">
+    <div class="w-100 h-100 flex items-center" [ngClass]="selectedLabel != null ? 'blue' : 'gray'">
+      {{selectedLabel ?? 'Please Select'}}</div>
+    <div wPopup [(show)]="showOptions">
+      <div *ngIf="options.length > 0" wSelectable class="overflow-y-auto ba b--light-gray bg-white black"
+        [style.max-height.px]="200">
+        <div class="pa3 bb b--light-gray pointer dim" *ngFor="let o of options" wSelectItem>{{o.label}}</div>
+      </div>
     </div>
   </div>
   <suffix><i class="material-icons">keyboard_arrow_down</i></suffix>

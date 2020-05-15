@@ -53,6 +53,9 @@ class WSelectComponent implements OnInit {
   final WInputDecorService _decorSvc;
   final WSelectService _selectSvc;
 
+  set showOptions(bool flag) => _selectSvc.showing = flag;
+  bool get showOptions => _selectSvc.showing;
+
   int get selectedItemIdx =>
       value != null ? options.indexWhere((x) => x.value == value) : null;
 
@@ -82,22 +85,23 @@ class WSelectComponent implements OnInit {
 
   @override
   void ngOnInit() async {
-    /// fetch options, show loading
-    /// hide loading on done
-    _decorSvc.setLoading(true);
-    options = await adapter.fetchOptions();
-    _decorSvc.setLoading(false);
-
-    // hide on esc
-    document.onKeyDown
-        .where((ev) => _selectSvc.showing && ev.keyCode == KeyCode.ESC)
-        .listen((ev) {
-      _selectSvc.showing = false;
-      ev.preventDefault();
-    });
-
+    await _fetchOptions();
     // set value
     _selectSvc.selectItem = selectedItemIdx;
+    if (value != null) {
+      assert(
+          selectedItemIdx > -1, 'value=$value does not exist in the options');
+    }
+  }
+
+  void _fetchOptions() async {
+    /// fetch options, show loading
+    /// hide loading on done
+    if (adapter != null) {
+      _decorSvc.setLoading(true);
+      options = await adapter.fetchOptions();
+      _decorSvc.setLoading(false);
+    }
   }
 }
 
@@ -114,7 +118,7 @@ class WSelectService {
   final _selectItemChange = StreamController<int>.broadcast();
   Stream<int> get selectItemStream => _selectItemChange.stream;
 
-  bool _showing = true;
+  bool _showing = false;
   bool get showing => _showing;
   set showing(bool flag) {
     _showing = flag;
@@ -138,7 +142,6 @@ class WSelectDirective implements AfterContentInit {
   WSelectDirective(this._service, this._el) {
     /// listen to the svc
     _service.showingStream.listen((ev) {
-      _el.style.display = ev ? 'block' : 'none';
       if (ev) _focus();
     });
   }
@@ -149,7 +152,9 @@ class WSelectDirective implements AfterContentInit {
     for (int i = 0; i < items.length; i++) {
       items[i].elem.addEventListener('click', (ev) {
         _select(i);
-        ev.stopPropagation();
+        ev
+          ..stopPropagation()
+          ..preventDefault();
       });
     }
     // handle esc

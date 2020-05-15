@@ -2,24 +2,22 @@
   <p class="b silver">Form 1</p>
 </div>
 <div class="pa3 flex flex-wrap">
-  <div class="pa2 w-100 w-50-ns">
+  <div class="pa2 w-100">
     <label class="f6 b db mb2">Name</label>
-    <w-input [(value)]="name">
+    <w-input [(value)]="name" clearable>
       <prefix><i class="material-icons">person</i></prefix>
     </w-input>
   </div>
-  <div class="pa2 w-100 w-50-ns">
+  <div class="pa2 w-100">
     <label class="f6 b db mb2">Select <span class="normal black-60">(optional)</span></label>
-    <w-select [adapter]="select1" [(value)]="selected"></w-select>
+    <w-select [adapter]="selectAdapter" [(value)]="selected1"></w-select>
   </div>
-  <div class="mt4">
-    <div class="flex justify-between">
-      <p>Name</p>
-      <p>{{name}}</p>
-    </div>
-    <div class="flex justify-between">
-      <p>Selected</p>
-      <p>{{selected}}</p>
-    </div>
+  <div class="pa2 w-100">
+    <label class="f6 b db mb2">Select <span class="normal black-60">(optional)</span></label>
+    <w-select [adapter]="selectAdapter" [(value)]="selected2"></w-select>
+  </div>
+  <div class="pa2 w-100">
+    <label class="f6 b db mb2">Select <span class="normal black-60">(optional)</span></label>
+    <w-select [adapter]="selectAdapter" [(value)]="selected3"></w-select>
   </div>
 </div>

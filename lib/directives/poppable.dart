@@ -2,100 +2,87 @@ import 'dart:async';
 import 'dart:html';
 import 'package:angular/core.dart';
 
-@Injectable()
-class PoppableService {
-  bool _show = false;
-  final _onShowChange = StreamController<bool>.broadcast();
-  Stream<bool> get show => _onShowChange.stream;
+@Directive(selector: '[wPopup]')
+class PoppableDirective implements OnInit, OnDestroy {
+  @Input('show')
+  set show(bool flag) {
+    _showing = flag;
+    _el.style.display = flag ? 'block' : 'none';
+    _setPos();
+    _showChange.add(flag);
+    _timer?.cancel();
 
-  void setShow(bool flag) {
-    _show = flag;
-    _onShowChange.add(_show);
-  }
-
-  void toggleShow() => setShow(!_show);
-}
-
-@Directive(selector: '[poppable]', providers: [ClassProvider(PoppableService)])
-class PoppableDirective implements AfterContentInit {
-  @Input('popPlacement')
-  String placement = 'bottomCenter';
-
-  @Input('popOffsetX')
-  int offsetX = 0;
-
-  @Input('popOffsetY')
-  int offsetY = 0;
-
-  @Input('popOn')
-  String popOn = 'click';
-
-  @ContentChild('popup')
-  Element popup;
-
-  final Element _el;
-  final PoppableService _service;
-  final Map<String, List<double>> _placementMap = {
-    'topLeft': [0, -1, 0, 0],
-    'topRight': [-1, -1, 1, 0],
-    'topCenter': [-0.5, -1, 0.5, 0],
-    'bottomLeft': [0, 0, 0, 1],
-    'bottomRight': [-1, 0, 1, 1],
-    'bottomCenter': [-0.5, 0, 0.5, 1],
-    'left': [-1, -0.5, 0, 0.5],
-    'right': [0, -0.5, 1, 0.5]
-  };
-
-  void show(bool flag) {
-    popup.style.display = flag ? 'block' : 'none';
-
-    /// reposition on show
+    /// when showing, a new timer will be created
+    /// used for checking the y coord of the content
+    /// if it changes (normally happens when it's currently scrolling),
+    /// it will force hide the content.
     if (flag) {
-      Rectangle<num> elRect = _el.getBoundingClientRect();
-      Rectangle<num> popupRect = popup.getBoundingClientRect();
-
-      /// get the offset according to the placement
-      List<double> offset = _placementMap[placement];
-
-      /// calculate the offsets accordingly
-      num offX =
-          popupRect.width * offset[0] + elRect.width * offset[2] + offsetX;
-      num offY =
-          popupRect.height * offset[1] + elRect.height * offset[3] + offsetY;
-
-      /// set pos of the popup
-      popup.style.left = '${offX}px';
-      popup.style.top = '${offY}px';
+      _curPosY = _parentRect.top.toInt();
+      _timer = Timer.periodic(Duration(milliseconds: 100), (t) {
+        if (_curPosY != _parentRect.top.toInt()) show = false;
+      });
     }
   }
 
-  PoppableDirective(this._service, this._el) {
-    _el.style.position = 'relative';
-    _service.show.listen((ev) => show(ev));
-  }
+  final _showChange = StreamController<bool>();
+  @Output()
+  Stream<bool> get showChange => _showChange.stream;
+
+  final Element _el;
+  int _curPosY;
+  bool _showing = false;
+  Element _parent;
+  Timer _timer;
+
+  Rectangle<num> get _parentRect => _parent.getBoundingClientRect();
+  Rectangle<num> get _elRect => _el.getBoundingClientRect();
+
+  /// constructor
+  PoppableDirective(this._el);
 
   @override
-  void ngAfterContentInit() {
-    popup.style.position = 'absolute';
-    popup.style.zIndex = '999';
+  void ngOnInit() async {
+    _parent = _el.parent;
+
+    /// set element at last of the body
+    document.body.append(_el);
+    _el.style.position = 'absolute';
 
     /// hide initially
-    _service.setShow(false);
+    show = false;
 
     /// handle esc
     document.onKeyDown
         .where((ev) => ev.keyCode == KeyCode.ESC)
-        .listen((ev) => _service.setShow(false));
+        .listen((ev) => show = false);
 
-    /// bind ev
-    if (popOn == 'hover') {
-      _el.addEventListener('mouseover', (ev) => _service.toggleShow());
-      _el.addEventListener('mouseout', (ev) => _service.setShow(false));
+    ['resize', 'orientationchange']
+        .forEach((ev) => window.addEventListener(ev, (e) => _setPos()));
+  }
+
+  @override
+  void ngOnDestroy() {
+    _timer?.cancel();
+
+    ['resize', 'orientationchange']
+        .forEach((ev) => window.removeEventListener(ev, (e) => _setPos()));
+  }
+
+  void _setPos() {
+    if (!_showing) return;
+
+    num offX = _parent.offsetLeft;
+    num offY = _parentRect.top + _parentRect.height;
+
+    /// check if the popup is cut off at the bottom
+    /// if so, place the popup above the parent el.
+    if (offY + _elRect.height > window.innerHeight) {
+      offY = _parentRect.top - _elRect.height;
     }
 
-    /// it's a click
-    else {
-      _el.addEventListener('click', (ev) => _service.toggleShow());
-    }
+    /// set pos of the popup
+    _el.style.left = '${offX}px';
+    _el.style.top = '${offY}px';
+    _el.style.width = '${_parentRect.width}px';
   }
 }

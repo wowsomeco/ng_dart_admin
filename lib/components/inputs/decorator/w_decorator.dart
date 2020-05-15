@@ -48,6 +48,9 @@ class WInputDecoratorComponent implements AfterViewInit, OnDestroy {
   @Input('clearable')
   bool clearable = false;
 
+  @Input('height')
+  int height = 40;
+
   @ViewChild('outer')
   HtmlElement outer;
 

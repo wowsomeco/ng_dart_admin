@@ -1,0 +1,8 @@
+<div class="pa2 w-100">
+  <label class="f6 b db mb2">Select 1</label>
+  <w-select [adapter]="selectAdapter1" [value]="selected1" (valueChange)="changeSelect1($event)" clearable></w-select>
+</div>
+<div class="pa2 w-100" *ngIf="selected1 != null">
+  <label class="f6 b db mb2">Select 2</label>
+  <w-select [adapter]="selectAdapter2" [value]="selected2" (valueChange)="changeSelect2($event)" clearable></w-select>
+</div>

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
 import 'package:ng_admin/ng_admin.dart';
@@ -21,7 +19,7 @@ class _FormData {
 class Form2Component {
   WSelectAdapter<int> select1 = WSelectAdapter<int>(fetchOptions: () async {
     await Future.delayed(Duration(seconds: 1));
-    return List.generate(10, (idx) => idx + 1)
+    return List.generate(10, (idx) => idx)
         .map((l) => WSelectOption<int>('Item $l', l))
         .toList();
   });
