@@ -8,8 +8,8 @@
   </div>
   <div class="flex items-center pa2">
     <w-spinner *ngIf="loading" class="h1 w1"></w-spinner>
-    <i *ngIf="!loading && clearable" class="material-icons light-red mh2" wEvent="click" stop
-      (wListen)="clear()">cancel</i>
+    <i *ngIf="!loading && clearable" class="material-icons light-red mh2" wEvent="click" stop (wListen)="clear()"
+      [style.font-size.px]="16">cancel</i>
     <ng-content select="suffix"></ng-content>
   </div>
 </div>

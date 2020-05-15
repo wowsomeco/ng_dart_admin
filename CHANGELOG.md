@@ -1,3 +1,6 @@
+## 0.0.2+13
+  * added search functionality in w-select.
+
 ## 0.0.2+12
   * simplified w-select, right now we dont use adapter anymore since it adds up the complexity but rather use options input instead.
 

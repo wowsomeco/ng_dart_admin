@@ -45,9 +45,11 @@ class WInputDecorService {
       WSpinnerComponent
     ])
 class WInputDecoratorComponent implements AfterViewInit, OnDestroy {
+  /// if true will show the delete icon that will broadcast clear event on click.
   @Input('clearable')
   bool clearable = false;
 
+  /// height in px.
   @Input('height')
   int height = 40;
 

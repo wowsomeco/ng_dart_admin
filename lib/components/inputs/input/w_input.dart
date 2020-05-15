@@ -29,6 +29,9 @@ class WInputComponent implements AfterViewInit {
   @Input('clearable')
   bool clearable;
 
+  @Input('placeholder')
+  String placeholder;
+
   @ViewChild('input')
   HtmlElement input;
 

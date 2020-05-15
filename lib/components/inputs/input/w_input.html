@@ -1,4 +1,5 @@
 <w-input-decor [clearable]="clearable">
   <ng-content select="prefix" ngProjectAs="prefix"></ng-content>
-  <input #input tabindex="0" class="w-100" [ngModel]="value" (ngModelChange)="setValue($event)" [type]="type" />
+  <input #input tabindex="0" class="w-100" [ngModel]="value" (ngModelChange)="setValue($event)" [type]="type"
+    [placeholder]="placeholder" />
 </w-input-decor>

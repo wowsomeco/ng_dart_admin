@@ -7,22 +7,24 @@ import 'package:ng_admin/ng_admin.dart';
 class WSelectOption<T> {
   final String label;
   final T value;
+  final bool Function(String) compareTo;
 
-  WSelectOption(this.label, this.value);
+  WSelectOption(this.label, this.value, this.compareTo);
 }
 
 @Component(
   selector: 'w-select',
   templateUrl: 'w_select.html',
-  providers: [ClassProvider(WInputDecorService), ClassProvider(WSelectService)],
+  providers: [ClassProvider(WInputDecorService)],
   directives: [
     coreDirectives,
     formDirectives,
     ngAdminDirectives,
-    WInputDecoratorComponent
+    WInputDecoratorComponent,
+    WInputComponent
   ],
 )
-class WSelectComponent implements OnInit {
+class WSelectComponent {
   @Input('options')
   List<WSelectOption> options = [];
 
@@ -31,6 +33,9 @@ class WSelectComponent implements OnInit {
 
   @Input('clearable')
   bool clearable;
+
+  @Input('searchable')
+  bool searchable = true;
 
   @Input('loading')
   set loading(bool flag) => _decorSvc.setLoading(flag);
@@ -42,11 +47,24 @@ class WSelectComponent implements OnInit {
   @ViewChild('optionsContainer')
   HtmlElement optionsContainer;
 
-  final WInputDecorService _decorSvc;
-  final WSelectService _selectSvc;
+  String filterText;
 
-  set showOptions(bool flag) => _selectSvc.showing = flag;
-  bool get showOptions => _selectSvc.showing;
+  List<WSelectOption> get optionsWithFilter => filterText != null
+      ? options.where((element) => element.compareTo(filterText)).toList()
+      : options;
+
+  final WInputDecorService _decorSvc;
+
+  bool _showingOptions = false;
+  set showOptions(bool flag) {
+    _showingOptions = flag;
+    if (!flag) {
+      _decorSvc.setFocus(false);
+      filterText = null;
+    }
+  }
+
+  bool get showOptions => _showingOptions;
 
   int get selectedItemIdx =>
       value != null ? options.indexWhere((x) => x.value == value) : null;
@@ -55,97 +73,33 @@ class WSelectComponent implements OnInit {
       ? options[selectedItemIdx].label
       : null;
 
-  int _highlightedIdx;
-
   /// the constructor
-  WSelectComponent(this._decorSvc, this._selectSvc) {
+  WSelectComponent(this._decorSvc) {
     /// listen to decor svc
     /// show options on focus
     /// nullify value on clear
     _decorSvc
-      ..focus.listen((ev) => _selectSvc.showing = ev)
-      ..onClear.listen((ev) {
-        _valueChange.add(null);
-        _selectSvc.selectItem = null;
-      });
-
-    /// listen to select svc
-    /// set value on selected item
-    _selectSvc
-      ..showingStream.listen((ev) {
-        _decorSvc.setFocus(ev);
+      ..focus.listen((ev) {
+        _showingOptions = ev;
         if (ev) _scrollToActive();
       })
-      ..selectItemStream.listen(
-          (ev) => _valueChange.add(ev == null ? null : options[ev].value));
+      ..onClear.listen((ev) => _valueChange.add(null));
   }
 
-  @override
-  void ngOnInit() {
-    // set value
-    _selectSvc.selectItem = selectedItemIdx;
-    if (value != null) {
-      assert(
-          selectedItemIdx > -1, 'value=$value does not exist in the options');
-    }
-    // bind keys
-    document.onKeyDown
-      ..where((ev) =>
-              _selectSvc.showing &&
-              (ev.keyCode == KeyCode.ENTER || ev.keyCode == KeyCode.MAC_ENTER))
-          .listen((ev) => selectOption(_highlightedIdx))
-      ..where((ev) =>
-              _selectSvc.showing &&
-              (ev.keyCode == KeyCode.UP || ev.keyCode == KeyCode.DOWN))
-          .listen((KeyboardEvent ev) {
-        ev.preventDefault();
-        int curHighlighted = _highlightedIdx ?? -1;
-        int next = _clamp(curHighlighted + _delta(ev), 0, options.length - 1);
-        _highlightedIdx = next;
-        _scrollToActive();
-      });
+  void selectOption(WSelectOption o) {
+    _valueChange.add(o.value);
+    showOptions = false;
   }
 
-  void selectOption(int idx) {
-    _selectSvc.selectItem = idx;
-  }
-
-  Map<String, bool> getOptionItemClasses(int idx) =>
-      {'bg-light-gray': idx == _highlightedIdx, 'blue': idx == selectedItemIdx};
-
-  int _delta(KeyboardEvent k) => k.keyCode == KeyCode.UP ? -1 : 1;
-
-  int _clamp(int idx, int min, int max) =>
-      idx < min ? max : idx > max ? min : idx;
+  Map<String, bool> getOptionItemClasses(WSelectOption o) =>
+      {'blue': o.value == value};
 
   void _scrollToActive() {
-    if (_highlightedIdx != null && _highlightedIdx >= 0) {
-      // right now it is hardcoded to 50 px, might want to fix this later.
-      optionsContainer.scrollTop = (_highlightedIdx * 50);
-    }
+    // get the width of the first child of the option container
+    // or 50 px if no children can be found.
+    int y = optionsContainer.children.isNotEmpty
+        ? optionsContainer.children[0].getBoundingClientRect().height
+        : 50;
+    optionsContainer.scrollTop = (selectedItemIdx ?? 0 * y);
   }
-}
-
-@Injectable()
-class WSelectService {
-  int _selectItem;
-  int get selectItem => _selectItem;
-  set selectItem(int idx) {
-    _selectItem = idx;
-    _selectItemChange.add(idx);
-    showing = false;
-  }
-
-  final _selectItemChange = StreamController<int>.broadcast();
-  Stream<int> get selectItemStream => _selectItemChange.stream;
-
-  bool _showing = false;
-  bool get showing => _showing;
-  set showing(bool flag) {
-    _showing = flag;
-    _showingChange.add(flag);
-  }
-
-  final _showingChange = StreamController<bool>.broadcast();
-  Stream<bool> get showingStream => _showingChange.stream;
 }

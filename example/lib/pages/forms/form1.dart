@@ -16,6 +16,7 @@ class Form1Component {
   int selected3;
 
   List<WSelectOption<int>> options = List.generate(20, (idx) => idx + 1)
-      .map((l) => WSelectOption<int>('Item $l', l))
+      .map((l) => WSelectOption<int>(
+          'Item $l', l, (filter) => 'Item $l'.toLowerCase().contains(filter)))
       .toList();
 }

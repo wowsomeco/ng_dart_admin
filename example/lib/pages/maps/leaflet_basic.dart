@@ -100,8 +100,10 @@ class LeafletBasicComponent {
         ])
   ];
 
-  List<WSelectOption<_TileLayer>> options =
-      layers.map((x) => WSelectOption<_TileLayer>(x.label, x)).toList();
+  List<WSelectOption<_TileLayer>> options = layers
+      .map((x) => WSelectOption<_TileLayer>(
+          x.label, x, (filter) => x.label.contains(filter)))
+      .toList();
 
   _TileLayer selected = layers[0];
 }

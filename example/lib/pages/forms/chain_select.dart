@@ -50,7 +50,8 @@ class ChainSelectComponent {
       _SelectItem2(2, 10),
     ]
         .where((e) => e.idSelect1 == id)
-        .map((l) => WSelectOption<int>('Item ${l.id}', l.id))
+        .map((l) => WSelectOption<int>('Item ${l.id}', l.id,
+            (filter) => 'Item ${l.id}'.toLowerCase().contains(filter)))
         .toList();
   }
 
@@ -65,7 +66,8 @@ class ChainSelectComponent {
   bool loadingSelect2;
 
   List<WSelectOption<int>> options1 = List.generate(2, (idx) => idx + 1)
-      .map((l) => WSelectOption<int>('Item $l', l))
+      .map((l) => WSelectOption<int>(
+          'Item $l', l, (filter) => 'Item $l'.toLowerCase().contains(filter)))
       .toList();
 
   List<WSelectOption<int>> options2 = [];
