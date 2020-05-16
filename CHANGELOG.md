@@ -1,3 +1,6 @@
+## 0.0.2+14
+  * poppable directive now re-positions according to the content's height when showing.
+
 ## 0.0.2+13
   * added search functionality in w-select.
 

@@ -17,7 +17,7 @@ class _FormData {
   WInputComponent
 ])
 class Form2Component {
-  List<WSelectOption<int>> options = List.generate(10, (idx) => idx)
+  List<WSelectOption<int>> options = List.generate(20, (idx) => idx + 1)
       .map((l) => WSelectOption<int>(
           'Item $l', l, (filter) => 'Item $l'.toLowerCase().contains(filter)))
       .toList();

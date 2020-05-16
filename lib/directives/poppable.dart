@@ -20,6 +20,7 @@ class PoppableDirective implements OnInit, OnDestroy {
       _curPosY = _parentRect.top.toInt();
       _timer = Timer.periodic(Duration(milliseconds: 100), (t) {
         if (_curPosY != _parentRect.top.toInt()) show = false;
+        if (_curHeight != _elRect.height) _setPos();
       });
     }
   }
@@ -30,6 +31,7 @@ class PoppableDirective implements OnInit, OnDestroy {
 
   final Element _el;
   int _curPosY;
+  int _curHeight;
   bool _showing = false;
   Element _parent;
   Timer _timer;
@@ -71,13 +73,14 @@ class PoppableDirective implements OnInit, OnDestroy {
   void _setPos() {
     if (!_showing) return;
 
+    _curHeight = _elRect.height;
+
     num offX = _parent.offsetLeft;
     num offY = _parentRect.top + _parentRect.height;
-
-    /// check if the popup is cut off at the bottom
-    /// if so, place the popup above the parent el.
-    if (offY + _elRect.height > window.innerHeight) {
-      offY = _parentRect.top - _elRect.height;
+    // check if the popup is cut off at the bottom
+    // if so, place the popup above the parent el.
+    if (offY + _curHeight > window.innerHeight) {
+      offY = _parentRect.top - _curHeight;
     }
 
     /// set pos of the popup
