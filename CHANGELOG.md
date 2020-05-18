@@ -1,3 +1,6 @@
+## 0.0.2+16
+  * revamped debounce.
+
 ## 0.0.2+15
   * added readonly prop in w-input.
   * showcased table with filter.
