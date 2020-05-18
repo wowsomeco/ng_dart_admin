@@ -1,3 +1,7 @@
+## 0.0.2+15
+  * added readonly prop in w-input.
+  * showcased table with filter.
+
 ## 0.0.2+14
   * poppable directive now re-positions according to the content's height when showing.
 

@@ -1,0 +1,9 @@
+<div class="flex flex-column">
+  <form class="mv2">
+    <div class="pa2 w-100">
+      <label class="f6 b db mb2">Name</label>
+      <w-input [(value)]="filterName" clearable placeholder="Filter Name..."></w-input>
+    </div>
+  </form>
+  <w-table [adapter]="adapter" title="Data Table"></w-table>
+</div>

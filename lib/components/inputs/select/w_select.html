@@ -2,7 +2,7 @@
   <div class="w-100 h-100 pa1">
     <div class="w-100 h-100 flex items-center" [ngClass]="selectedLabel != null ? 'blue' : 'gray'">
       {{selectedLabel ?? 'Please Select'}}</div>
-    <div wPopup [(show)]="showOptions" class="ba b--light-gray bg-white black">
+    <div wPopup [(show)]="showOptions" class="ba b--light-gray bg-white black" [style.min-width.px]="240">
       <div class="pa2" wEvent="click" stop prevent *ngIf="searchable">
         <w-input [(value)]="filterText" placeholder="Search..." clearable>
           <prefix>

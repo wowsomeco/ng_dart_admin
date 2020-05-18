@@ -2,4 +2,5 @@
   <ng-content select="prefix" ngProjectAs="prefix"></ng-content>
   <input #input tabindex="0" class="w-100" [ngModel]="value" (ngModelChange)="setValue($event)" [type]="type"
     [placeholder]="placeholder" />
+  <ng-content select="suffix" ngProjectAs="suffix"></ng-content>
 </w-input-decor>

@@ -26,6 +26,9 @@ class WInputComponent implements AfterViewInit {
   @Input('required')
   bool isRequired = false;
 
+  @Input('readonly')
+  bool readonly = false;
+
   @Input('clearable')
   bool clearable;
 
@@ -66,5 +69,6 @@ class WInputComponent implements AfterViewInit {
   @override
   void ngAfterViewInit() {
     if (isRequired) input.setAttribute('required', '');
+    if (readonly) input.setAttribute('readonly', '');
   }
 }
