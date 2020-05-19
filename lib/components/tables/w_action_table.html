@@ -1,4 +1,10 @@
-<w-table [adapter]="adapter" [title]="title"></w-table>
+<w-table [adapter]="adapter" [title]="title">
+  <top-right>
+    <a *ngIf="adapter.canAddItem" class="f6 link ba ph3 pv2 dark-blue pointer hover-near-white hover-bg-blue bg-animate"
+      (click)="adapter.onAddItem()">Add
+      New</a>
+  </top-right>
+</w-table>
 <w-dialog [(show)]="showDialog">
   <div class="h-100 w-100 flex items-center justify-center">
     <div class="w3 h3" *ngIf="loadForm">

@@ -1,3 +1,7 @@
+## 0.0.2+17
+  * added initial xlsx js interop.
+  * added top-right slot for w-table allowing the caller to inject anything there accordingly.
+
 ## 0.0.2+16
   * revamped debounce.
 

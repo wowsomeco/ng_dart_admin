@@ -5,5 +5,10 @@
       <w-input [(value)]="filterName" clearable placeholder="Filter Name..."></w-input>
     </div>
   </form>
-  <w-table [adapter]="adapter" title="Data Table"></w-table>
+  <w-table [adapter]="adapter" title="Data Table">
+    <top-right>
+      <a class="f6 link ba ph3 pv2 dark-blue pointer hover-near-white hover-bg-blue bg-animate"
+        (click)="download()">Download Excel</a>
+    </top-right>
+  </w-table>
 </div>

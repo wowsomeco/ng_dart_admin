@@ -86,4 +86,11 @@ class TableFilterComponent implements OnInit, OnDestroy {
   void ngOnDestroy() {
     _debounce.cancel();
   }
+
+  void download() {
+    XLSXWorksheet ws = XLSX.utils.json_to_sheet(tableItems1);
+    XLSXWorkbook wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'data');
+    XLSX.writeFile(wb, 'test-download.xlsx');
+  }
 }
