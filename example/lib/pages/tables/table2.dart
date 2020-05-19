@@ -107,4 +107,11 @@ class Table2Component {
     }
     return _TableData(tableItems2.length + 1);
   });
+
+  void download() {
+    XLSXWorksheet ws = XLSX.utils.json_to_sheet(tableItems2);
+    XLSXWorkbook wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'data');
+    XLSX.writeFile(wb, 'test-download.xlsx');
+  }
 }

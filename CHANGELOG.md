@@ -1,3 +1,7 @@
+## 0.0.2+18
+  * added top-right slot for w-action-table too.
+  * added addNewLabel prop in w-action-table. 
+
 ## 0.0.2+17
   * added initial xlsx js interop.
   * added top-right slot for w-table allowing the caller to inject anything there accordingly.

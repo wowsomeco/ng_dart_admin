@@ -60,6 +60,11 @@ class WActionTableComponent extends WTableComponent implements OnInit {
   @Input('form')
   WTableFormAdapter form;
 
+  /// null by default, if null will hide the add new button on the top right side.
+  /// otherwise will show the button with this [addNewLabel] text on it.
+  @Input('addNewLabel')
+  String addNewLabel;
+
   void setItem(WTableItem itm) async {
     /// show the dialog with the spinner on
     showDialog = true;

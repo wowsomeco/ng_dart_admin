@@ -1,4 +1,7 @@
-<w-action-table [adapter]="tblAdapter2" [form]="formAdapter" title="Table with Actionable Form">
+<w-action-table addNewLabel="Add" [adapter]="tblAdapter2" [form]="formAdapter" title="Table with Actionable Form">
+  <top-right>
+    <div (click)="download()" class="pointer dim ph3 pv2 mh1 ba b--green green">Download Excel</div>
+  </top-right>
   <div class="shadow-1 bg-near-white pa4" wEvent="click" stop *ngIf="formAdapter.data != null">
     <form class="flex flex-column" (ngSubmit)="formAdapter.submitForm()">
       <div class="pa1">
