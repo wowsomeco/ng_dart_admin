@@ -1,3 +1,6 @@
+## 0.0.2+19
+  * w-input doesnt show red border on mozilla again when required.
+
 ## 0.0.2+18
   * added top-right slot for w-action-table too.
   * added addNewLabel prop in w-action-table. 

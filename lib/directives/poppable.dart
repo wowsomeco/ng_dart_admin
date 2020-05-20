@@ -86,5 +86,6 @@ class PoppableDirective implements OnInit, OnDestroy {
     /// set pos of the popup
     _el.style.left = '${offX}px';
     _el.style.top = '${offY}px';
+    _el.style.width = '${_parentRect.width}px';
   }
 }

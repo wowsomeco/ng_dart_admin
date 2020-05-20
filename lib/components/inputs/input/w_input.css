@@ -6,3 +6,16 @@ input {
 input:focus {
   outline: none;
 }
+
+input:-moz-placeholder,
+input:focus {
+  box-shadow: none !important;
+  outline: none;
+  border: none;
+}
+
+input:invalid {
+  box-shadow: none !important;
+  outline: none;
+  border: none;
+}
