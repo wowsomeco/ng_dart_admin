@@ -44,7 +44,7 @@ class WInputDecorService {
       ngAdminDirectives,
       WSpinnerComponent
     ])
-class WInputDecoratorComponent implements AfterViewInit, OnDestroy {
+class WInputDecoratorComponent implements AfterViewInit {
   /// if true will show the delete icon that will broadcast clear event on click.
   @Input('clearable')
   bool clearable = false;
@@ -62,27 +62,18 @@ class WInputDecoratorComponent implements AfterViewInit, OnDestroy {
 
   @override
   void ngAfterViewInit() {
-    document.addEventListener('click', handleClick);
     _service.focus.listen((ev) {
       outer.classes.remove(ev ? 'b--moon-gray' : 'b--blue');
       outer.classes.add(ev ? 'b--blue' : 'b--moon-gray');
     });
   }
 
-  @override
-  void ngOnDestroy() {
-    document.removeEventListener('click', handleClick);
-  }
-
-  void handleClick(Event ev) {
+  void handleClick() {
     if (loading) return;
-
-    /// if click ev is inside the content, toggle show
-    /// if click is outside, just hide the popup
-    outer.contains(ev.target)
-        ? _service.toggleFocus()
-        : _service.setFocus(false);
+    _service.setFocus(true);
   }
+
+  void clickOutside() => _service.setFocus(false);
 
   void clear() => _service.clear();
 

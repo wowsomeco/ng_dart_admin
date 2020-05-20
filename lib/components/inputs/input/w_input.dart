@@ -70,5 +70,8 @@ class WInputComponent implements AfterViewInit {
   void ngAfterViewInit() {
     if (isRequired) input.setAttribute('required', '');
     if (readonly) input.setAttribute('readonly', '');
+
+    input.onFocus.listen((event) => _service.setFocus(true));
+    input.onBlur.listen((event) => _service.setFocus(false));
   }
 }

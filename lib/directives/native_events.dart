@@ -103,3 +103,28 @@ class SwipeableDirective implements OnInit, OnDestroy {
     return te.touches[0].page;
   }
 }
+
+@Directive(selector: '[wClickOutside]')
+class WClickOutsideDirective implements OnInit, OnDestroy {
+  final _clickOutside = StreamController<Null>();
+  @Output()
+  Stream<Null> get onClickOutside => _clickOutside.stream;
+
+  final Element _el;
+
+  WClickOutsideDirective(this._el);
+
+  @override
+  void ngOnInit() {
+    document.addEventListener('click', handleClick);
+  }
+
+  @override
+  void ngOnDestroy() {
+    document.removeEventListener('click', handleClick);
+  }
+
+  void handleClick(Event ev) {
+    if (!_el.contains(ev.target)) _clickOutside.add(null);
+  }
+}

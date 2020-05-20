@@ -26,6 +26,7 @@ const ngAdminDirectives = [
   WTabsDirective,
   HljsDirective,
   WClipboardDirective,
+  WClickOutsideDirective,
   ShowdownDirective,
   TippyDirective
 ];

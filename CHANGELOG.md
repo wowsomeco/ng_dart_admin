@@ -1,3 +1,7 @@
+## 0.0.2+20
+  * revamped w-decorator click handler.
+  * added ClickOutsideDirective.
+
 ## 0.0.2+19
   * w-input doesnt show red border on mozilla again when required.
 
