@@ -98,7 +98,7 @@ class WSelectComponent {
     // get the width of the first child of the option container
     // or 50 px if no children can be found.
     int y = optionsContainer.children.isNotEmpty
-        ? optionsContainer.children[0].getBoundingClientRect().height
+        ? optionsContainer.children[0].getBoundingClientRect().height.toInt()
         : 50;
     optionsContainer.scrollTop = (selectedItemIdx ?? 0 * y);
   }

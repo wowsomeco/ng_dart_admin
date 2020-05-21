@@ -12,7 +12,7 @@
       </div>
       <div class="pa1">
         <label class="f6 b db mb2">Position</label>
-        <w-input [(value)]="formAdapter.data.position" required></w-input>
+        <w-select [(value)]="formAdapter.data.position" [options]="posOptions" clearable></w-select>
       </div>
       <div class="pa1">
         <label class="f6 b db mb2">Age</label>

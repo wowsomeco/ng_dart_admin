@@ -48,6 +48,7 @@ List<_TableData> tableItems2 = [
     ngAdminDirectives,
     WDialogComponent,
     WInputComponent,
+    WSelectComponent,
     WActionTableComponent
   ],
 )
@@ -70,6 +71,15 @@ class Table2Component {
 
   bool newForm = false;
   _TableData formData;
+
+  List<WSelectOption<String>> posOptions = [
+    WSelectOption('Defender', 'Defender',
+        (filter) => 'defender'.contains(filter.toLowerCase())),
+    WSelectOption('Midfielder', 'Midfielder',
+        (filter) => 'midfielder'.contains(filter.toLowerCase())),
+    WSelectOption('Forward', 'Forward',
+        (filter) => 'forward'.contains(filter.toLowerCase())),
+  ];
 
   WTableAdapter tblAdapter2 = WTableAdapter(
       onDeleteItem: (itm) async {

@@ -3,7 +3,7 @@ import 'package:angular_forms/angular_forms.dart';
 import 'package:ng_admin/ng_admin.dart';
 
 class _FormData {
-  String name;
+  String name = 'Sergio';
   int age;
   int selected1;
   int selected2 = 2;

@@ -7,6 +7,7 @@ import 'package:ng_admin/ng_admin.dart';
 @Injectable()
 class WInputDecorService {
   bool _focused = false;
+  bool get focused => _focused;
   final _onFocus = StreamController<bool>.broadcast();
   Stream<bool> get focus => _onFocus.stream;
   void setFocus(bool flag) {
@@ -73,7 +74,9 @@ class WInputDecoratorComponent implements AfterViewInit {
     _service.setFocus(true);
   }
 
-  void clickOutside() => _service.setFocus(false);
+  void clickOutside() {
+    if (_service.focused) _service.setFocus(false);
+  }
 
   void clear() => _service.clear();
 

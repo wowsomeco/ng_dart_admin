@@ -1,3 +1,6 @@
+## 0.0.2+21
+  * using popper js for wPopup directive now.
+
 ## 0.0.2+20
   * revamped w-decorator click handler.
   * added ClickOutsideDirective.

@@ -1,6 +1,5 @@
 <div #outer class="br2 overflow-hidden bg-white gray ba b--moon-gray pointer db flex justify-between items-center"
-  [style.height.px]="height" wEvent="click" stop (wListen)="handleClick()" wClickOutside
-  (onClickOutside)="clickOutside()">
+  [style.height.px]="height" (click)="handleClick()" wClickOutside (onClickOutside)="clickOutside()">
   <div class="pa2">
     <ng-content select="prefix"></ng-content>
   </div>
