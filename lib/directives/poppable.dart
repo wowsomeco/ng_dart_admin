@@ -5,18 +5,21 @@ import 'package:ng_admin/interops/index.dart';
 
 @Directive(selector: '[wPopup]')
 class PoppableDirective implements OnInit, OnDestroy {
-  @Input('popupConfig')
-  PopperConfig config = PopperConfig(
-      placement: 'bottom-start',
-      modifiers: PopperModifier(
-          flip: PopperFlip(enabled: true),
-          preventOverflow: PopperPreventOverflow()));
+  @Input('placement')
+  String placement = 'bottom';
 
   @Input('show')
   set show(bool flag) {
     _showing = flag;
     if (_showing) {
-      _popper = Popper.createPopper(_el.parent, _el, config);
+      _popper = Popper.createPopper(
+          _el.parent,
+          _el,
+          PopperConfig(
+              placement: placement,
+              modifiers: PopperModifier(
+                  flip: PopperFlip(enabled: true),
+                  preventOverflow: PopperPreventOverflow())));
       _el.style.width = '${_el.parent.getBoundingClientRect().width}px';
     } else {
       _popper?.destroy();

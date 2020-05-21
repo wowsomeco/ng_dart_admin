@@ -1,5 +1,6 @@
 ## 0.0.2+21
   * using popper js for wPopup directive now.
+  * w-select can be highlighted using up and down keys now, enter key will select the item.
 
 ## 0.0.2+20
   * revamped w-decorator click handler.

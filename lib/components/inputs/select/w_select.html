@@ -1,19 +1,11 @@
 <w-input-decor [clearable]="clearable">
   <div class="w-100 h-100 pa1">
-    <div class="w-100 h-100 flex items-center" [ngClass]="selectedLabel != null ? 'blue' : 'gray'">
-      {{selectedLabel ?? 'Please Select'}}
-    </div>
+    <input #input [ngModel]="selectedLabel" (ngModelChange)="onInputChange($event)" placeholder="Please Select"
+      class="w-100 h-100" [ngClass]="selectedLabel != null ? 'blue' : 'gray'" />
     <div wPopup [(show)]="showOptions" class="z-max ba b--light-gray bg-white black">
-      <div class="pa2" wEvent="click" stop prevent *ngIf="searchable">
-        <w-input [(value)]="filterText" placeholder="Search..." clearable>
-          <prefix>
-            <i class="material-icons">search</i>
-          </prefix>
-        </w-input>
-      </div>
       <div class="overflow-y-auto" [style.max-height.px]="200" #optionsContainer>
-        <div class="pa3 bb b--light-gray pointer dim" *ngFor="let o of optionsWithFilter" wEvent="click" stop prevent
-          (wListen)="selectOption(o)" [ngClass]="getOptionItemClasses(o)">
+        <div class="pa3 bb b--light-gray pointer dim" *ngFor="let o of optionsWithFilter" wEvent="mousedown" stop
+          prevent (wListen)="selectOption(o)" [ngClass]="getOptionItemClasses(o)">
           {{o.label}}</div>
       </div>
     </div>
