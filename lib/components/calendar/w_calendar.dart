@@ -32,6 +32,10 @@ class _CalYear {
   set curMonth(_CalMonth m) => months.add(m);
 }
 
+/// Component that can be used to build any form of custom calendar.
+///
+/// this component is quite low level whereby it only has <template> that leaves to the caller to use it whatever they like.
+/// refer to https://ngadmin.wowsome.co/#/calendars for samples how to use it.
 @Component(
   selector: 'w-calendar',
   templateUrl: 'w_calendar.html',

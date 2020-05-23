@@ -1,6 +1,7 @@
 @JS()
 library frappe_interop;
 
+import 'dart:async';
 import 'dart:html';
 import 'package:js/js.dart';
 import 'package:angular/angular.dart';
@@ -49,18 +50,21 @@ class FrappeDataset {
 }
 
 @Directive(selector: '[frappeChart]')
-class FrappeDirective implements OnInit {
+class FrappeDirective implements OnInit, OnDestroy {
   @Input('frappeConfig')
   FrappeConfig config;
 
   final Element _el;
+  Timer _timer;
 
   FrappeDirective(this._el);
 
   @override
   void ngOnInit() async {
     /// need to delay a bit, otherwise frappe will throw some svg NaN error
-    await Future.delayed(Duration(milliseconds: 10));
-    FrappeChart(_el, config);
+    _timer = Timer(Duration(milliseconds: 10), () => FrappeChart(_el, config));
   }
+
+  @override
+  void ngOnDestroy() => _timer?.cancel();
 }

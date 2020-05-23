@@ -13,6 +13,10 @@ class WSelectOption<T> {
   WSelectOption(this.label, this.value, this.compareTo);
 }
 
+/// The Input Component that can be used to show any array-like data, just like how native <select> does, with more options to customize.
+///
+/// It can set to be loading to show the loading indicator,
+/// can also filter out the options whenever the input value changes its value, just make sure [searchable] is set to true to activate it.
 @Component(
   selector: 'w-select',
   styleUrls: ['../input/w_input.css'],
@@ -22,26 +26,35 @@ class WSelectOption<T> {
     coreDirectives,
     formDirectives,
     ngAdminDirectives,
-    WInputDecoratorComponent,
-    WInputComponent
+    WInputDecoratorComponent
   ],
 )
 class WSelectComponent implements AfterViewInit {
+  /// the dropdown options to be shown when the input field gets focused.
   @Input('options')
   List<WSelectOption> options = [];
 
+  /// the model.
+  ///
+  /// it can be anything, just make sure the options contain this value too.
   @Input('value')
   dynamic value;
 
+  /// when it sets to true, will show the close button icon that will nullify the value on clicked.
   @Input('clearable')
   bool clearable;
 
+  /// true makes [input] changeable.
+  /// false disables it.
   @Input('searchable')
   bool searchable = true;
 
+  /// true will show the loading indicator of the w-input-decor located on the right hand side of it.
   @Input('loading')
   set loading(bool flag) => _decorSvc.setLoading(flag);
 
+  /// sets the required state of [input]
+  /// useful for showing the html5 form validation if set to true.
   @Input('required')
   bool isRequired = false;
 

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:html';
 import 'package:angular/core.dart';
 
+/// Directive for copying text to clipboard.
 @Directive(selector: '[wClipboard]')
 class WClipboardDirective implements AfterViewInit {
   /// clipboard elem id

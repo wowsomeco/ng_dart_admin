@@ -1,3 +1,7 @@
+## 0.0.3
+  * w-slider now shows tooltip when hovering on the whole line, just like how normal video progress indicator works.
+  * more comment docs.
+
 ## 0.0.2+21
   * using popper js for wPopup directive now.
   * w-select can be highlighted using up and down keys now, enter key will select the item.

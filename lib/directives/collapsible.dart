@@ -1,8 +1,11 @@
 import 'dart:html';
 import 'package:angular/core.dart';
 
+/// Directive that has 2 states i.e. open and closed
+///
+/// Can be used to build Accordion, Collapsible Menu (just like how we used it for building the nested list w-list), etc.
 @Directive(selector: '[wCollapsible]')
-class CollapsibleDirective implements AfterContentInit {
+class WCollapsibleDirective implements AfterContentInit {
   final Element _el;
   bool _showing = true;
 
@@ -12,7 +15,7 @@ class CollapsibleDirective implements AfterContentInit {
   @Input()
   set expanded(bool flag) => _show(flag);
 
-  CollapsibleDirective(this._el);
+  WCollapsibleDirective(this._el);
 
   @ContentChild('collapsibleItem')
   Element collapsible;

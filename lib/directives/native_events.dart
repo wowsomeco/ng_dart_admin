@@ -3,7 +3,7 @@ import 'dart:html';
 import 'package:angular/core.dart';
 
 @Directive(selector: '[wEvent]')
-class EventBindingDirective implements OnInit {
+class WEventBindingDirective implements OnInit {
   final Element _el;
 
   @Input('wEvent')
@@ -19,7 +19,7 @@ class EventBindingDirective implements OnInit {
   @Output()
   Stream<Event> get wListen => _listen.stream;
 
-  EventBindingDirective(this._el);
+  WEventBindingDirective(this._el);
 
   @override
   void ngOnInit() {
@@ -32,7 +32,7 @@ class EventBindingDirective implements OnInit {
 }
 
 @Directive(selector: '[wSwipeable]')
-class SwipeableDirective implements OnInit, OnDestroy {
+class WSwipeableDirective implements OnInit, OnDestroy {
   final Element _el;
 
   bool _touching = false;
@@ -49,17 +49,13 @@ class SwipeableDirective implements OnInit, OnDestroy {
   @Output()
   Stream<Point<num>> get swipeEnd => _swipeEnd.stream;
 
-  SwipeableDirective(this._el);
+  WSwipeableDirective(this._el);
 
   @override
   void ngOnInit() {
-    ['mousedown', 'touchstart'].forEach((ev) => _el.addEventListener(ev, (e) {
-          e.stopPropagation();
-          _touching = true;
-          _swipeStart.add(_evToPoint(e));
-        }));
-
-    /// listen to document so that it still can handle swipe outside of the elem
+    // listen to document so that it still can handle swipe outside of the elem
+    ['mousedown', 'touchstart']
+        .forEach((ev) => _el.addEventListener(ev, (e) => _mouseDown(e)));
     ['mousemove', 'touchmove']
         .forEach((ev) => document.addEventListener(ev, (e) => _mouseMoving(e)));
     ['mouseup', 'touchend']
@@ -69,10 +65,19 @@ class SwipeableDirective implements OnInit, OnDestroy {
   @override
   void ngOnDestroy() {
     /// remove listeners on document on destroy
+    ['mousedown', 'touchstart']
+        .forEach((ev) => _el.removeEventListener(ev, _mouseDown));
     ['mousemove', 'touchmove']
         .forEach((ev) => document.removeEventListener(ev, _mouseMoving));
     ['mouseup', 'touchend']
         .forEach((ev) => document.removeEventListener(ev, _mouseUp));
+  }
+
+  void _mouseDown(Event e) {
+    if (e is MouseEvent) e.preventDefault();
+    e.stopPropagation();
+    _touching = true;
+    _swipeStart.add(_evToPoint(e));
   }
 
   void _mouseMoving(Event e) {

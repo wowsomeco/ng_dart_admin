@@ -17,16 +17,16 @@ import 'showdownjs.dart';
 import 'tippy.dart';
 
 const ngAdminDirectives = [
-  PoppableDirective,
-  CollapsibleDirective,
-  EventBindingDirective,
-  SwipeableDirective,
+  WPoppableDirective,
+  WCollapsibleDirective,
+  WEventBindingDirective,
+  WSwipeableDirective,
   WTabBarDirective,
   WTabViewDirective,
   WTabsDirective,
-  HljsDirective,
   WClipboardDirective,
   WClickOutsideDirective,
   ShowdownDirective,
-  TippyDirective
+  TippyDirective,
+  HljsDirective,
 ];

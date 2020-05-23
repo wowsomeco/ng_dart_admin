@@ -59,6 +59,8 @@ class WSliderComponent implements OnInit {
 
   num get slideDotOffsetX => valuePercentage * sliderRect.width - height;
 
+  String swipingValue = '';
+
   final ChangeDetectorRef _changeDetectorRef;
   final WLayoutService _layoutService;
 
@@ -78,6 +80,13 @@ class WSliderComponent implements OnInit {
 
     /// for better performance
     if ((percentage - value).abs() > 0.9) _valueChange.add(percentage);
+  }
+
+  void onHoverBar(MouseEvent ev) {
+    swipingValue =
+        (((ev.page.x - sliderRect.left) / sliderRect.width).clamp(0, 1) * 100)
+            .roundToDouble()
+            .toString();
   }
 
   @override

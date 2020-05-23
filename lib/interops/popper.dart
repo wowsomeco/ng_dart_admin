@@ -23,8 +23,10 @@ class PopperInstance {
 class PopperConfig {
   external String get placement;
   external PopperModifier get modifiers;
+  external String get strategy;
 
-  external factory PopperConfig({String placement, PopperModifier modifiers});
+  external factory PopperConfig(
+      {String placement, PopperModifier modifiers, String strategy});
 }
 
 @anonymous
