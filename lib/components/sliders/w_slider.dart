@@ -10,7 +10,7 @@ import 'package:ng_admin/ng_admin.dart';
   directives: [coreDirectives, ngAdminDirectives],
 )
 class WSliderComponent implements OnInit {
-  /// px
+  /// height of the slider bar in px.
   @Input('height')
   num height = 5;
 
@@ -24,6 +24,9 @@ class WSliderComponent implements OnInit {
   @Output()
   Stream<num> get valueChange => _valueChange.stream;
 
+  /// Generates the steps in a form of list of <template> so that the caller can supply the view accordingly.
+  ///
+  /// the alignment of the steps will be controlled by flexbox justify-around.
   @Input('steps')
   List<dynamic> steps = [];
 

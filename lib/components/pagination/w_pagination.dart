@@ -47,7 +47,7 @@ class WPaginationComponent {
 
   bool get previousDisabled => !hasPrevious;
 
-  String get className => 'dim br2 ba b--light-blue mh1 pa2';
+  String get className => 'dim ba pa2 mh1 pointer';
 
   int _clamp(int page) => page.clamp(1, pageSize);
 }

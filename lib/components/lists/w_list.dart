@@ -8,6 +8,9 @@ class WListItem<T> {
   WListItem(this.data, {this.children = const []});
 }
 
+/// A very generic nested list component that the content can be supplied by the caller accordingly.
+///
+/// see https://ngadmin.wowsome.co/#/lists for more details of how to use it.
 @Component(
   selector: 'w-list',
   templateUrl: 'w_list.html',

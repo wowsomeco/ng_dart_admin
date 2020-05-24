@@ -1,19 +1,18 @@
 <w-calendar [firstDate]="fromDate" [endDate]="toDate" [months]="months" [days]="days">
   <template #month let-month>
-    <div class="ba b--light-gray flex flex-column mv1 bg-black light-gray">
+    <div class="ba b--light-gray flex flex-column mv1 bg-near-black light-gray">
       <div class="b ph2 pv4 bb b--light-gray f3 flex justify-between">
         <i class="material-icons pointer grow dim" (click)="prevMonth()">arrow_back_ios</i>
         <div>{{month.name}} {{month.year}}</div>
         <i class="material-icons pointer grow dim" (click)="nextMonth()">arrow_forward_ios</i>
       </div>
-      <div class="bb b--light-gray flex w-100">
+      <div class="flex w-100">
         <div class="pa2 tc" *ngFor="let day of month.days" [style.width.%]="100 / 7">{{day}}</div>
       </div>
       <div class="flex flex-column w-100">
-        <div class="flex w-100" *ngFor="let week of month.weeks; let first=first; let last=last"
+        <div class="flex w-100 bt b--light-gray" *ngFor="let week of month.weeks; let first=first; let last=last"
           [ngClass]="cellClass(first,last)" [style.height.px]="50">
-          <div [style.border-width.px]="1" class="ba b--light-gray pa1" *ngFor="let day of week.days"
-            [style.width.%]="100 / 7">
+          <div class="pa1" *ngFor="let day of week.days" [style.width.%]="100 / 7">
             <div class="pb3 f6 tr" [ngClass]="day.isToday ? 'blue' : 'light-gray'">{{day.value.day}}</div>
           </div>
         </div>

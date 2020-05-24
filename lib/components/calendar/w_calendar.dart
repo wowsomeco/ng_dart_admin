@@ -43,9 +43,11 @@ class _CalYear {
   directives: [coreDirectives],
 )
 class WCalendarComponent implements AfterChanges {
+  /// The earliest date the user is permitted to pick.
   @Input('firstDate')
   DateTime firstDate = DateTime.now();
 
+  /// The latest date the user is permitted to pick.
   @Input('endDate')
   DateTime endDate = DateTime.now();
 
@@ -104,7 +106,7 @@ class WCalendarComponent implements AfterChanges {
           .add(_CalDay(days[cur.weekday - 1], cur, _isSameDate(today, cur)));
 
       /// add new week to curMonth.curWeek array after sunday
-      if (cur.weekday == DateTime.sunday) {
+      if (cur.weekday == DateTime.sunday && !_isLastDayOfMonth(cur)) {
         currentYear.curMonth.curWeek = _CalWeek();
       }
 
@@ -116,4 +118,7 @@ class WCalendarComponent implements AfterChanges {
       one.day == another.day &&
       one.month == another.month &&
       one.year == another.year;
+
+  bool _isLastDayOfMonth(DateTime cur) =>
+      cur.day == DateTime(cur.year, cur.month + 1, 0).day;
 }

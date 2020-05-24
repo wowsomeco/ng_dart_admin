@@ -4,6 +4,9 @@ import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
 import 'package:ng_admin/ng_admin.dart';
 
+/// The input component that wraps the native <input> tag on [WInputDecoratorComponent].
+///
+/// use this component as an alternative to the <input> if you feel like having more customization e.g. loading indicator, clear icon, etc.
 @Component(
   selector: 'w-input',
   styleUrls: ['w_input.css'],

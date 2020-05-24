@@ -1,14 +1,16 @@
-<div class="flex pointer">
-  <div [class]="className" [class.near-white]="previousDisabled" (click)="prevPage()">
+<div class="flex">
+  <div [class]="className" [class.light-blue]="!previousDisabled" [class.moon-gray]="previousDisabled"
+    (click)="prevPage()" [style.pointer-events]="previousDisabled ? 'none' : 'auto'">
     <a aria-label="Previous">
       <span aria-hidden="true">&laquo;</span>
     </a>
   </div>
-  <div *ngFor="let p of pages" [class]="className" [class.bg-blue]="p == page"
+  <div *ngFor="let p of pages" class="b--light-blue" [class]="className" [class.bg-blue]="p == page"
     [ngClass]="p == page ? 'light-gray' : 'blue'" (click)="changePage(p)">
-    <a>{{p}}</a>
+    <a class="b">{{p}}</a>
   </div>
-  <div [class]="className" [class.light-gray]="nextDisabled" (click)="nextPage()">
+  <div [class]="className" [class.light-blue]="!nextDisabled" [class.moon-gray]="nextDisabled" (click)="nextPage()"
+    [style.pointer-events]="nextDisabled ? 'none' : 'auto'">
     <a aria-label="Next">
       <span aria-hidden="true">&raquo;</span>
     </a>
