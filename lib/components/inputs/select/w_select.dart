@@ -132,7 +132,7 @@ class WSelectComponent implements AfterViewInit {
               (ev.keyCode == KeyCode.UP || ev.keyCode == KeyCode.DOWN))
           .listen((KeyboardEvent ev) {
         ev.preventDefault();
-        ev.keyCode == KeyCode.UP ? _prevHighlight() : _nextHighlight();
+        _changeHighlight(ev.keyCode == KeyCode.UP ? -1 : 1);
         _scrollToActive();
       });
   }
@@ -182,15 +182,9 @@ class WSelectComponent implements AfterViewInit {
     }
   }
 
-  void _nextHighlight() {
+  void _changeHighlight(int delta) {
     if (optionsWithFilter.isEmpty) return;
-    int cur = _clamp(highlightedIdx + 1, 0, optionsWithFilter.length);
-    _higlightedOption = optionsWithFilter[cur];
-  }
-
-  void _prevHighlight() {
-    if (optionsWithFilter.isEmpty) return;
-    int cur = _clamp(highlightedIdx - 1, 0, optionsWithFilter.length);
+    int cur = _clamp(highlightedIdx + delta, 0, optionsWithFilter.length);
     _higlightedOption = optionsWithFilter[cur];
   }
 

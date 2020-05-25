@@ -15,5 +15,5 @@ class HowToUseComponent {
   String path;
 
   @Input('contentPadding')
-  String contentPadding = 'pa4';
+  String contentPadding = 'pa1 pa4-ns';
 }

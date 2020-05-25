@@ -1,3 +1,7 @@
+## 0.0.3+2
+  * set min height for the header in w-layout so that it wont get cut off on iOS anymore.
+  * some tweaks on the demo page for better looks on mobile devices.
+
 ## 0.0.3+1
   * more comment docs.
   * revamped w-pagination.
