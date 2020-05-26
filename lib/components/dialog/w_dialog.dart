@@ -25,7 +25,9 @@ class WDialogComponent implements OnInit {
 
   @override
   void ngOnInit() {
-    document.onKeyDown
+    document.on['keydown']
+        .where((ev) => ev is KeyboardEvent)
+        .map((ev) => ev as KeyboardEvent)
         .where((ev) => ev.keyCode == KeyCode.ESC)
         .listen((ev) => setShow(false));
   }

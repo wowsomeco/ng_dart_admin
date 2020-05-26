@@ -65,7 +65,9 @@ class WPoppableDirective implements OnInit, OnDestroy {
   /// constructor
   WPoppableDirective(this._el) {
     /// handle esc
-    document.onKeyDown
+    document.on['keydown']
+        .where((ev) => ev is KeyboardEvent)
+        .map((ev) => ev as KeyboardEvent)
         .where((ev) => ev.keyCode == KeyCode.ESC)
         .listen((ev) => _showChange.add(false));
   }

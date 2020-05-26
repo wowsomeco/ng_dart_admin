@@ -116,25 +116,23 @@ class WSelectComponent implements AfterViewInit {
       })
       ..onClear.listen((ev) => _valueChange.add(null));
 
-    /// blur on esc
-    document.onKeyDown
-        .where((ev) => ev.keyCode == KeyCode.ESC)
-        .listen((ev) => _onBlur());
-
-    // bind arrow keys
-    document.onKeyDown
-      ..where((ev) =>
-              _showingOptions &&
-              (ev.keyCode == KeyCode.ENTER || ev.keyCode == KeyCode.MAC_ENTER))
-          .listen((ev) => selectOption(_higlightedOption))
-      ..where((ev) =>
-              _showingOptions &&
-              (ev.keyCode == KeyCode.UP || ev.keyCode == KeyCode.DOWN))
-          .listen((KeyboardEvent ev) {
-        ev.preventDefault();
-        _changeHighlight(ev.keyCode == KeyCode.UP ? -1 : 1);
-        _scrollToActive();
-      });
+    // bind keys
+    // we don't use document.onKeyDown since it produces bug like https://github.com/dart-lang/sdk/issues/36488
+    document.on['keydown']
+        .where((ev) => ev is KeyboardEvent && _showingOptions)
+        .map((ev) => ev as KeyboardEvent)
+          ..where((ev) => ev.keyCode == KeyCode.ESC).listen((ev) => _onBlur())
+          ..where((ev) =>
+                  ev.keyCode == KeyCode.ENTER ||
+                  ev.keyCode == KeyCode.MAC_ENTER)
+              .listen((ev) => selectOption(_higlightedOption))
+          ..where((ev) =>
+                  ev.keyCode == KeyCode.UP || ev.keyCode == KeyCode.DOWN)
+              .listen((ev) {
+            ev.preventDefault();
+            _changeHighlight(ev.keyCode == KeyCode.UP ? -1 : 1);
+            _scrollToActive();
+          });
   }
 
   @override
