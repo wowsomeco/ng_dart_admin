@@ -1,8 +1,9 @@
 <w-action-table addNewLabel="Add" [adapter]="tblAdapter2" [form]="formAdapter" title="Table with Actionable Form">
   <top-right>
-    <div (click)="download()" class="pointer dim ph3 pv2 mh1 ba b--green green">Download Excel</div>
+    <div (click)="download()" class="pointer dim ph3 pv2 mh1 ba b--green green">Download</div>
   </top-right>
-  <div class="shadow-1 bg-near-white pa4" wEvent="click" stop *ngIf="formAdapter.data != null">
+  <div class="shadow-1 bg-near-white pa4" wEvent="click" stop *ngIf="formAdapter.data != null"
+    [style.max-width.px]="300">
     <form class="flex flex-column" (ngSubmit)="formAdapter.submitForm()">
       <div class="pa1">
         <label class="f6 b db mb2">Name</label>

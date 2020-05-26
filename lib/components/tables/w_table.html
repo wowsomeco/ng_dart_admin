@@ -1,6 +1,6 @@
 <div class="ba b--light-gray pa2" [class.o-60]="loading" [ngStyle]="{'pointer-events': loading? 'none': 'auto'}">
   <div class="bb b--black-10">
-    <div class="flex flex-row justify-between items-center pa1">
+    <div class="flex flex-column flex-row-ns justify-between items-center pa1">
       <p class="f5 lh-copy b navy">{{title}}</p>
       <ng-content select="top-right"></ng-content>
     </div>
