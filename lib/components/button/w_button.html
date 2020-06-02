@@ -1,0 +1,12 @@
+<div class="w-100 h-100 relative overflow-hidden br1" [ngClass]="outerClass">
+  <button wEvent="click" stop (wListen)="onClick()" [type]="type"
+    class="pointer dim bg-animate f6 ph3 pv2 w-100 flex items-center justify-center" [ngClass]="classes"
+    [disabled]="loading">
+    <ng-content></ng-content>
+  </button>
+  <div class="w-100 h-100 absolute top-0 bg-black-20 flex items-center justify-center" *ngIf="loading">
+    <div [style.width.px]="15" [style.height.px]="15">
+      <w-spinner></w-spinner>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,9 @@
+## 0.0.3+5
+  * added w-button.
+  * added a sample of how to create a login component.
+
 ## 0.0.3+4
-  * got rid of document.onKeyDown for now since it produces bug on Chrome input form autocomplete https://github.com/dart-lang/sdk/issues/36488
+  * got rid of document.onKeyDown for now since it produces bug on Chrome input form autocomplete [website docs](https://github.com/dart-lang/sdk/issues/36488)
 
 ## 0.0.3+3
   * fixed w-dialog not showing properly on mobile devices.

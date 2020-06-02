@@ -1,0 +1,20 @@
+<div class="flex w-100 h-100 justify-center items-center">
+  <div class="ba b--light-gray pa3 flex flex-column" style="width:300px;">
+    <div class="f3 pv1 mv2 blue b bb b--light-gray">Login</div>
+    <form (ngSubmit)="login()">
+      <div class="flex flex-column mv2">
+        <label class="b mv1">Username</label>
+        <w-input class="pv2 ph1" required type="text" placeholder="Username" [(value)]="username">
+        </w-input>
+      </div>
+      <div class="flex flex-column mv2">
+        <label class="b mv1">Password</label>
+        <w-input class="pv2 ph1" type="password" required placeholder="Password" [(value)]="password">
+        </w-input>
+      </div>
+      <div class="w-100 mv">
+        <w-button btnType="submit" [loading]="loggingIn">Login</w-button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 0;
+  outline: none;
+}
