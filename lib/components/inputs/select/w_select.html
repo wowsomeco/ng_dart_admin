@@ -1,12 +1,19 @@
 <w-input-decor [clearable]="clearable">
+  <ng-content select="prefix" ngProjectAs="prefix"></ng-content>
   <div class="w-100 h-100 pa1">
     <input #input [ngModel]="selectedLabel" (ngModelChange)="onInputChange($event)" placeholder="Please Select"
       class="w-100 h-100" [ngClass]="selectedLabel != null ? 'blue' : 'gray'" />
     <div wPopup [(show)]="showOptions" class="z-max ba b--light-gray bg-white black">
       <div class="overflow-y-auto" [style.max-height.px]="200" #optionsContainer>
-        <div class="pa3 bb b--light-gray pointer dim" *ngFor="let o of optionsWithFilter" wEvent="mousedown" stop
-          prevent (wListen)="selectOption(o)" [ngClass]="getOptionItemClasses(o)">
-          {{o.label}}</div>
+        <div class="pa3 bb b--light-gray pointer dim flex items-center justify-between"
+          *ngFor="let o of optionsWithFilter;let i=index; let odd=odd" wEvent="mousedown" stop prevent
+          (wListen)="selectOption(o)" [ngClass]="getOptionItemClasses(o)">
+          <template [ngTemplateOutlet]="optionPrefix"
+            [ngTemplateOutletContext]="{'\$implicit': o, 'odd':odd, 'i':i}"></template>
+          <div>{{o.label}}</div>
+          <template [ngTemplateOutlet]="optionSuffix"
+            [ngTemplateOutletContext]="{'\$implicit': o, 'odd':odd, 'i':i}"></template>
+        </div>
       </div>
     </div>
   </div>

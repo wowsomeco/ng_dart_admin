@@ -1,3 +1,7 @@
+## 0.0.3+6
+  * added optionPrefix as well as optionSuffix templates in w-select.
+  * added material icon picker in the playground page. 
+
 ## 0.0.3+5
   * added w-button.
   * added a sample of how to create a login component.

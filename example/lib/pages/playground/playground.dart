@@ -5,6 +5,7 @@ import 'package:ng_admin_demo/components/how_to_use/how_to_use.dart';
 import 'package:ng_admin_demo/pages/playground/login.dart';
 import 'social_card.dart';
 import 'report_card.dart';
+import 'icon_picker.dart';
 
 @Component(selector: 'playground', templateUrl: 'playground.html', directives: [
   coreDirectives,
@@ -13,6 +14,9 @@ import 'report_card.dart';
   HowToUseComponent,
   SocialCardComponent,
   ReportCardComponent,
-  LoginComponent
+  LoginComponent,
+  IconPickerComponent
 ])
-class PlaygroundComponent {}
+class PlaygroundComponent {
+  String selectedIcon = 'settings';
+}

@@ -68,6 +68,12 @@ class WSelectComponent implements AfterViewInit {
   @ViewChild('input')
   InputElement input;
 
+  @ContentChild('optionPrefix')
+  TemplateRef optionPrefix;
+
+  @ContentChild('optionSuffix')
+  TemplateRef optionSuffix;
+
   String _filterText;
 
   final WInputDecorService _decorSvc;

@@ -1,0 +1,6 @@
+<w-select [clearable]="clearable" [value]="value" (valueChange)="changeValue($event)" [options]="options">
+  <prefix><i *ngIf="value != null" class="material-icons blue">{{value}}</i></prefix>
+  <template #optionPrefix let-data let-odd="odd">
+    <i class="material-icons">{{data.value}}</i>
+  </template>
+</w-select>
