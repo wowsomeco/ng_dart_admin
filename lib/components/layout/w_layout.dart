@@ -25,10 +25,10 @@ class WLayoutService {
     directives: [coreDirectives, routerDirectives],
     providers: [ClassProvider(WLayoutService)])
 class WLayoutComponent {
-  /// w-header height in pixel
-  /// default is 60 px.
+  /// w-header height in percent.
+  /// default is 8 %.
   @Input('headerHeight')
-  num headerHeight = 60;
+  num headerHeight = 8;
 
   /// w-sidebar width in percent.
   /// default is 20%.
@@ -36,6 +36,8 @@ class WLayoutComponent {
   num sidebarWidth = 20;
 
   num get contentWidth => 100 - sidebarWidth;
+
+  num get contentHeight => 100 - headerHeight;
 
   bool get collapsed => _layoutSvc.collapsed;
   set collapsed(bool flag) => _layoutSvc.collapsed = flag;

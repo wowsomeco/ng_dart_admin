@@ -6,11 +6,15 @@ import 'package:ng_admin/ng_admin.dart';
 
 class WSelectOption<T> {
   final String label;
-  // make sure the value is unique
+
+  /// make sure the value is unique
   final T value;
+
+  /// callback that gets called to check equality when the input gets changed.
+  /// if it is not supplied, it will compare against the [label] instead.
   final bool Function(String) compareTo;
 
-  WSelectOption(this.label, this.value, this.compareTo);
+  WSelectOption(this.label, this.value, {this.compareTo});
 }
 
 /// The Input Component that can be used to show any array-like data, just like how native <select> does, with more options to customize.
@@ -58,6 +62,9 @@ class WSelectComponent implements AfterViewInit {
   @Input('required')
   bool isRequired = false;
 
+  @Input('placeholder')
+  String placeholder = 'Please Select';
+
   final _valueChange = StreamController<dynamic>();
   @Output()
   Stream<dynamic> get valueChange => _valueChange.stream;
@@ -78,21 +85,14 @@ class WSelectComponent implements AfterViewInit {
 
   final WInputDecorService _decorSvc;
 
-  bool _showingOptions = false;
-  set showOptions(bool flag) {
-    _showingOptions = flag;
-    if (!flag) {
-      _decorSvc.setFocus(false);
-      _filterText = null;
-    } else {
-      _resetHighlighted();
-    }
-  }
-
-  bool get showOptions => _showingOptions;
+  bool showOptions = false;
 
   List<WSelectOption> get optionsWithFilter => _filterText != null
-      ? options.where((element) => element.compareTo(_filterText)).toList()
+      ? options
+          .where((el) => el.compareTo == null
+              ? el.label.toLowerCase().contains(_filterText.toLowerCase())
+              : el.compareTo(_filterText))
+          .toList()
       : options;
 
   int get selectedItemIdx =>
@@ -110,35 +110,26 @@ class WSelectComponent implements AfterViewInit {
 
   int get highlightedIdx => optionsWithFilter.indexOf(_higlightedOption);
 
+  num get inputWidth => input.getBoundingClientRect().width;
+
   /// the constructor
   WSelectComponent(this._decorSvc) {
     /// listen to decor svc
     /// show options on focus
     /// nullify value on clear
-    _decorSvc
-      ..focus.listen((ev) {
-        _showingOptions = ev;
-        if (ev) _scrollToActive();
-      })
-      ..onClear.listen((ev) => _valueChange.add(null));
+    _decorSvc.onClear.listen((ev) => _valueChange.add(null));
 
     // bind keys
-    // we don't use document.onKeyDown since it produces bug like https://github.com/dart-lang/sdk/issues/36488
-    document.on['keydown']
-        .where((ev) => ev is KeyboardEvent && _showingOptions)
-        .map((ev) => ev as KeyboardEvent)
-          ..where((ev) => ev.keyCode == KeyCode.ESC).listen((ev) => _onBlur())
-          ..where((ev) =>
-                  ev.keyCode == KeyCode.ENTER ||
-                  ev.keyCode == KeyCode.MAC_ENTER)
-              .listen((ev) => selectOption(_higlightedOption))
-          ..where((ev) =>
-                  ev.keyCode == KeyCode.UP || ev.keyCode == KeyCode.DOWN)
-              .listen((ev) {
-            ev.preventDefault();
-            _changeHighlight(ev.keyCode == KeyCode.UP ? -1 : 1);
-            _scrollToActive();
-          });
+    KeyboardEventListener('keydown', [KeyCode.ESC], (ev) => _onBlur(true),
+        where: (ev) => showOptions);
+    KeyboardEventListener('keydown', [KeyCode.ENTER, KeyCode.MAC_ENTER],
+        (ev) => selectOption(_higlightedOption),
+        where: (ev) => showOptions);
+    KeyboardEventListener('keydown', [KeyCode.UP, KeyCode.DOWN], (ev) {
+      ev.preventDefault();
+      _changeHighlight(ev.keyCode == KeyCode.UP ? -1 : 1);
+      _scrollToActive();
+    }, where: (ev) => showOptions);
   }
 
   @override
@@ -146,13 +137,15 @@ class WSelectComponent implements AfterViewInit {
     if (isRequired) input.setAttribute('required', '');
     if (!searchable) input.setAttribute('readonly', '');
 
-    input.onFocus.listen((ev) => _decorSvc.setFocus(true));
-    input.onBlur.listen((ev) => _onBlur());
+    input.onFocus.listen((ev) => _onFocus());
+    input.onBlur.listen((ev) => _onBlur(true));
   }
+
+  void toggleShowOptions() => showOptions ? _onBlur(false) : _onFocus();
 
   void selectOption(WSelectOption o) {
     _valueChange.add(o.value);
-    _onBlur();
+    _onBlur(false);
   }
 
   void onInputChange(String v) => _filterText = v.trim();
@@ -171,9 +164,25 @@ class WSelectComponent implements AfterViewInit {
     optionsContainer.scrollTop = (highlightedIdx * y);
   }
 
-  void _onBlur() {
+  void _onFocus() {
+    input.focus();
+    _decorSvc.setFocus(true);
+    showOptions = true;
+    _resetHighlighted();
+    _scrollToActive();
+  }
+
+  void _onBlur(bool resetInput) {
     input.blur();
     showOptions = false;
+    _filterText = null;
+    _decorSvc.setFocus(false);
+
+    if (resetInput) _resetInput();
+  }
+
+  void _resetInput() async {
+    await Future.delayed(Duration(milliseconds: 10));
     input.value = selectedLabel;
   }
 

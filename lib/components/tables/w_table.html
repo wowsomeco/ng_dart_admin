@@ -1,7 +1,10 @@
 <div class="ba b--light-gray pa2" [class.o-60]="loading" [ngStyle]="{'pointer-events': loading? 'none': 'auto'}">
   <div class="bb b--black-10">
     <div class="flex flex-column flex-row-ns justify-between items-center pa1">
-      <p class="f5 lh-copy b navy">{{title}}</p>
+      <div class="flex items-center">
+        <p [ngClass]="titleClass">{{title}}</p>
+        <ng-content select="rhs-title"></ng-content>
+      </div>
       <ng-content select="top-right"></ng-content>
     </div>
   </div>
@@ -10,14 +13,23 @@
       <table class="w-100 h-100 ba b--light-gray" *ngIf="!loading">
         <thead>
           <tr>
-            <th *ngFor="let h of headerItem" class="pa3">{{h}}</th>
+            <th *ngFor="let h of headerItem; let i=index; let odd=odd" class="pa3">
+              <template [ngTemplateOutlet]="header" [ngTemplateOutletContext]="{'\$implicit': h, 'odd':odd, 'i':i}">
+              </template>
+              <div *ngIf="header == null">{{h}}</div>
+            </th>
             <th *ngIf="showActionHeader" class="pa3">Actions</th>
           </tr>
         </thead>
         <tbody class="black-70">
           <tr class="pointer dim" *ngFor="let item of items; let i=index; let odd=odd"
             (click)="adapter.onClickRow(item)">
-            <td *ngFor="let d of item.tblRow.values" class="bt b--black-10 pa3 tc">{{d}}</td>
+            <td *ngFor="let k of item.tblRow.keys; let i=index; let odd=odd" class="bt b--black-10 pa3 tc">
+              <template [ngTemplateOutlet]="row"
+                [ngTemplateOutletContext]="{'\$implicit': item.tblRow[k], 'key':k, 'odd':odd, 'i':i}">
+              </template>
+              <div *ngIf="row == null">{{item.tblRow[k]}}</div>
+            </td>
             <td class="bt b--black-10 pa3 tc" *ngIf="adapter.onDeleteItem != null">
               <i class="material-icons light-red mh2" wEvent="click" stop (wListen)="onDeleteItem(item)">cancel</i>
             </td>

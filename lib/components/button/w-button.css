@@ -2,8 +2,14 @@ button {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  cursor: pointer;
-  border: none;
-  border-radius: 0;
   outline: none;
+}
+
+.no-border {
+  border: none;
+}
+
+.hover-btn:hover {
+  opacity: 0.9;
+  font-weight: bold;
 }

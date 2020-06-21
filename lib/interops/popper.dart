@@ -33,13 +33,10 @@ class PopperConfig {
 @JS()
 class PopperModifier {
   external PopperFlip get flip;
-  external List<num> get offset;
   external PopperPreventOverflow get preventOverflow;
 
   external factory PopperModifier(
-      {PopperFlip flip,
-      List<num> offset = const [0, 0],
-      PopperPreventOverflow preventOverflow});
+      {PopperFlip flip, PopperPreventOverflow preventOverflow});
 }
 
 @anonymous

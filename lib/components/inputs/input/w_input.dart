@@ -38,28 +38,44 @@ class WInputComponent implements AfterViewInit {
   @Input('placeholder')
   String placeholder;
 
+  /// The callback that filters out the current value of the input.
+  ///
+  /// Gets called on [setValue] where the func param is the value of the current input value,
+  /// It will then gets forced to change the value by whatever the return value is set.
+  @Input('filter')
+  dynamic Function(dynamic) filter;
+
   @ViewChild('input')
-  HtmlElement input;
+  InputElement input;
 
   final _valueChange = StreamController<dynamic>();
   @Output()
   Stream<dynamic> get valueChange => _valueChange.stream;
   void setValue(dynamic v) {
-    /// just directly return null value if empty
+    // just directly return null value if empty
     if (v == null || v.toString().isEmpty) {
       _valueChange.add(null);
       return;
     }
 
-    /// check and parse accordingly
-    switch (type) {
-      case 'number':
-        _valueChange.add(num.parse(v));
-        break;
-      default:
-        _valueChange.add(v);
-        break;
+    dynamic val = v;
+
+    if (filter != null) {
+      val = filter(val);
+      _valueChange.add(val);
+    } else {
+      // check and parse accordingly
+      switch (type) {
+        case 'number':
+          _valueChange.add(num.parse(v));
+          break;
+        default:
+          _valueChange.add(v);
+          break;
+      }
     }
+
+    input.value = val;
   }
 
   final WInputDecorService _service;

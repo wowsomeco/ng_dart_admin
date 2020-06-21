@@ -69,15 +69,6 @@ class WInputDecoratorComponent implements AfterViewInit {
     });
   }
 
-  void handleClick() {
-    if (loading) return;
-    _service.setFocus(true);
-  }
-
-  void clickOutside() {
-    if (_service.focused) _service.setFocus(false);
-  }
-
   void clear() => _service.clear();
 
   bool get loading => _service.isLoading;

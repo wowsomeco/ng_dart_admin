@@ -53,8 +53,17 @@ class WTableComponent implements OnInit {
   @Input('title')
   String title;
 
+  @Input('titleClass')
+  String titleClass = 'f5 lh-copy b navy';
+
   @Input('adapter')
   WTableAdapter adapter;
+
+  @ContentChild('header')
+  TemplateRef header;
+
+  @ContentChild('row')
+  TemplateRef row;
 
   Iterable<String> get headerItem =>
       items.isNotEmpty ? items.first.tblRow.keys : null;

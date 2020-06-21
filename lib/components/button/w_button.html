@@ -1,7 +1,6 @@
-<div class="w-100 h-100 relative overflow-hidden br1" [ngClass]="outerClass">
-  <button wEvent="click" stop (wListen)="onClick()" [type]="type"
-    class="pointer dim bg-animate f6 ph3 pv2 w-100 flex items-center justify-center" [ngClass]="classes"
-    [disabled]="loading">
+<div class="w-100 h-100 relative overflow-hidden br1">
+  <button wEvent="click" stop (wListen)="onClick()" [type]="type" [ngClass]="classes"
+    class="pointer f6 ph3 pv2 w-100 flex items-center justify-center" [disabled]="loading">
     <ng-content></ng-content>
   </button>
   <div class="w-100 h-100 absolute top-0 bg-black-20 flex items-center justify-center" *ngIf="loading">

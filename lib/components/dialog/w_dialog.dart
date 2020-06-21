@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:html';
 
 import 'package:angular/angular.dart';
+import 'package:ng_admin/ng_admin.dart';
 
 /// Component for showing the black-ish overlay with any content you feel like providing over it.
 ///
@@ -25,10 +26,7 @@ class WDialogComponent implements OnInit {
 
   @override
   void ngOnInit() {
-    document.on['keydown']
-        .where((ev) => ev is KeyboardEvent)
-        .map((ev) => ev as KeyboardEvent)
-        .where((ev) => ev.keyCode == KeyCode.ESC)
-        .listen((ev) => setShow(false));
+    KeyboardEventListener('keydown', [KeyCode.ESC], (ev) => setShow(false),
+        where: (ev) => show);
   }
 }

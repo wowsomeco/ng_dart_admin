@@ -10,7 +10,7 @@ import 'package:ng_admin/ng_admin.dart';
     directives: [coreDirectives, ngAdminDirectives, WSpinnerComponent])
 class WButtonComponent {
   @Input('outerClass')
-  dynamic outerClass;
+  String outerClass = '';
 
   @Input('btnType')
   String type = 'button';
@@ -24,6 +24,9 @@ class WButtonComponent {
   @Input('loading')
   bool loading = false;
 
+  @Input('outlined')
+  bool outlined = false;
+
   final _clicked = StreamController<Null>();
   @Output()
   Stream<Null> get click => _clicked.stream;
@@ -31,5 +34,11 @@ class WButtonComponent {
     if (!loading) _clicked.add(null);
   }
 
-  List<String> get classes => ['bg-$bgColor', textColor];
+  Map<String, bool> get classes => {
+        outerClass: true,
+        'ba b--$textColor bg-white hover-near-white hover-bg-$textColor':
+            outlined,
+        textColor: true,
+        'bg-$bgColor no-border hover-btn': !outlined
+      };
 }

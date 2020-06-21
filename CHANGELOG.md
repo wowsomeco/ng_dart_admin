@@ -1,3 +1,13 @@
+## 0.0.4
+  * added placeholder prop in w-select.
+  * refactored w-select.
+  * made compareTo in WSelectOption optional.
+  * added template outler #row and #header in w-table.
+  * revamped w-layout.  
+  * removed offset from popper directive as it does not work somehow. 
+  * removed w-action-table as w-table should suffice for now.   
+  * added util KeyboardEventListener.
+
 ## 0.0.3+6
   * added optionPrefix as well as optionSuffix templates in w-select.
   * added material icon picker in the playground page. 

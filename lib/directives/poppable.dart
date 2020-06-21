@@ -13,18 +13,14 @@ class WPoppableDirective implements OnInit, OnDestroy {
   ///
   /// auto | top | bottom | right | left
   /// combine any of the above with either suffix -start or -end
-  @Input('placement')
+  @Input('popPlacement')
   String placement = 'bottom';
-
-  /// The placement offset [x,y]
-  @Input('offset')
-  List<num> offset = [0, 0];
 
   /// Describes the positioning strategy to use.
   ///
   /// By default, it is absolute, which in the simplest cases does not require repositioning of the popper.
   /// absolute | fixed
-  @Input('strategy')
+  @Input('popStrategy')
   String strategy = 'absolute';
 
   /// Determines how it should show, either on click OR hover.
@@ -44,10 +40,8 @@ class WPoppableDirective implements OnInit, OnDestroy {
               placement: placement,
               strategy: strategy,
               modifiers: PopperModifier(
-                  offset: offset,
                   flip: PopperFlip(enabled: true),
                   preventOverflow: PopperPreventOverflow())));
-      _el.style.width = '${_el.parent.getBoundingClientRect().width}px';
     } else {
       _popper?.destroy();
     }
@@ -70,6 +64,8 @@ class WPoppableDirective implements OnInit, OnDestroy {
         .map((ev) => ev as KeyboardEvent)
         .where((ev) => ev.keyCode == KeyCode.ESC)
         .listen((ev) => _showChange.add(false));
+    // set z to max
+    _el.classes.add('z-max');
   }
 
   @override

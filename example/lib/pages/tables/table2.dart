@@ -5,7 +5,7 @@ import 'package:angular_forms/angular_forms.dart';
 import 'package:ng_admin/ng_admin.dart';
 
 class _TableData implements WTableItem {
-  final int id;
+  int id;
   String name;
   String position;
   int age;
@@ -49,43 +49,23 @@ List<_TableData> tableItems2 = [
     WDialogComponent,
     WInputComponent,
     WSelectComponent,
-    WActionTableComponent
+    WTableComponent,
+    WButtonComponent
   ],
 )
 class Table2Component {
-  bool _showDialog = false;
-
-  bool get showDialog => _showDialog;
-  set showDialog(bool flag) => _showDialog = flag;
-
-  void submitForm() {
-    if (newForm) {
-      tableItems2.add(formData);
-    } else {
-      int idx = tableItems2.indexWhere((x) => x.id == formData.id);
-      tableItems2[idx] = formData;
-    }
-    showDialog = false;
-    tblAdapter2.reload();
-  }
-
+  bool showDialog = false;
   bool newForm = false;
-  _TableData formData;
-
   List<WSelectOption<String>> posOptions = [
-    WSelectOption('Defender', 'Defender',
-        (filter) => 'defender'.contains(filter.toLowerCase())),
-    WSelectOption('Midfielder', 'Midfielder',
-        (filter) => 'midfielder'.contains(filter.toLowerCase())),
-    WSelectOption('Forward', 'Forward',
-        (filter) => 'forward'.contains(filter.toLowerCase())),
+    WSelectOption('Defender', 'Defender'),
+    WSelectOption('Midfielder', 'Midfielder'),
+    WSelectOption('Forward', 'Forward')
   ];
 
   WTableAdapter tblAdapter2 = WTableAdapter(
       onDeleteItem: (itm) async {
         if (window.confirm('Are you sure to delete?')) {
-          tableItems2
-              .removeAt(tableItems2.indexWhere((x) => x.id == itm.tblId));
+          tableItems2.removeAt(tableItems2.indexOf(itm));
           await Future.delayed(Duration(milliseconds: 500));
           return true;
         }
@@ -101,27 +81,40 @@ class Table2Component {
             .toList();
       });
 
-  WTableFormAdapter<_TableData> formAdapter =
-      WTableFormAdapter<_TableData>(onSubmitForm: (f, isNew) async {
-    await Future.delayed(Duration(milliseconds: 1000));
-    if (isNew) {
-      tableItems2.add(f);
+  _TableData formData = _TableData(null);
+
+  Table2Component() {
+    tblAdapter2.clickRowStream.listen((ev) => edit(ev));
+  }
+
+  void submit() {
+    if (newForm) {
+      formData.id = tableItems2.length;
+      tableItems2.add(formData);
     } else {
-      tableItems2[tableItems2.indexWhere((x) => x.tblId == f.tblId)] = f;
+      int idx = tableItems2.indexWhere((x) => x.id == formData.id);
+      tableItems2[idx] = formData;
     }
-    return true;
-  }, onFetchForm: (itm) async {
-    if (itm != null) {
-      await Future.delayed(Duration(milliseconds: 500));
-      return _TableData.fromTableItem(itm);
-    }
-    return _TableData(tableItems2.length + 1);
-  });
+    showDialog = false;
+    tblAdapter2.reload();
+  }
 
   void download() {
     XLSXWorksheet ws = XLSX.utils.json_to_sheet(tableItems2);
     XLSXWorkbook wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'data');
     XLSX.writeFile(wb, 'test-download.xlsx');
+  }
+
+  void add() {
+    newForm = true;
+    formData = _TableData(null);
+    showDialog = true;
+  }
+
+  void edit(WTableItem item) {
+    newForm = false;
+    formData = _TableData.fromTableItem(item);
+    showDialog = true;
   }
 }

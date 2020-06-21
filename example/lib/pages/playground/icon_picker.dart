@@ -35,8 +35,7 @@ class IconPickerComponent {
       'backup',
       'check_circle'
     ]
-        .map((e) => WSelectOption(e.replaceAll('_', '').toUpperCase(), e,
-            (str) => e.contains(str.toLowerCase())))
+        .map((e) => WSelectOption(e.replaceAll('_', '').toUpperCase(), e))
         .toList();
   }
 }
