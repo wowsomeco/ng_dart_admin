@@ -9,12 +9,12 @@
     </div>
   </w-header>
   <w-sidebar>
-    <div class="w-100 h-100 overflow-auto bg-black">
+    <div class="w-100 h-100 overflow-auto bg-dark-gray">
       <w-list [list]="sidebarItems">
         <template #listItem let-data let-hasChildren="hasChildren">
           <div class="flex flex-column" [ngStyle]="listMargin(data.level)">
             <div (click)="navigate(data.to)" [ngClass]="routeClass(data.to)"
-              class="pointer grow pa2 bb b--gray flex justify-between flex-column flex-row-l items-center no-underline">
+              class="pointer grow pa2 flex justify-between flex-column flex-row-l items-center hover-white">
               <i *ngIf="data.icon != null" class="ph2 material-icons">{{data.icon}}</i>
               <p class="f5 db-ns dn pl2">{{data.title}}</p>
               <div class="flex-auto flex justify-end">

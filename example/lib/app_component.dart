@@ -59,14 +59,10 @@ class AppComponent implements OnInit {
     await _router.navigate(RoutePaths.dashboard.toUrl());
   }
 
-  List<String> get activeClass => ['bg-light-blue', 'b', 'dark-blue'];
-
   Map<String, bool> routeClass(String to) => _router.current != null
       ? {
-          'bg-blue': _router.current.path == to,
-          'b': _router.current.path == to,
-          'white': _router.current.path == to,
-          'light-gray': to != null && _router.current.path != to,
+          'light-blue': _router.current.path.contains(to),
+          'silver': _router.current.path != to,
         }
       : {};
 

@@ -1,3 +1,6 @@
+## 0.0.4+1
+  * fixed w-dialog not overlaying full screen on ios.  
+
 ## 0.0.4
   * added placeholder prop in w-select.
   * refactored w-select.

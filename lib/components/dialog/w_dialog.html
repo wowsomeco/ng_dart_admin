@@ -1,3 +1,4 @@
-<div class="bg-black-30 aspect-ratio--object" [class.db]="show" [class.dn]="!show" (click)="setShow(false)">
+<div class="bg-black-30 absolute top-0 left-0 z-max vh-100" [style.width.vw]="100" [class.db]="show" [class.dn]="!show"
+  (click)="setShow(false)">
   <ng-content></ng-content>
 </div>
