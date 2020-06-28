@@ -3,7 +3,7 @@
   <div class="w-100 h-100 pa1">
     <input #input [ngModel]="selectedLabel" (ngModelChange)="onInputChange($event)" [placeholder]="placeholder"
       class="w-100 h-100" [ngClass]="selectedLabel != null ? 'dark-gray' : 'gray'" />
-    <div wPopup [show]="showOptions" class="ba b--moon-gray bg-white black">
+    <div wPopup [show]="showOptions" class="bb bl br b--light-blue br--bottom br2 bg-white black">
       <div class="overflow-y-auto" [style.min-width.px]="inputWidth" [style.max-height.px]="200" #optionsContainer>
         <div class="pa3 bb b--light-gray pointer dim flex items-center justify-between"
           *ngFor="let o of optionsWithFilter;let i=index; let odd=odd" wEvent="mousedown" stop prevent

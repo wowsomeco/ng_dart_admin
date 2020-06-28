@@ -64,8 +64,8 @@ class WInputDecoratorComponent implements AfterViewInit {
   @override
   void ngAfterViewInit() {
     _service.focus.listen((ev) {
-      outer.classes.remove(ev ? 'b--moon-gray' : 'b--blue');
-      outer.classes.add(ev ? 'b--blue' : 'b--moon-gray');
+      outer.classes.remove(ev ? 'b--moon-gray' : 'b--light-blue');
+      outer.classes.add(ev ? 'b--light-blue' : 'b--moon-gray');
     });
   }
 
