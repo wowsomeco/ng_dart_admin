@@ -24,5 +24,14 @@
         </div>
       </how-to-use>
     </div>
+    <div class="w-100 pa1">
+      <how-to-use title="Common Card" path="lib/pages/playground/common_card">
+        <div class="w-100 h-100 flex flex-wrap justify-center">
+          <div class="w-33-ns w-100 pa1 h-100" *ngFor="let c of commonCards; let i=index">
+            <common-card [name]="c.name" [date]="c.date" [description]="c.description"></common-card>
+          </div>
+        </div>
+      </how-to-use>
+    </div>
   </div>
 </div>
