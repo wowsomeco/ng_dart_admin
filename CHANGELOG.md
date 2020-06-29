@@ -1,3 +1,7 @@
+## 0.0.4+2
+  * option box in w-select now has the same width as the input field. 
+  * added w-checkbox.
+
 ## 0.0.4+1
   * fixed w-dialog not overlaying full screen on ios.  
 

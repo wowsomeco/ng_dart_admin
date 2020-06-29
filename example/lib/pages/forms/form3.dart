@@ -8,10 +8,13 @@ import 'chain_select.dart';
   formDirectives,
   ngAdminDirectives,
   WInputComponent,
-  ChainSelectComponent
+  ChainSelectComponent,
+  WCheckboxComponent
 ])
 class Form3Component {
   String name;
   int selected1;
   int selected2;
+  bool checkbox1;
+  bool checkbox2 = true;
 }

@@ -29,12 +29,6 @@ class ChainSelectComponent {
   Stream<int> get selected1Change => _select1Change.stream;
   void changeSelect1(int id) async {
     _select1Change.add(id);
-    options2 = [];
-
-    // fake loading
-    loadingSelect2 = true;
-    await Future.delayed(Duration(seconds: 1));
-    loadingSelect2 = false;
 
     changeSelect2(null);
     options2 = [

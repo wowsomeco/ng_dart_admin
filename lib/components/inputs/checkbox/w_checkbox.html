@@ -1,0 +1,7 @@
+<label class="checkbox w-100 h-100">
+  <div class="flex items-center h-100">
+    <ng-content></ng-content>
+  </div>
+  <input type="checkbox" [ngModel]="value" (ngModelChange)="setValue($event)" />
+  <span class="checkmark"></span>
+</label>

@@ -1,25 +1,27 @@
-<w-input-decor [clearable]="clearable">
-  <ng-content select="prefix" ngProjectAs="prefix"></ng-content>
-  <div class="w-100 h-100 pa1">
-    <input #input [ngModel]="selectedLabel" (ngModelChange)="onInputChange($event)" [placeholder]="placeholder"
-      class="w-100 h-100" [ngClass]="selectedLabel != null ? 'dark-gray' : 'gray'" />
-    <div wPopup [show]="showOptions" class="bb bl br b--light-blue br--bottom br2 bg-white black">
-      <div class="overflow-y-auto" [style.min-width.px]="inputWidth" [style.max-height.px]="200" #optionsContainer>
-        <div class="pa3 bb b--light-gray pointer dim flex items-center justify-between"
-          *ngFor="let o of optionsWithFilter;let i=index; let odd=odd" wEvent="mousedown" stop prevent
-          (wListen)="selectOption(o)" [ngClass]="getOptionItemClasses(o)">
-          <template [ngTemplateOutlet]="optionPrefix"
-            [ngTemplateOutletContext]="{'\$implicit': o, 'odd':odd, 'i':i}"></template>
-          <div>{{o.label}}</div>
-          <template [ngTemplateOutlet]="optionSuffix"
-            [ngTemplateOutletContext]="{'\$implicit': o, 'odd':odd, 'i':i}"></template>
-        </div>
+<div class="w-100 relative">
+  <w-input-decor [clearable]="clearable">
+    <ng-content select="prefix" ngProjectAs="prefix"></ng-content>
+    <div class="w-100 h-100 pa1">
+      <input #input [ngModel]="selectedLabel" (ngModelChange)="onInputChange($event)" [placeholder]="placeholder"
+        class="w-100 h-100" [ngClass]="selectedLabel != null ? 'dark-gray' : 'gray'" />
+    </div>
+    <suffix>
+      <div class="h-100 flex items-center" wEvent="mousedown" stop prevent (wListen)="toggleShowOptions()">
+        <i class="material-icons">keyboard_arrow_down</i>
+      </div>
+    </suffix>
+  </w-input-decor>
+  <div wPopup [show]="showOptions" class="w-100 ba b--light-blue br--bottom br2 bg-white black">
+    <div class="overflow-y-auto" [style.min-width.px]="inputWidth" [style.max-height.px]="200" #optionsContainer>
+      <div class="pa3 pointer dim flex items-center justify-between"
+        *ngFor="let o of optionsWithFilter;let i=index; let odd=odd" wEvent="mousedown" stop prevent
+        (wListen)="selectOption(o)" [ngClass]="getOptionItemClasses(o)">
+        <template [ngTemplateOutlet]="optionPrefix"
+          [ngTemplateOutletContext]="{'\$implicit': o, 'odd':odd, 'i':i}"></template>
+        <div>{{o.label}}</div>
+        <template [ngTemplateOutlet]="optionSuffix"
+          [ngTemplateOutletContext]="{'\$implicit': o, 'odd':odd, 'i':i}"></template>
       </div>
     </div>
   </div>
-  <suffix>
-    <div class="h-100 flex items-center" (click)="toggleShowOptions()">
-      <i class="material-icons">keyboard_arrow_down</i>
-    </div>
-  </suffix>
-</w-input-decor>
+</div>

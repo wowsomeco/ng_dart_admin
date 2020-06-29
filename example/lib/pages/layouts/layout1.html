@@ -9,12 +9,12 @@
     </div>
   </w-header>
   <w-sidebar>
-    <div class="w-100 h-100 overflow-auto">
+    <div class="w-100 h-100 overflow-auto bg-dark-gray">
       <w-list [list]="sidebarItems">
         <template #listItem let-data let-index="index">
           <div class="flex flex-column">
             <div (click)="active = index" [ngClass]="itemClass(index)"
-              class="pointer grow pv2 ph1 bb b--light-blue flex flex-column items-center">
+              class="pointer grow pv2 ph1 flex flex-column items-center">
               <i class="material-icons" [style.font-size.px]="36">{{data.icon}}</i>
               <p class="f5 db-ns dn">{{data.title}}</p>
             </div>

@@ -33,7 +33,7 @@ class WSelectOption<T> {
     WInputDecoratorComponent
   ],
 )
-class WSelectComponent implements AfterViewInit {
+class WSelectComponent implements OnInit {
   /// the dropdown options to be shown when the input field gets focused.
   @Input('options')
   List<WSelectOption> options = [];
@@ -133,7 +133,7 @@ class WSelectComponent implements AfterViewInit {
   }
 
   @override
-  void ngAfterViewInit() {
+  void ngOnInit() {
     if (isRequired) input.setAttribute('required', '');
     if (!searchable) input.setAttribute('readonly', '');
 

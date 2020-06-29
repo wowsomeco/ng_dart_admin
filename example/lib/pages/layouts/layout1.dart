@@ -25,10 +25,6 @@ class Layout1Component {
     WListItem(_SidebarItem('Item 4', 'person')),
   ];
 
-  Map<String, bool> itemClass(int idx) => {
-        'bg-light-blue': active == idx,
-        'b': active == idx,
-        'dark-blue': active == idx,
-        'gray': active != idx
-      };
+  Map<String, bool> itemClass(int idx) =>
+      {'light-blue b': active == idx, 'silver': active != idx};
 }
